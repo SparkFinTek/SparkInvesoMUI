@@ -72,6 +72,8 @@ export default function AuthRegister({ providers, csrfToken }) {
         initialValues={{
           firstName: '',
           lastName: '',
+          phoneNumber:'',
+          userName:'',
           company: '',
           email: '',
           password: '',
@@ -80,6 +82,11 @@ export default function AuthRegister({ providers, csrfToken }) {
         validationSchema={Yup.object().shape({
           firstName: Yup.string().max(20).required('First Name is required'),
           lastName: Yup.string().max(20).required('Last Name is required'),
+          
+          userName:Yup.string().max(20).required('User Name is required'),
+          phoneNumber:Yup.string().max(20).required('Phone Number is required'),
+
+      
           email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
           password: Yup.string().max(255).required('Password is required')
         })}
@@ -88,7 +95,12 @@ export default function AuthRegister({ providers, csrfToken }) {
             redirect: false,
             firstName: values.firstName,
             lastName: values.lastName,
-            company: values.company,
+            
+            middleName:values.middleName,
+            phoneNumber:values.phoneNumber,
+            userName:values.userName,
+
+            phoneNumber: values.phoneNumber,
             email: values.email,
             password: values.password,
             callbackUrl: APP_DEFAULT_PATH
@@ -99,6 +111,7 @@ export default function AuthRegister({ providers, csrfToken }) {
             }
           });
         }}
+
       >
         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
           <form noValidate onSubmit={handleSubmit}>
@@ -125,6 +138,10 @@ export default function AuthRegister({ providers, csrfToken }) {
                   </FormHelperText>
                 )}
               </Grid>
+
+              
+              
+
               <Grid item xs={6}>
                 <Stack spacing={1}>
                   <InputLabel htmlFor="last-login">Last Name*</InputLabel>
@@ -146,27 +163,57 @@ export default function AuthRegister({ providers, csrfToken }) {
                   </FormHelperText>
                 )}
               </Grid>
+
+
+
               <Grid item xs={12}>
                 <Stack spacing={1}>
-                  <InputLabel htmlFor="company-login">Company</InputLabel>
+                  <InputLabel htmlFor="user-login">User Name*</InputLabel>
                   <OutlinedInput
-                    id="company-login"
+                    id="user-login"
                     type="text"
-                    value={values.company}
-                    name="company"
+                    value={values.userName}
+                    name="userName"
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    placeholder="Enter your name"
+                    placeholder="Enter your User Name"
                     fullWidth
-                    error={Boolean(touched.company && errors.company)}
+                    error={Boolean(touched.userName && errors.userName)}
                   />
                 </Stack>
-                {touched.company && errors.company && (
+                {touched.userName && errors.userName && (
                   <FormHelperText error id="standard-weight-helper-text-name-login">
-                    {errors.company}
+                    {errors.userName}
                   </FormHelperText>
                 )}
               </Grid>
+
+
+
+              <Grid item xs={12}>
+                <Stack spacing={1}>
+                  <InputLabel htmlFor="Phone-login">Phone Number*</InputLabel>
+                  <OutlinedInput
+                    id="Phone-login"
+                    type="text"
+                    value={values.phoneNumber}
+                    name="phoneNumber"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    placeholder="Enter your Phone Number"
+                    fullWidth
+                    error={Boolean(touched.phoneNumber && errors.phoneNumber)}
+                  />
+                </Stack>
+                {touched.phoneNumber && errors.phoneNumber && (
+                  <FormHelperText error id="standard-weight-helper-text-name-login">
+                    {errors.phoneNumber}
+                  </FormHelperText>
+                )}
+              </Grid>
+
+
+
               <Grid item xs={12}>
                 <Stack spacing={1}>
                   <InputLabel htmlFor="email-login">Email Address</InputLabel>
