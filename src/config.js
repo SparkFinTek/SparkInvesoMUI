@@ -11,6 +11,9 @@ export const APP_DEFAULT_PATH = '/dashboard/analytics';
 export const HORIZONTAL_MAX_ITEM = 7;
 export const DRAWER_WIDTH = 260;
 export const MINI_DRAWER_WIDTH = 60;
+export const CUSTOMER_REGISTER = 'http://localhost:8080/api/customer/register';
+export const CUSTOMER_LOGIN = 'http://localhost:8080/api/customer/login';
+
 
 const publicSans = Public_Sans({ subsets: ['latin'], weight: ['400', '500', '300', '700'] });
 

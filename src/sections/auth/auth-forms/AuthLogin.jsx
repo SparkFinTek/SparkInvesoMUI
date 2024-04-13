@@ -43,6 +43,7 @@ import EyeInvisibleOutlined from '@ant-design/icons/EyeInvisibleOutlined';
 const Auth0 = '/assets/images/icons/auth0.svg';
 const Cognito = '/assets/images/icons/aws-cognito.svg';
 const Google = '/assets/images/icons/google.svg';
+const loginEndpoint  = process.env.REACT_APP_LOGIN_ENDPOINT;
 
 // ============================|| AWS CONNITO - LOGIN ||============================ //
 
@@ -72,8 +73,8 @@ export default function AuthLogin({ providers, csrfToken }) {
     <>
       <Formik
         initialValues={{
-          email: 'info@codedthemes.com',
-          password: '123456',
+          email: 'jsuryapraksh@sparkinfotech.com',
+          password: 'Spark@2024',
           submit: null
         }}
         validationSchema={Yup.object().shape({
@@ -81,12 +82,15 @@ export default function AuthLogin({ providers, csrfToken }) {
           password: Yup.string().max(255).required('Password is required')
         })}
         onSubmit={(values, { setErrors, setSubmitting }) => {
-          signIn('login', {
+          signIn(loginEndpoint, {
             redirect: true,
             email: values.email,
             password: values.password,
-            callbackUrl: APP_DEFAULT_PATH
-          }).then(
+            site:process.env.NEXTAUTH_URL
+          }
+          )
+
+            .then(
             (res) => {
               if (res?.error) {
                 setErrors({ submit: res.error });

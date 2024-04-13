@@ -22,7 +22,7 @@ export const authOptions = {
       },
       async authorize(credentials) {
         try {
-          const user = await axios.post('/api/account/login', {
+          const user = await axios.post('/api/customer/login', {
             password: credentials?.password,
             email: credentials?.email
           });

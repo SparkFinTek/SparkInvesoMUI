@@ -19,7 +19,7 @@ export default function GuestGuard({ children }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch('/api/auth/protected');
+      const res = await fetch('/api/customer/login');
       const json = await res?.json();
       if (json?.protected) {
         let redirectPath = APP_DEFAULT_PATH;

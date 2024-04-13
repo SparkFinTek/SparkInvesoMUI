@@ -1,13 +1,10 @@
 'use client';
 import PropTypes from 'prop-types';
-
 import React from 'react';
-
 // next
 import Image from 'next/legacy/image';
 import NextLink from 'next/link';
 import { signIn } from 'next-auth/react';
-
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -21,59 +18,48 @@ import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-
 // third party
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-
+import axios from 'axios';
 // project import
 import FirebaseSocial from './FirebaseSocial';
 import IconButton from 'components/@extended/IconButton';
 import AnimateButton from 'components/@extended/AnimateButton';
-
-import { APP_DEFAULT_PATH } from 'config';
+import { APP_DEFAULT_PATH, CUSTOMER_REGISTER } from 'config';
 import { strengthColor, strengthIndicator } from 'utils/password-strength';
-
 // assets
 import EyeOutlined from '@ant-design/icons/EyeOutlined';
 import EyeInvisibleOutlined from '@ant-design/icons/EyeInvisibleOutlined';
-
 const Auth0 = '/assets/images/icons/auth0.svg';
 const Cognito = '/assets/images/icons/aws-cognito.svg';
 const Google = '/assets/images/icons/google.svg';
-
 // ============================|| AWS CONNITO - LOGIN ||============================ //
-
 export default function AuthRegister({ providers, csrfToken }) {
   const downSM = useMediaQuery((theme) => theme.breakpoints.down('sm'));
-
   const [level, setLevel] = React.useState();
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
-
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-
   const changePassword = (value) => {
     const temp = strengthIndicator(value);
     setLevel(strengthColor(temp));
   };
-
   React.useEffect(() => {
     changePassword('');
   }, []);
-
   return (
     <>
       <Formik
         initialValues={{
           firstName: '',
           lastName: '',
-          phoneNumber:'',
-          userName:'',
+          phoneNumber: '',
+          userName: '',
           company: '',
           email: '',
           password: '',
@@ -82,25 +68,44 @@ export default function AuthRegister({ providers, csrfToken }) {
         validationSchema={Yup.object().shape({
           firstName: Yup.string().max(20).required('First Name is required'),
           lastName: Yup.string().max(20).required('Last Name is required'),
-          
-          userName:Yup.string().max(20).required('User Name is required'),
-          phoneNumber:Yup.string().max(20).required('Phone Number is required'),
-
-      
+          userName: Yup.string().max(20).required('User Name is required'),
+          phoneNumber: Yup.string().max(20).required('Phone Number is required'),
           email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
           password: Yup.string().max(255).required('Password is required')
         })}
         onSubmit={(values, { setErrors, setSubmitting }) => {
+          console.log(values.userName);
+          console.log(values.email);
+          console.log(values.phoneNumber);
+          axios
+            .post(CUSTOMER_REGISTER, {
+              customerBasicInfo: {
+                username: values.userName,
+                firstName: values.firstName,
+                lastName: values.lastName,
+                email: values.email,
+                phoneNumber: values.phoneNumber,
+                customerRole: 'INVESTOR',
+                dateOfBirth: ''
+              },
+              customerLogin: {
+                username: values.userName,
+                email: values.email,
+                password: values.password
+              }
+            })
+            .then((res) => {
+              console.log('I am in axios: ' + values.userName);
+              console.log(res);
+              console.log(res.data);
+            });
           signIn('register', {
             redirect: false,
             firstName: values.firstName,
             lastName: values.lastName,
-            
-            middleName:values.middleName,
-            phoneNumber:values.phoneNumber,
-            userName:values.userName,
-
+            middleName: values.middleName,
             phoneNumber: values.phoneNumber,
+            userName: values.userName,
             email: values.email,
             password: values.password,
             callbackUrl: APP_DEFAULT_PATH
@@ -111,7 +116,6 @@ export default function AuthRegister({ providers, csrfToken }) {
             }
           });
         }}
-
       >
         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
           <form noValidate onSubmit={handleSubmit}>
@@ -138,10 +142,6 @@ export default function AuthRegister({ providers, csrfToken }) {
                   </FormHelperText>
                 )}
               </Grid>
-
-              
-              
-
               <Grid item xs={6}>
                 <Stack spacing={1}>
                   <InputLabel htmlFor="last-login">Last Name*</InputLabel>
@@ -163,9 +163,6 @@ export default function AuthRegister({ providers, csrfToken }) {
                   </FormHelperText>
                 )}
               </Grid>
-
-
-
               <Grid item xs={12}>
                 <Stack spacing={1}>
                   <InputLabel htmlFor="user-login">User Name*</InputLabel>
@@ -187,9 +184,6 @@ export default function AuthRegister({ providers, csrfToken }) {
                   </FormHelperText>
                 )}
               </Grid>
-
-
-
               <Grid item xs={12}>
                 <Stack spacing={1}>
                   <InputLabel htmlFor="Phone-login">Phone Number*</InputLabel>
@@ -211,9 +205,6 @@ export default function AuthRegister({ providers, csrfToken }) {
                   </FormHelperText>
                 )}
               </Grid>
-
-
-
               <Grid item xs={12}>
                 <Stack spacing={1}>
                   <InputLabel htmlFor="email-login">Email Address</InputLabel>
@@ -284,7 +275,6 @@ export default function AuthRegister({ providers, csrfToken }) {
                   </Grid>
                 </FormControl>
               </Grid>
-
               <Grid item xs={12} sx={{ mt: -1 }}>
                 <Typography variant="body2">
                   By Signing up, you agree to our &nbsp;
@@ -313,7 +303,6 @@ export default function AuthRegister({ providers, csrfToken }) {
           </form>
         )}
       </Formik>
-
       {providers && (
         <Stack
           direction="row"
@@ -376,5 +365,4 @@ export default function AuthRegister({ providers, csrfToken }) {
     </>
   );
 }
-
 AuthRegister.propTypes = { providers: PropTypes.any, csrfToken: PropTypes.any };

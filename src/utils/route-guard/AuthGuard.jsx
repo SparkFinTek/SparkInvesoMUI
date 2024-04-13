@@ -18,10 +18,10 @@ export default function AuthGuard({ children }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch('/api/auth/protected');
+      const res = await fetch('/api/customer/login');
       const json = await res?.json();
       if (!json?.protected) {
-        router.push('/login');
+        router.push('/api/customer/login');
       }
     };
     fetchData();
