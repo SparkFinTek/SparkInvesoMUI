@@ -7,6 +7,7 @@ export default function useScriptRef() {
 
   useEffect(() => {
     scripted.current = false;
+    console.log("I am invoked in useScript")
   }, []);
 
   return scripted;

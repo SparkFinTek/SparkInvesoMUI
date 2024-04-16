@@ -76,7 +76,13 @@ export default function AuthRegister() {
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
-            await register(values.email, values.password, values.firstname, values.lastname);
+            const resp = await register(values.email, values.password, values.firstname, values.lastname);
+            const str = JSON.stringify(resp);
+            if(str === "201" || str === "200") {
+              scriptedRef.current = true;
+            }
+            console.log("response is: "+ str);
+            console.log("Current scriptedred: " + scriptedRef.current)
             if (scriptedRef.current) {
               setStatus({ success: true });
               setSubmitting(false);
@@ -94,15 +100,29 @@ export default function AuthRegister() {
                 navigate('/login', { replace: true });
               }, 1500);
             }
+            else {
+              setStatus({ success: false });
+              setSubmitting(false);
+              openSnackbar({
+                open: true,
+                message: 'Your registration has failed.',
+                variant: 'alert',
+
+                alert: {
+                  color: 'warning'
+                }
+              });
+            }
           } catch (err) {
             console.error(err);
-            if (scriptedRef.current) {
+            console.log("Current scriptedred: " + scriptedRef.current)
+
               setStatus({ success: false });
               setErrors({ submit: err.message });
               setSubmitting(false);
             }
           }
-        }}
+        }
       >
         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
           <form noValidate onSubmit={handleSubmit}>

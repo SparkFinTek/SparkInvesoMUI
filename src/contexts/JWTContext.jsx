@@ -11,6 +11,7 @@ import authReducer from 'contexts/auth-reducer/auth';
 // project import
 import Loader from 'components/Loader';
 import axios from 'utils/axios';
+import { json } from 'react-router';
 
 const chance = new Chance();
 
@@ -81,44 +82,60 @@ export const JWTProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    const response = await axios.post('/api/account/login', { email, password });
-    const { serviceToken, user } = response.data;
-    setSession(serviceToken);
-    dispatch({
-      type: LOGIN,
-      payload: {
-        isLoggedIn: true,
-        user
-      }
-    });
+    try {
+      const response = await axios.post('/api/account/login', { email, password });
+      const { serviceToken, user } = response.data;
+      setSession(serviceToken);
+      dispatch({
+        type: LOGIN,
+        payload: {
+          isLoggedIn: true,
+          user
+        }
+      });
+      return response.status;
+    }
+    catch(err){
+      console.log(err)
+      return err;
+    }
+
   };
 
   const register = async (email, password, firstName, lastName) => {
+    console.log("I am in JWTContext jsx in register")
     // todo: this flow need to be recode as it not verified
     const id = chance.bb_pin();
-    const response = await axios.post('/api/account/register', {
-      id,
-      email,
-      password,
-      firstName,
-      lastName
-    });
-    let users = response.data;
+    try {
+      const response = await axios.post('/api/account/register', {
+        id,
+        email,
+        password,
+        firstName,
+        lastName
+      });
+      let users = response.data;
 
-    if (window.localStorage.getItem('users') !== undefined && window.localStorage.getItem('users') !== null) {
-      const localUsers = window.localStorage.getItem('users');
-      users = [
-        ...JSON.parse(localUsers),
-        {
-          id,
-          email,
-          password,
-          name: `${firstName} ${lastName}`
-        }
-      ];
+      if (window.localStorage.getItem('users') !== undefined && window.localStorage.getItem('users') !== null) {
+        const localUsers = window.localStorage.getItem('users');
+        users = [
+          ...JSON.parse(localUsers),
+          {
+            id,
+            email,
+            password,
+            name: `${firstName} ${lastName}`
+          }
+        ];
+      }
+
+      window.localStorage.setItem('users', JSON.stringify(users));
+      return response.status;
     }
-
-    window.localStorage.setItem('users', JSON.stringify(users));
+    catch (err){
+      console.log(err)
+      return err;
+    }
   };
 
   const logout = () => {

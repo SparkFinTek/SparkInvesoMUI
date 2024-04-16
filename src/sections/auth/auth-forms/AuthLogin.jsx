@@ -32,6 +32,7 @@ import { fetcher } from 'utils/axios';
 // assets
 import EyeOutlined from '@ant-design/icons/EyeOutlined';
 import EyeInvisibleOutlined from '@ant-design/icons/EyeInvisibleOutlined';
+import { openSnackbar } from '../../../api/snackbar';
 
 // ============================|| JWT - LOGIN ||============================ //
 
@@ -42,6 +43,8 @@ export default function AuthLogin({ isDemo = false }) {
   const scriptedRef = useScriptRef();
 
   const [showPassword, setShowPassword] = React.useState(false);
+  const [loginSuccessful, isLoginSuccessful] = React.useState(false);
+
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -64,11 +67,33 @@ export default function AuthLogin({ isDemo = false }) {
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
-            await login(values.email, values.password);
+             const resp = await login(values.email, values.password);
+            const str = JSON.stringify(resp);
+            console.log("response status is: "+ str)
+            console.log("localstorage is: "+ localStorage.getItem("loginSuccess"))
+            localStorage.setItem("loginSuccess", false)
+            console.log("localstorage is scripted: "+ localStorage.getItem("loginSuccess"))
+            if(str === "201" || str === "200") {
+              scriptedRef.current = true;
+            }
             if (scriptedRef.current) {
               setStatus({ success: true });
               setSubmitting(false);
+              localStorage.setItem( 'loginSuccess', true )
+              console.log("localstorage is scripted: "+ localStorage.getItem("loginSuccess"))
               preload('api/menu/dashboard', fetcher); // load menu on login success
+            }
+          else {
+              setStatus({ success: false });
+              setSubmitting(false);
+              openSnackbar({
+                open: true,
+                message: 'Oops!! Failed Login.',
+                variant: 'alert',
+                alert: {
+                  color: 'warning'
+                }
+              });
             }
           } catch (err) {
             console.error(err);

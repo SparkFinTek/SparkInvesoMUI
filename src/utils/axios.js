@@ -18,11 +18,19 @@ axiosServices.interceptors.request.use(
 );
 
 axiosServices.interceptors.response.use(
+
   (response) => response,
   (error) => {
-    if (error.response.status === 401 && !window.location.href.includes('/login')) {
+    console.log("I am in axios interceptor ")
+    // https://www.dhiwise.com/post/common-axios-network-errors-and-how-to-solve-the
+    if(!error.response){
+      console.log("Network Error!!!")
+    }
+    else if(error.response.status === 401 && !window.location.href.includes('/login')) {
       window.location.pathname = '/maintenance/500';
     }
+
+
     return Promise.reject((error.response && error.response.data) || 'Wrong Services');
   }
 );
