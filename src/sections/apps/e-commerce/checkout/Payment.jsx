@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-
-// next
-import Image from 'next/image';
+import { Link } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -12,7 +10,6 @@ import Grid from '@mui/material/Grid';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
 import RadioGroup from '@mui/material/RadioGroup';
-import Link from '@mui/material/Link';
 import List from '@mui/material/List';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -38,6 +35,7 @@ import IconButton from 'components/@extended/IconButton';
 
 import { setPaymentCard, setPaymentMethod } from 'api/cart';
 import { openSnackbar } from 'api/snackbar';
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
 
 // assets
 import CreditCardOutlined from '@ant-design/icons/CreditCardOutlined';
@@ -46,11 +44,12 @@ import LeftOutlined from '@ant-design/icons/LeftOutlined';
 import CheckOutlined from '@ant-design/icons/CheckOutlined';
 import DeleteOutlined from '@ant-design/icons/DeleteOutlined';
 
-const master = '/assets/images/e-commerce/master-card.png';
-const paypalcard = '/assets/images/e-commerce/paypal.png';
+import master from 'assets/images/e-commerce/master-card.png';
+import paypalcard from 'assets/images/e-commerce/paypal.png';
 
 export default function Payment({ checkout, onBack, onNext, removeProduct, editAddress }) {
   const theme = useTheme();
+
   const [type, setType] = useState('visa');
   const [payment, setPayment] = useState(checkout.payment.method);
   const [rows, setRows] = useState(checkout.products);
@@ -61,7 +60,7 @@ export default function Payment({ checkout, onBack, onNext, removeProduct, editA
 
   const handleClickOpen = (billingAddress) => {
     setOpen(true);
-    if (billingAddress) setSelect(billingAddress);
+    billingAddress && setSelect(billingAddress);
   };
 
   const handleClose = () => {
@@ -119,10 +118,10 @@ export default function Payment({ checkout, onBack, onNext, removeProduct, editA
 
   const getImage = (cardType) => {
     if (cardType === 'visa') {
-      return <Image src={master} alt="card" width={24} height={16} style={{ maxWidth: '100%', height: 'auto' }} />;
+      return <img src={master} alt="card-visa" />;
     }
     if (cardType === 'mastercard') {
-      return <Image src={paypalcard} alt="card" width={50} height={14} style={{ maxWidth: '100%', height: 'auto' }} />;
+      return <img src={paypalcard} alt="card-master" />;
     }
     return null;
   };
@@ -337,21 +336,22 @@ export default function Payment({ checkout, onBack, onNext, removeProduct, editA
                       variant="rounded"
                       color="secondary"
                       type="combined"
-                      src={row.image ? `/assets/images/e-commerce/thumbs/${row.image}` : ''}
+                      src={row.image ? getImageUrl(`thumbs/${row.image}`, ImagePath.ECOMMERCE) : ''}
                     />
                   </ListItemAvatar>
                   <ListItemText
                     disableTypography
                     primary={
-                      <Link
-                        href={`/apps/e-commerce/product-details/${row.id}`}
+                      <Typography
+                        component={Link}
+                        to={`/apps/e-commerce/product-details/${row.id}`}
                         target="_blank"
                         variant="subtitle1"
                         color="text.primary"
                         sx={{ textDecoration: 'none' }}
                       >
                         {row.name}
-                      </Link>
+                      </Typography>
                     }
                     secondary={
                       <Stack spacing={1}>

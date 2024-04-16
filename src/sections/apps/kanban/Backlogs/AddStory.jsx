@@ -1,7 +1,3 @@
-import PropTypes from 'prop-types';
-// next
-import Image from 'next/image';
-
 // material-ui
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -32,14 +28,16 @@ import { Chance } from 'chance';
 import { useFormik } from 'formik';
 
 // project imports
-import IconButton from 'components/@extended/IconButton';
+import UploadMultiFile from 'components/third-party/dropzone/MultiFile';
 import AnimateButton from 'components/@extended/AnimateButton';
 import SimpleBar from 'components/third-party/SimpleBar';
-import UploadMultiFile from 'components/third-party/dropzone/MultiFile';
 
-import { DropzoneType } from 'config';
+import { DropzopType } from 'config';
 import { addStory, useGetBacklogs } from 'api/kanban';
 import { openSnackbar } from 'api/snackbar';
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
+
+import IconButton from 'components/@extended/IconButton';
 
 // assets
 import CloseOutlined from '@ant-design/icons/CloseOutlined';
@@ -52,7 +50,7 @@ const validationSchema = yup.object({
 
 // ==============================|| KANBAN BACKLOGS - ADD STORY ||============================== //
 
-export default function AddStory({ open, handleDrawerOpen }) {
+const AddStory = ({ open, handleDrawerOpen }) => {
   const { backlogs } = useGetBacklogs();
 
   const formik = useFormik({
@@ -163,13 +161,7 @@ export default function AddStory({ open, handleDrawerOpen }) {
                         // @ts-ignore
                         renderOption={({ key, ...props }, option) => (
                           <Box key={key} component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
-                            <Image
-                              width={20}
-                              height={20}
-                              src={`/assets/images/users/${option.avatar}`}
-                              alt=""
-                              style={{ maxWidth: '100%', height: 'auto' }}
-                            />
+                            <img loading="lazy" width="20" src={getImageUrl(`${option.avatar}`, ImagePath.USERS)} alt="" />
                             {option.name}
                           </Box>
                         )}
@@ -281,7 +273,7 @@ export default function AddStory({ open, handleDrawerOpen }) {
                       </Grid>
                       <Grid item xs={12}>
                         <UploadMultiFile
-                          type={DropzoneType.STANDARD}
+                          type={DropzopType.STANDARD}
                           showList={true}
                           setFieldValue={formik.setFieldValue}
                           files={formik.values.files}
@@ -313,6 +305,5 @@ export default function AddStory({ open, handleDrawerOpen }) {
       )}
     </Drawer>
   );
-}
-
-AddStory.propTypes = { open: PropTypes.bool, handleDrawerOpen: PropTypes.func };
+};
+export default AddStory;

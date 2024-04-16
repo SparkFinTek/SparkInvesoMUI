@@ -36,7 +36,7 @@ const actionSX = {
 
 // ==============================|| ANALYTICS - ACQUISITION CHANNELS ||============================== //
 
-function AcquisitionChannels() {
+export default function AcquisitionChannels() {
   return (
     <MainCard content={false}>
       <Stack>
@@ -90,12 +90,7 @@ function AcquisitionChannels() {
           </ListItemButton>
           <ListItemButton divider>
             <ListItemAvatar>
-              <Avatar
-                sx={{
-                  color: 'primary.main',
-                  bgcolor: 'primary.lighter'
-                }}
-              >
+              <Avatar sx={{ color: 'primary.main', bgcolor: 'primary.lighter' }}>
                 <FileTextOutlined />
               </Avatar>
             </ListItemAvatar>
@@ -116,5 +111,3 @@ function AcquisitionChannels() {
     </MainCard>
   );
 }
-
-export default AcquisitionChannels;

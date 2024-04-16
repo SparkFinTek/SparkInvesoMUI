@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+
+// material-ui
 import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 // assets
 import AlignLeftOutlined from '@ant-design/icons/AlignLeftOutlined';

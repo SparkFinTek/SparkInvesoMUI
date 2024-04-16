@@ -1,12 +1,13 @@
+// third-party
+import { ReactCompareSlider, ReactCompareSliderImage, ReactCompareSliderHandle } from 'react-compare-slider';
+
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 
-// third-party
-import { ReactCompareSlider, ReactCompareSliderImage, ReactCompareSliderHandle } from 'react-compare-slider';
-
 // project import
 import useConfig from 'hooks/useConfig';
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
 
 // ==============================|| LANDING - BROWSER  PAGE ||============================== //
 
@@ -17,6 +18,7 @@ export default function BrowserBlockPage() {
   return (
     <Box sx={{ position: 'relative', '& .ReactCompareSlider': { direction: theme.direction } }}>
       <ReactCompareSlider
+        className="ReactCompareSlider"
         handle={
           <ReactCompareSliderHandle
             buttonStyle={{
@@ -27,8 +29,8 @@ export default function BrowserBlockPage() {
             }}
           />
         }
-        itemOne={<ReactCompareSliderImage src={`/assets/images/landing/${presetColor}-dark.jpg`} />}
-        itemTwo={<ReactCompareSliderImage src={`/assets/images/landing/${presetColor}-light.jpg`} />}
+        itemOne={<ReactCompareSliderImage src={getImageUrl(`${presetColor}-dark.jpg`, ImagePath.LANDING)} />}
+        itemTwo={<ReactCompareSliderImage src={getImageUrl(`${presetColor}-light.jpg`, ImagePath.LANDING)} />}
       />
     </Box>
   );

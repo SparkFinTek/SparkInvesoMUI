@@ -2,14 +2,17 @@ import PropTypes from 'prop-types';
 //material-ui
 import { useTheme } from '@mui/material/styles';
 
+// project import
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
+
 // third-party
 import { Page, View, Document, StyleSheet, Image, Text, Link } from '@react-pdf/renderer';
 
 //asset
-const LinkIcon = '/assets/images/icons/link.png';
-const Mail = '/assets/images/icons/mail.png';
-const Maps = '/assets/images/icons/map.png';
-const Phone = '/assets/images/icons/phone.png';
+import LinkIcon from 'assets/images/icons/link.png';
+import Mail from 'assets/images/icons/mail.png';
+import Maps from 'assets/images/icons/map.png';
+import Phone from 'assets/images/icons/phone.png';
 
 const textPrimary = '#262626';
 const textSecondary = '#8c8c8c';
@@ -115,8 +118,7 @@ export default function ListSmallCard({ customer }) {
       <Page size="A4" style={styles.page}>
         <View style={styles.container}>
           <View style={styles.row}>
-            {/* eslint-disable-next-line */}
-            <Image style={styles.image} src={`/assets/images/users/avatar-${!customer.avatar ? 1 : customer.avatar}.png`} />
+            <Image style={styles.image} src={getImageUrl(`avatar-${!customer.avatar ? 1 : customer.avatar}.png`, ImagePath.USERS)} />
             <View style={styles.CardInfo}>
               <Text style={styles.title}>{customer.name}</Text>
               <Text style={styles.role}>{customer.role}</Text>
@@ -128,24 +130,20 @@ export default function ListSmallCard({ customer }) {
           </View>
           <View style={styles.IconContainer}>
             <View style={[styles.row, styles.IconRow]}>
-              {/* eslint-disable-next-line */}
               <Image src={Mail} style={styles.icon} />
               <Text style={styles.iconTitle}>{customer.email}</Text>
             </View>
             <View style={[styles.row, styles.IconRow]}>
-              {/* eslint-disable-next-line */}
               <Image src={Maps} style={styles.icon} />
               <Text style={styles.iconTitle}>{customer.country}</Text>
             </View>
           </View>
           <View style={styles.IconContainer}>
             <View style={[styles.row, styles.IconRow]}>
-              {/* eslint-disable-next-line */}
               <Image src={Phone} style={styles.icon} />
               <Text style={styles.iconTitle}>{customer.contact}</Text>
             </View>
             <View style={[styles.row, styles.IconRow]}>
-              {/* eslint-disable-next-line */}
               <Image src={LinkIcon} style={styles.icon} />
               <Link
                 style={[styles.iconTitle, { color: theme.palette.primary.main }]}

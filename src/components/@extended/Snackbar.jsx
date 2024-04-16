@@ -79,7 +79,6 @@ export default function Snackbar() {
           }
         />
       )}
-
       {/* alert snackbar */}
       {snackbar.variant === 'alert' && (
         <MuiSnackbar

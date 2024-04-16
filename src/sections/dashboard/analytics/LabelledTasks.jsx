@@ -1,6 +1,3 @@
-// next
-import Image from 'next/image';
-
 // material-ui
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
@@ -16,11 +13,11 @@ import LinearWithLabel from 'components/@extended/progress/LinearWithLabel';
 import MainCard from 'components/MainCard';
 
 // assets
-const Target = '/assets/images/analytics/target.svg';
+import Target from 'assets/images/analytics/target.svg';
 
 // ==============================|| LABELLED TASKS ||============================== //
 
-function LabelledTasks() {
+export default function LabelledTasks() {
   return (
     <Grid item xs={12}>
       <MainCard sx={{ width: '100%' }}>
@@ -56,8 +53,8 @@ function LabelledTasks() {
             <List sx={{ pb: 0 }}>
               <ListItem sx={{ p: 0 }}>
                 <ListItemAvatar>
-                  <Avatar sx={{ bgcolor: 'transparent' }}>
-                    <Image alt="target" src={Target} width={40} height={40} style={{ maxWidth: '100%', height: 'auto' }} />
+                  <Avatar sx={{ background: 'transparent' }}>
+                    <img alt="target" src={Target} />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
@@ -72,5 +69,3 @@ function LabelledTasks() {
     </Grid>
   );
 }
-
-export default LabelledTasks;

@@ -1,11 +1,10 @@
-// next
-import NextLink from 'next/link';
+import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
-import Box from '@mui/material/Box';
-import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
+import Box from '@mui/material/Box';
+import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
 // project imports
@@ -25,9 +24,9 @@ export default function FeedsCard() {
       title="Feeds"
       content={false}
       secondary={
-        <NextLink href="#" passHref legacyBehavior>
-          <Link color="primary">View all</Link>
-        </NextLink>
+        <Link component={RouterLink} to="#" color="primary">
+          View all
+        </Link>
       }
     >
       <CardContent>

@@ -1,4 +1,4 @@
-// project-import
+//project-import
 import { ThemeMode } from 'config';
 
 // ==============================|| PRESET THEME - PURPLE THEME8 ||============================== //

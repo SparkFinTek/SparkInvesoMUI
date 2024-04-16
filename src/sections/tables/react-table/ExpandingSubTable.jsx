@@ -1,19 +1,17 @@
-'use client';
 import PropTypes from 'prop-types';
-
 import { Fragment, useEffect, useMemo, useState } from 'react';
 
 // material-ui
 import { alpha, useTheme } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';
 import Paper from '@mui/material/Paper';
-import Skeleton from '@mui/material/Skeleton';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import Skeleton from '@mui/material/Skeleton';
 
 // third-party
 import { flexRender, useReactTable, getExpandedRowModel, getCoreRowModel } from '@tanstack/react-table';
@@ -25,6 +23,7 @@ import Avatar from 'components/@extended/Avatar';
 import IconButton from 'components/@extended/IconButton';
 import LinearWithLabel from 'components/@extended/progress/LinearWithLabel';
 import { CSVExport } from 'components/third-party/react-table';
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
 
 import makeData from 'data/react-table';
 import mockData from 'utils/mock-data';
@@ -47,7 +46,7 @@ function RenderSubComponent({ row }) {
       {
         header: 'Avatar',
         accessorKey: 'avatar',
-        cell: (cell) => <Avatar alt="Avatar 1" size="sm" src={`/assets/images/users/avatar-${cell.getValue()}.png`} />,
+        cell: (cell) => <Avatar alt="Avatar 1" size="sm" src={getImageUrl(`avatar-${cell.getValue()}.png`, ImagePath.USERS)} />,
         meta: {
           className: 'cell-center'
         }

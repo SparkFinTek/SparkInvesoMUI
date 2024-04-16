@@ -1,5 +1,4 @@
-// next
-import NextLink from 'next/link';
+import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
 import Avatar from '@mui/material/Avatar';
@@ -18,11 +17,11 @@ import Typography from '@mui/material/Typography';
 import MainCard from 'components/MainCard';
 
 // assets
-const Avatar1 = '/assets/images/users/avatar-1.png';
-const Avatar2 = '/assets/images/users/avatar-2.png';
-const Avatar3 = '/assets/images/users/avatar-3.png';
-const Avatar4 = '/assets/images/users/avatar-4.png';
-const Avatar6 = '/assets/images/users/avatar-6.png';
+import Avatar1 from 'assets/images/users/avatar-1.png';
+import Avatar2 from 'assets/images/users/avatar-2.png';
+import Avatar3 from 'assets/images/users/avatar-3.png';
+import Avatar4 from 'assets/images/users/avatar-4.png';
+import Avatar6 from 'assets/images/users/avatar-6.png';
 
 // table data
 const createData = (avtar, name, designation, product, date, badgeText, badgeType) => ({
@@ -51,9 +50,9 @@ export default function ProjectTable() {
       title="Projects"
       content={false}
       secondary={
-        <NextLink href="#" passHref legacyBehavior>
-          <Link color="primary">View all</Link>
-        </NextLink>
+        <Link component={RouterLink} to="#" color="primary">
+          View all
+        </Link>
       }
     >
       <TableContainer>

@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 // material-ui
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';

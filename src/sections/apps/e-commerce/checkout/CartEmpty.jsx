@@ -14,9 +14,8 @@ import { ThemeMode } from 'config';
 
 // assets
 import RightOutlined from '@ant-design/icons/RightOutlined';
-
-const imageEmpty = '/assets/images/e-commerce/empty.png';
-const imageDarkEmpty = '/assets/images/e-commerce/empty-dark.png';
+import imageEmpty from 'assets/images/e-commerce/empty.png';
+import imageDarkEmpty from 'assets/images/e-commerce/empty-dark.png';
 
 // ==============================|| CHECKOUT CART - NO/EMPTY CART ITEMS ||============================== //
 

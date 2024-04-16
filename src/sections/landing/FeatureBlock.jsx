@@ -1,6 +1,3 @@
-// next
-import Image from 'next/image';
-
 // material-ui
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -11,9 +8,9 @@ import MainCard from 'components/MainCard';
 import Animation from './Animation';
 
 // assets
-const imgfeature1 = '/assets/images/landing/img-feature1.svg';
-const imgfeature2 = '/assets/images/landing/img-feature2.svg';
-const imgfeature3 = '/assets/images/landing/img-feature3.svg';
+import imgfeature1 from 'assets/images/landing/img-feature1.svg';
+import imgfeature2 from 'assets/images/landing/img-feature2.svg';
+import imgfeature3 from 'assets/images/landing/img-feature3.svg';
 
 // ==============================|| LANDING - FEATURE PAGE ||============================== //
 
@@ -54,7 +51,7 @@ export default function FeatureBlock() {
             <MainCard contentSX={{ p: 3 }}>
               <Grid container spacing={1}>
                 <Grid item xs={12}>
-                  <Image src={imgfeature1} alt="feature" width={48} height={48} />
+                  <img src={imgfeature1} alt="feature" />
                 </Grid>
                 <Grid item xs={12}>
                   <Typography variant="h5" sx={{ fontWeight: 600, mt: 2 }}>
@@ -80,7 +77,7 @@ export default function FeatureBlock() {
             <MainCard contentSX={{ p: 3 }}>
               <Grid container spacing={1}>
                 <Grid item xs={12}>
-                  <Image src={imgfeature2} alt="feature" width={48} height={48} />
+                  <img src={imgfeature2} alt="feature" />
                 </Grid>
                 <Grid item xs={12}>
                   <Typography variant="h5" sx={{ fontWeight: 600, mt: 2 }}>
@@ -106,7 +103,7 @@ export default function FeatureBlock() {
             <MainCard contentSX={{ p: 3 }}>
               <Grid container spacing={1}>
                 <Grid item xs={12}>
-                  <Image src={imgfeature3} alt="feature" width={48} height={48} />
+                  <img src={imgfeature3} alt="feature" />
                 </Grid>
                 <Grid item xs={12}>
                   <Typography variant="h5" sx={{ fontWeight: 600, mt: 2 }}>

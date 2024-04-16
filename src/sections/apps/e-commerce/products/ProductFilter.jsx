@@ -222,7 +222,7 @@ export default function ProductFilter({ filter, handelFilter }) {
         <Colors colors={filter.colors} handelFilter={handelFilter} />
       </Grid>
       <Grid item>
-        <Price handelFilter={handelFilter} />
+        <Price price={filter.price} handelFilter={handelFilter} />
       </Grid>
       <Grid item>
         <RatingSection rating={filter.rating} handelFilter={handelFilter} />
@@ -235,7 +235,7 @@ Gender.propTypes = { gender: PropTypes.array, handelFilter: PropTypes.func };
 
 Categories.propTypes = { categories: PropTypes.array, handelFilter: PropTypes.func };
 
-Price.propTypes = { handelFilter: PropTypes.func, params: PropTypes.string };
+Price.propTypes = { price: PropTypes.string, handelFilter: PropTypes.func };
 
 RatingSection.propTypes = { rating: PropTypes.number, handelFilter: PropTypes.func };
 

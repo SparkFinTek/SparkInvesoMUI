@@ -8,8 +8,8 @@ import Box from '@mui/material/Box';
 import ReactApexChart from 'react-apexcharts';
 
 // project import
-import { ThemeMode } from 'config';
 import useConfig from 'hooks/useConfig';
+import { ThemeMode } from 'config';
 
 // chart options
 const mixedChartOptions = {
@@ -172,13 +172,13 @@ export default function ApexMixedChart() {
       grid: {
         borderColor: line
       },
-      theme: {
-        mode: mode === ThemeMode.DARK ? 'dark' : 'light'
-      },
       legend: {
         labels: {
           colors: 'grey.500'
         }
+      },
+      theme: {
+        mode: mode === ThemeMode.DARK ? 'dark' : 'light'
       }
     }));
   }, [mode, primary, line, grey200, secondary, primaryMain, successDark]);

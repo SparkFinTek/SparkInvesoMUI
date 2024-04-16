@@ -46,8 +46,39 @@ export default function AsynchronousAutocomplete() {
     }
   }, [open]);
 
+  const asyancAutocompleteCodeString = `<Autocomplete
+  id="asynchronous-demo"
+  sx={{ width: 300 }}
+  open={open}
+  onOpen={() => {
+    setOpen(true);
+  }}
+  onClose={() => {
+    setOpen(false);
+  }}
+  isOptionEqualToValue={(option, value) => option.title === value.title}
+  getOptionLabel={(option) => option.title}
+  options={options}
+  loading={loading}
+  renderInput={(params) => (
+    <TextField
+      {...params}
+      placeholder="Asynchronous"
+      InputProps={{
+        ...params.InputProps,
+        endAdornment: (
+          <>
+            {loading ? <CircularProgress color="inherit" size={20} /> : null}
+            {params.InputProps.endAdornment}
+          </>
+        )
+      }}
+    />
+  )}
+/>`;
+
   return (
-    <MainCard title="Asynchronous">
+    <MainCard title="Asynchronous" codeString={asyancAutocompleteCodeString}>
       <Autocomplete
         id="asynchronous-demo"
         sx={{ width: 300 }}

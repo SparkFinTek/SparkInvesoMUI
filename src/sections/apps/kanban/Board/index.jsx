@@ -11,7 +11,6 @@ import { DragDropContext, Droppable } from '@hello-pangea/dnd';
 import Columns from './Columns';
 import AddColumn from './AddColumn';
 import ItemDetails from './ItemDetails';
-import ScrollX from 'components/ScrollX';
 import MainCard from 'components/MainCard';
 
 import { ThemeMode } from 'config';
@@ -119,47 +118,45 @@ export default function Board() {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <ScrollX>
-        <DragDropContext onDragEnd={onDragEnd}>
-          <Droppable droppableId="columns" direction="horizontal" type="column">
-            {(provided) => (
-              <MainCard
-                border={false}
-                ref={provided.innerRef}
-                sx={{ bgcolor: 'transparent', backgroundImage: 'none' }}
-                contentSX={getDragWrapper()}
-                {...provided.droppableProps}
-              >
-                {backlogs?.columnsOrder.map((columnId, index) => {
-                  const column = backlogs?.columns.filter((item) => item.id === columnId)[0];
-                  return backlogsLoading ? (
-                    <MainCard
-                      content={false}
-                      sx={{
-                        p: 1.5,
-                        margin: '0 16px 0 0',
-                        minWidth: 250,
-                        bgcolor: theme.palette.mode === ThemeMode.DARK ? 'background.paper' : 'secondary.lighter'
-                      }}
-                    >
-                      <Stack spacing={1.25}>
-                        <Skeleton variant="rounded" width="100%" height={38} />
-                        <Skeleton variant="rounded" width="100%" height={heightOptions[Math.floor(Math.random() * heightOptions.length)]} />
-                        <Skeleton variant="rounded" width="100%" height={heightOptions[Math.floor(Math.random() * heightOptions.length)]} />
-                        <Skeleton variant="rounded" width="100%" height={heightOptions[Math.floor(Math.random() * heightOptions.length)]} />
-                      </Stack>
-                    </MainCard>
-                  ) : (
-                    <Columns key={columnId} column={column} index={index} />
-                  );
-                })}
-                {provided.placeholder}
-                <AddColumn />
-              </MainCard>
-            )}
-          </Droppable>
-        </DragDropContext>
-      </ScrollX>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="columns" direction="horizontal" type="column">
+          {(provided) => (
+            <MainCard
+              border={false}
+              ref={provided.innerRef}
+              sx={{ bgcolor: 'transparent', backgroundImage: 'none' }}
+              contentSX={getDragWrapper()}
+              {...provided.droppableProps}
+            >
+              {backlogs?.columnsOrder.map((columnId, index) => {
+                const column = backlogs?.columns.filter((item) => item.id === columnId)[0];
+                return backlogsLoading ? (
+                  <MainCard
+                    content={false}
+                    sx={{
+                      p: 1.5,
+                      margin: '0 16px 0 0',
+                      minWidth: 250,
+                      bgcolor: theme.palette.mode === ThemeMode.DARK ? 'background.paper' : 'secondary.lighter'
+                    }}
+                  >
+                    <Stack spacing={1.25}>
+                      <Skeleton variant="rounded" width="100%" height={38} />
+                      <Skeleton variant="rounded" width="100%" height={heightOptions[Math.floor(Math.random() * heightOptions.length)]} />
+                      <Skeleton variant="rounded" width="100%" height={heightOptions[Math.floor(Math.random() * heightOptions.length)]} />
+                      <Skeleton variant="rounded" width="100%" height={heightOptions[Math.floor(Math.random() * heightOptions.length)]} />
+                    </Stack>
+                  </MainCard>
+                ) : (
+                  <Columns key={columnId} column={column} index={index} />
+                );
+              })}
+              {provided.placeholder}
+              <AddColumn />
+            </MainCard>
+          )}
+        </Droppable>
+      </DragDropContext>
       <ItemDetails />
     </Box>
   );

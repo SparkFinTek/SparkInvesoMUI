@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 import { Fragment, useMemo } from 'react';
 
 // material-ui

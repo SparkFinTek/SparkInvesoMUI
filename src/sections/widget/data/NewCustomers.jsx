@@ -1,9 +1,9 @@
 // material-ui
-import Avatar from '@mui/material/Avatar';
 import CardContent from '@mui/material/CardContent';
+import Avatar from '@mui/material/Avatar';
 import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
 
 // project imports
 import MainCard from 'components/MainCard';
@@ -13,11 +13,11 @@ import Dot from 'components/@extended/Dot';
 // assets
 import ClockCircleOutlined from '@ant-design/icons/ClockCircleOutlined';
 
-const Avatar1 = '/assets/images/users/avatar-1.png';
-const Avatar2 = '/assets/images/users/avatar-2.png';
-const Avatar3 = '/assets/images/users/avatar-3.png';
-const Avatar4 = '/assets/images/users/avatar-4.png';
-const Avatar5 = '/assets/images/users/avatar-5.png';
+import Avatar1 from 'assets/images/users/avatar-1.png';
+import Avatar2 from 'assets/images/users/avatar-2.png';
+import Avatar3 from 'assets/images/users/avatar-3.png';
+import Avatar4 from 'assets/images/users/avatar-4.png';
+import Avatar5 from 'assets/images/users/avatar-5.png';
 
 const iconSX = { fontSize: '0.675rem' };
 

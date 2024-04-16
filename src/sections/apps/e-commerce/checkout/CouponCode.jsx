@@ -26,7 +26,9 @@ import CloseCircleTwoTone from '@ant-design/icons/CloseCircleTwoTone';
 import GiftOutlined from '@ant-design/icons/GiftOutlined';
 import TrophyOutlined from '@ant-design/icons/TrophyOutlined';
 
-const discount = '/assets/images/e-commerce/discount.png';
+import discount from 'assets/images/e-commerce/discount.png';
+
+// ==============================|| CHECKOUT - DISCOUNT COUPON CODE ||============================== //
 
 export default function CouponCode({ open, handleClose, setCoupon }) {
   const [animate, setAnimate] = useState(false);

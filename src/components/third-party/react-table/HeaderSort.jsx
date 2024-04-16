@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -32,7 +30,7 @@ function SortToggler({ type }) {
 
 // ==============================|| SORT HEADER ||============================== //
 
-function HeaderSort({ column, sort }) {
+export default function HeaderSort({ column, sort }) {
   return (
     <Box {...(sort && { onClick: column.getToggleSortingHandler(), className: 'cursor-pointer prevent-select' })}>
       {{
@@ -42,8 +40,6 @@ function HeaderSort({ column, sort }) {
     </Box>
   );
 }
-
-export default HeaderSort;
 
 SortToggler.propTypes = { type: PropTypes.any };
 

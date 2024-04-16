@@ -51,8 +51,30 @@ export default function CheckmarksSelect() {
     );
   };
 
+  const checkmarkSelectCodeString = `// CheckmarksSelect.tsx
+<FormControl fullWidth>
+  <InputLabel id="demo-multiple-checkbox-label">Checkmarks</InputLabel>
+  <Select
+    labelId="demo-multiple-checkbox-label"
+    id="demo-multiple-checkbox"
+    multiple
+    value={personName}
+    onChange={handleChange}
+    input={<OutlinedInput placeholder="Tag" />}
+    renderValue={(selected) => selected.join(', ')}
+    MenuProps={MenuProps}
+  >
+    {names.map((name) => (
+      <MenuItem key={name} value={name}>
+        <Checkbox checked={personName.indexOf(name) > -1} />
+        <ListItemText primary={name} />
+      </MenuItem>
+    ))}
+  </Select>
+</FormControl>`;
+
   return (
-    <MainCard title="With Checkmarks">
+    <MainCard title="With Checkmarks" codeString={checkmarkSelectCodeString}>
       <FormControl fullWidth>
         <InputLabel id="demo-multiple-checkbox-label">Checkmarks</InputLabel>
         <Select

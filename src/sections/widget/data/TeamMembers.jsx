@@ -1,21 +1,20 @@
-// next
-import NextLink from 'next/link';
+import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 
 // project imports
 import MainCard from 'components/MainCard';
 import Avatar from 'components/@extended/Avatar';
 
 // assets
-const Avatar1 = '/assets/images/users/avatar-1.png';
-const Avatar2 = '/assets/images/users/avatar-2.png';
-const Avatar3 = '/assets/images/users/avatar-3.png';
-const Avatar4 = '/assets/images/users/avatar-4.png';
+import Avatar1 from 'assets/images/users/avatar-1.png';
+import Avatar2 from 'assets/images/users/avatar-2.png';
+import Avatar3 from 'assets/images/users/avatar-3.png';
+import Avatar4 from 'assets/images/users/avatar-4.png';
 
 // ===========================|| DATA WIDGET - TEAM MEMBERS CARD ||=========================== //
 
@@ -25,9 +24,9 @@ export default function TeamMembers() {
       title="Team Members"
       content={false}
       secondary={
-        <NextLink href="#" passHref legacyBehavior>
-          <Link color="primary">View all</Link>
-        </NextLink>
+        <Link component={RouterLink} to="#" color="primary">
+          View all
+        </Link>
       }
     >
       <CardContent>

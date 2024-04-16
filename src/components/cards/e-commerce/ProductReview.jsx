@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 
 // project imports
 import Avatar from 'components/@extended/Avatar';
+import { ImagePath, getImageUrl } from 'utils/getImageUrl';
 
 // assets
 import StarFilled from '@ant-design/icons/StarFilled';
@@ -17,7 +18,7 @@ export default function ProductReview({ avatar, date, name, rating, review }) {
   return (
     <Grid item xs={12}>
       <Stack direction="row" spacing={1}>
-        <Avatar alt={name} src={avatar && `/assets/images/users/${avatar}`} />
+        <Avatar alt={name} src={avatar && getImageUrl(`${avatar}`, ImagePath.USERS)} />
         <Stack spacing={2}>
           <Stack spacing={0.25}>
             <Typography variant="subtitle1" sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block' }}>
@@ -45,7 +46,7 @@ export default function ProductReview({ avatar, date, name, rating, review }) {
 
 ProductReview.propTypes = {
   avatar: PropTypes.string,
-  date: PropTypes.oneOfType([PropTypes.any, PropTypes.string]),
+  date: PropTypes.oneOfType([PropTypes.string, PropTypes.any]),
   name: PropTypes.string,
   rating: PropTypes.number,
   review: PropTypes.string

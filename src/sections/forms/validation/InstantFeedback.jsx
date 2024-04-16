@@ -1,11 +1,9 @@
-'use client';
-
 // material-ui
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import InputLabel from '@mui/material/InputLabel';
-import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
 
 // project imports
 import MainCard from 'components/MainCard';

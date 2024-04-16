@@ -1,11 +1,9 @@
-'use client';
-
 import { useState } from 'react';
 
 // material-ui
-import Stack from '@mui/material/Stack';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import Stack from '@mui/material/Stack';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 
 // project import
@@ -16,14 +14,38 @@ import MainCard from 'components/MainCard';
 export default function ComponentStaticDatePicker() {
   const [value, setValue] = useState(new Date());
 
+  const staticDatepickerCodeString = `<LocalizationProvider dateAdapter={AdapterDateFns}>
+  <StaticDatePicker
+    displayStaticWrapperAs="desktop"
+    openTo="year"
+    value={value}
+    onChange={(newValue) => {
+      setValue(newValue);
+    }}
+    renderInput={(params) => <TextField {...params} />}
+  />
+</LocalizationProvider>
+<LocalizationProvider dateAdapter={AdapterDateFns}>
+  <StaticDatePicker
+    displayStaticWrapperAs="desktop"
+    openTo="day"
+    value={value}
+    onChange={(newValue) => {
+      setValue(newValue);
+    }}
+    renderInput={(params) => <TextField {...params} />}
+  />
+</LocalizationProvider>`;
+
   return (
-    <MainCard title="Static Mode">
+    <MainCard title="Static Mode" codeHighlight codeString={staticDatepickerCodeString}>
       <Stack spacing={3}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <StaticDatePicker
             displayStaticWrapperAs="desktop"
             openTo="year"
             value={value}
+            // renderInput={(params) => <TextField {...params} />}
             onChange={(newValue) => {
               setValue(newValue);
             }}
@@ -34,6 +56,7 @@ export default function ComponentStaticDatePicker() {
             displayStaticWrapperAs="desktop"
             openTo="day"
             value={value}
+            // renderInput={(params) => <TextField {...params} />}
             onChange={(newValue) => {
               setValue(newValue);
             }}

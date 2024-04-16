@@ -39,14 +39,7 @@ function Heatmap({ ...other }) {
 
   return (
     <>
-      <Map
-        initialViewState={{
-          latitude: 40,
-          longitude: -100,
-          zoom: 3
-        }}
-        {...other}
-      >
+      <Map initialViewState={{ latitude: 40, longitude: -100, zoom: 3 }} {...other}>
         {data && (
           <Source type="geojson" data={data}>
             <Layer {...heatmapLayer} />

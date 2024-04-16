@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 
 // material-ui
@@ -88,13 +86,13 @@ export default function ReportAreaChart() {
       grid: {
         borderColor: line
       },
-      theme: {
-        mode: mode === ThemeMode.DARK ? 'dark' : 'light'
-      },
       legend: {
         labels: {
           colors: 'grey.500'
         }
+      },
+      theme: {
+        mode: mode === ThemeMode.DARK ? 'dark' : 'light'
       }
     }));
   }, [mode, primary, secondary, line, theme]);

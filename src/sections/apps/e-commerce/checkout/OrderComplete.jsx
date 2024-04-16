@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
-// next
-import NextLink from 'next/link';
-import Image from 'next/image';
+import { Link } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -19,7 +17,7 @@ import MainCard from 'components/MainCard';
 import { PopupTransition } from 'components/@extended/Transitions';
 
 // assets
-const completed = '/assets/images/e-commerce/completed.png';
+import completed from 'assets/images/e-commerce/completed.png';
 
 const chance = new Chance();
 
@@ -40,13 +38,7 @@ export default function OrderComplete({ open }) {
           <MainCard border={false}>
             <Stack spacing={2} alignItems="center">
               <Box sx={{ position: 'relative', width: { xs: 320, sm: 500 } }}>
-                <Image
-                  src={completed}
-                  alt="Order Complete"
-                  width={downMD ? 320 : 500}
-                  height={downMD ? 200 : 312}
-                  style={{ maxWidth: '100%', height: 'auto' }}
-                />
+                <img src={completed} alt="Order Complete" style={{ width: 'inherit' }} />
               </Box>
               <Typography variant={downMD ? 'h3' : 'h1'} align="center">
                 Thank you for Purchase!
@@ -66,16 +58,24 @@ export default function OrderComplete({ open }) {
                 (219) 404-5468
               </Typography>
               <Stack direction="row" justifyContent="center" spacing={3}>
-                <NextLink href="/apps/e-commerce/products" passHref legacyBehavior>
-                  <Button variant="outlined" color="secondary" size={downMD ? 'small' : 'medium'}>
-                    Continue Shopping
-                  </Button>
-                </NextLink>
-                <NextLink href="/apps/e-commerce/products" passHref legacyBehavior>
-                  <Button variant="contained" color="primary" size={downMD ? 'small' : 'medium'}>
-                    Download Invoice
-                  </Button>
-                </NextLink>
+                <Button
+                  component={Link}
+                  to="/apps/e-commerce/products"
+                  variant="outlined"
+                  color="secondary"
+                  size={downMD ? 'small' : 'medium'}
+                >
+                  Continue Shopping
+                </Button>
+                <Button
+                  component={Link}
+                  to="/apps/e-commerce/products"
+                  variant="contained"
+                  color="primary"
+                  size={downMD ? 'small' : 'medium'}
+                >
+                  Download Invoice
+                </Button>
               </Stack>
             </Stack>
           </MainCard>

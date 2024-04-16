@@ -14,8 +14,9 @@ import SimpleBar from 'components/third-party/SimpleBar';
 import { ThemeMode } from 'config';
 import useConfig from 'hooks/useConfig';
 
-function ProductFilterDrawer({ filter, initialState, handleDrawerOpen, openFilterDrawer, setFilter }) {
+export default function ProductFilterDrawer({ filter, initialState, handleDrawerOpen, openFilterDrawer, setFilter, setLoading }) {
   const theme = useTheme();
+
   const { mode, container } = useConfig();
   const matchDownLG = useMediaQuery(theme.breakpoints.down('lg'));
   const matchLG = useMediaQuery(theme.breakpoints.only('lg'));
@@ -33,6 +34,7 @@ function ProductFilterDrawer({ filter, initialState, handleDrawerOpen, openFilte
       JSON.stringify(a1.colors) === JSON.stringify(a2.colors));
 
   const handelFilter = (type, params, rating) => {
+    setLoading(true);
     switch (type) {
       case 'gender':
         if (filter.gender.some((item) => item === params)) {
@@ -123,12 +125,11 @@ function ProductFilterDrawer({ filter, initialState, handleDrawerOpen, openFilte
   );
 }
 
-export default ProductFilterDrawer;
-
 ProductFilterDrawer.propTypes = {
   filter: PropTypes.any,
   initialState: PropTypes.any,
   handleDrawerOpen: PropTypes.func,
-  openFilterDrawer: PropTypes.oneOfType([PropTypes.bool, PropTypes.any]),
-  setFilter: PropTypes.func
+  openFilterDrawer: PropTypes.oneOfType([PropTypes.any, PropTypes.bool]),
+  setFilter: PropTypes.func,
+  setLoading: PropTypes.func
 };

@@ -17,8 +17,7 @@ import { ThemeDirection, ThemeMode } from 'config';
 
 // assets
 import DownloadOutlined from '@ant-design/icons/DownloadOutlined';
-
-const imgbg = 'assets/images/landing/img-bg-screen.png';
+import imgbg from 'assets/images/landing/img-bg-screen.png';
 
 // ==============================|| LANDING - CALL TO ACTION PAGE ||============================== //
 

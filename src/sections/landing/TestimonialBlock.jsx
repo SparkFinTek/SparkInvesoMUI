@@ -14,7 +14,9 @@ import Avatar from 'components/@extended/Avatar';
 import MainCard from 'components/MainCard';
 
 // assets
-const imgfeature1 = 'assets/images/landing/img-user1.svg';
+import imgfeature1 from 'assets/images/landing/img-user1.svg';
+
+// ================================|| TESTIMONIAL - ITEMS ||================================ //
 
 function Item({ item }) {
   return (

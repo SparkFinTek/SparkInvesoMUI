@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import CardMedia from '@mui/material/CardMedia';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
@@ -16,17 +15,17 @@ import Animation from './Animation';
 import { ThemeDirection, ThemeMode } from 'config';
 
 // assets
-const techCI = 'assets/images/landing/technology/tech-ci.png';
-const techReact = 'assets/images/landing/technology/tech-react.png';
-const techAngular = 'assets/images/landing/technology/tech-angular.png';
-const techBootstrap = 'assets/images/landing/technology/tech-bootstrap.png';
-const techDotnet = 'assets/images/landing/technology/tech-dot-net.png';
+import techCI from 'assets/images/landing/technology/tech-ci.png';
+import techReact from 'assets/images/landing/technology/tech-react.png';
+import techAngular from 'assets/images/landing/technology/tech-angular.png';
+import techBootstrap from 'assets/images/landing/technology/tech-bootstrap.png';
+import techDotnet from 'assets/images/landing/technology/tech-dot-net.png';
 
-const techCIDark = 'assets/images/landing/technology/tech-ci-dark.png';
-const techReactDark = 'assets/images/landing/technology/tech-react-dark.png';
-const techAngularDark = 'assets/images/landing/technology/tech-angular-dark.png';
-const techBootstrapDark = 'assets/images/landing/technology/tech-bootstrap-dark.png';
-const techDotnetDark = 'assets/images/landing/technology/tech-dot-net-dark.png';
+import techCIDark from 'assets/images/landing/technology/tech-ci-dark.png';
+import techReactDark from 'assets/images/landing/technology/tech-react-dark.png';
+import techAngularDark from 'assets/images/landing/technology/tech-angular-dark.png';
+import techBootstrapDark from 'assets/images/landing/technology/tech-bootstrap-dark.png';
+import techDotnetDark from 'assets/images/landing/technology/tech-dot-net-dark.png';
 
 // ================================|| SLIDER - ITEMS ||================================ //
 
@@ -138,7 +137,7 @@ export default function PartnerBlock() {
                     }}
                   >
                     <Link href={item.link} target="_blank">
-                      <CardMedia component="img" src={item.image} alt="feature" />
+                      <img src={item.image} alt="feature" />
                     </Link>
                   </Animation>
                 </Grid>

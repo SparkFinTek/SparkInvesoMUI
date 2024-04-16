@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 
 // material-ui
@@ -7,8 +5,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Step from '@mui/material/Step';
 import Stepper from '@mui/material/Stepper';
-import StepContent from '@mui/material/StepContent';
 import StepLabel from '@mui/material/StepLabel';
+import StepContent from '@mui/material/StepContent';
 import Typography from '@mui/material/Typography';
 
 // project import
@@ -43,8 +41,43 @@ export default function VerticalLinearStepper() {
   const handleBack = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
   const handleReset = () => setActiveStep(0);
 
+  const verticalStepperCodeString = `// VerticalLinearStepper.tsx
+<Stepper activeStep={activeStep} orientation="vertical">
+  {steps.map((step, index) => (
+    <Step key={step.label}>
+      <StepLabel optional={index === 2 ? <Typography variant="caption">Last step</Typography> : null}>{step.label}</StepLabel>
+      <StepContent>
+        <Typography>{step.description}</Typography>
+        <Box sx={{ mb: 2 }}>
+          <div>
+            <Button
+              variant="contained"
+              onClick={handleNext}
+              sx={{ mt: 1, mr: 1 }}
+              color={index === steps.length - 1 ? 'success' : 'primary'}
+            >
+              {index === steps.length - 1 ? 'Finish' : 'Continue'}
+            </Button>
+            <Button disabled={index === 0} onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
+              Back
+            </Button>
+          </div>
+        </Box>
+      </StepContent>
+    </Step>
+  ))}
+</Stepper>
+{activeStep === steps.length && (
+  <Box sx={{ pt: 2 }}>
+    <Typography sx={{ color: 'success.main' }}>All steps completed - you&apos;re finished</Typography>
+    <Button size="small" variant="contained" color="error" onClick={handleReset} sx={{ mt: 2, mr: 1 }}>
+      Reset
+    </Button>
+  </Box>
+)}`;
+
   return (
-    <MainCard title="Vertical">
+    <MainCard title="Vertical" codeString={verticalStepperCodeString}>
       <Stepper activeStep={activeStep} orientation="vertical">
         {steps.map((step, index) => (
           <Step key={step.label}>

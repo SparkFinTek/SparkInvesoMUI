@@ -1,19 +1,45 @@
-// next
-import Image from 'next/image';
-
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
+// project import
+import useAuth from 'hooks/useAuth';
+
 // assets
-const Auth0 = '/assets/images/icons/auth0.svg';
-const Cognito = '/assets/images/icons/aws-cognito.svg';
-const Google = '/assets/images/icons/google.svg';
+import Google from 'assets/images/icons/google.svg';
+import Twitter from 'assets/images/icons/twitter.svg';
+import Facebook from 'assets/images/icons/facebook.svg';
 
 // ==============================|| FIREBASE - SOCIAL BUTTON ||============================== //
 
 export default function FirebaseSocial() {
   const downSM = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+
+  // @ts-ignore
+  const { firebaseFacebookSignIn, firebaseGoogleSignIn, firebaseTwitterSignIn } = useAuth();
+  const googleHandler = async () => {
+    try {
+      await firebaseGoogleSignIn();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const twitterHandler = async () => {
+    try {
+      await firebaseTwitterSignIn();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const facebookHandler = async () => {
+    try {
+      await firebaseFacebookSignIn();
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <Stack
@@ -26,7 +52,8 @@ export default function FirebaseSocial() {
         variant="outlined"
         color="secondary"
         fullWidth={!downSM}
-        startIcon={<Image src={Google} alt="Twitter" width={16} height={16} style={{ maxWidth: '100%', height: 'auto' }} />}
+        startIcon={<img src={Google} alt="Google" />}
+        onClick={googleHandler}
       >
         {!downSM && 'Google'}
       </Button>
@@ -34,17 +61,19 @@ export default function FirebaseSocial() {
         variant="outlined"
         color="secondary"
         fullWidth={!downSM}
-        startIcon={<Image src={Auth0} alt="Twitter" width={16} height={16} style={{ maxWidth: '100%', height: 'auto' }} />}
+        startIcon={<img src={Twitter} alt="Twitter" />}
+        onClick={twitterHandler}
       >
-        {!downSM && 'Auth0'}
+        {!downSM && 'Twitter'}
       </Button>
       <Button
         variant="outlined"
         color="secondary"
         fullWidth={!downSM}
-        startIcon={<Image src={Cognito} alt="Twitter" width={16} height={16} style={{ maxWidth: '100%', height: 'auto' }} />}
+        startIcon={<img src={Facebook} alt="Facebook" />}
+        onClick={facebookHandler}
       >
-        {!downSM && 'Cognito'}
+        {!downSM && 'Facebook'}
       </Button>
     </Stack>
   );

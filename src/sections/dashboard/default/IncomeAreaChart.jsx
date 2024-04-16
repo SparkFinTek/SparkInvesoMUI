@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 
 // third-party
 import ReactApexChart from 'react-apexcharts';
@@ -32,6 +31,8 @@ const areaChartOptions = {
     strokeDashArray: 0
   }
 };
+
+// ==============================|| INCOME AREA CHART ||============================== //
 
 export default function IncomeAreaChart({ slot }) {
   const theme = useTheme();
@@ -115,11 +116,7 @@ export default function IncomeAreaChart({ slot }) {
     ]);
   }, [slot]);
 
-  return (
-    <Box id="chart" sx={{ bgcolor: 'transparent' }}>
-      <ReactApexChart options={options} series={series} type="area" height={450} />
-    </Box>
-  );
+  return <ReactApexChart options={options} series={series} type="area" height={450} />;
 }
 
 IncomeAreaChart.propTypes = { slot: PropTypes.string };

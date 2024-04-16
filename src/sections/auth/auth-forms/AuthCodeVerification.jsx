@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 
 // material-ui
@@ -21,14 +19,12 @@ export default function AuthCodeVerification() {
   const theme = useTheme();
   const [otp, setOtp] = useState();
 
-  const borderColor = theme.palette.divider;
-
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <OtpInput
           value={otp}
-          onChange={(newOtp) => setOtp(newOtp)}
+          onChange={(otp) => setOtp(otp)}
           numInputs={4}
           containerStyle={{ justifyContent: 'space-between' }}
           inputStyle={{
@@ -36,7 +32,7 @@ export default function AuthCodeVerification() {
             margin: '8px',
             padding: '10px',
             border: '1px solid',
-            borderColor: borderColor,
+            borderColor: theme.palette.divider,
             borderRadius: 4,
             ':hover': { borderColor: theme.palette.primary.main }
           }}

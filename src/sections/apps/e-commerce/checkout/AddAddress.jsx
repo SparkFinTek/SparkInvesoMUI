@@ -38,6 +38,8 @@ const validationSchema = yup.object({
   phone: yup.string().required('Contact no is required')
 });
 
+// ==============================|| CHECKOUT - ADD NEW ADDRESS ||============================== //
+
 export default function AddAddress({ address, open, handleClose, editAddress }) {
   const edit = address && address.id;
 
@@ -124,26 +126,12 @@ export default function AddAddress({ address, open, handleClose, editAddress }) 
                   >
                     <FormControlLabel
                       value="home"
-                      control={
-                        <Radio
-                          sx={{
-                            color: 'primary.main',
-                            '&.Mui-checked': { color: 'primary.main' }
-                          }}
-                        />
-                      }
+                      control={<Radio sx={{ color: 'primary.main', '&.Mui-checked': { color: 'primary.main' } }} />}
                       label="Home"
                     />
                     <FormControlLabel
                       value="office"
-                      control={
-                        <Radio
-                          sx={{
-                            color: 'secondary.main',
-                            '&.Mui-checked': { color: 'secondary.main' }
-                          }}
-                        />
-                      }
+                      control={<Radio sx={{ color: 'secondary.main', '&.Mui-checked': { color: 'secondary.main' } }} />}
                       label="Office"
                     />
                   </RadioGroup>

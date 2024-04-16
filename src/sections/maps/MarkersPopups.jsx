@@ -3,8 +3,8 @@ import { useState, memo } from 'react';
 
 // material-ui
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
 
 // third-party
 import Map from 'react-map-gl';
@@ -64,6 +64,7 @@ function MarkersPopups({ data, ...other }) {
             />
             <Typography variant="subtitle2">{popupInfo.name}</Typography>
           </Box>
+
           <Stack direction="row" alignItems="center" spacing={1}>
             <Typography>Timezones:</Typography>
             <Typography variant="caption">{popupInfo.timezones}</Typography>

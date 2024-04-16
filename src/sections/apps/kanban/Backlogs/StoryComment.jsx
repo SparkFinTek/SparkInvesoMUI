@@ -9,7 +9,9 @@ import Typography from '@mui/material/Typography';
 import MainCard from 'components/MainCard';
 import Dot from 'components/@extended/Dot';
 import Avatar from 'components/@extended/Avatar';
+
 import { ThemeMode } from 'config';
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
 
 // ==============================|| KANBAN BACKLOGS - STORY COMMENT ||============================== //
 
@@ -26,7 +28,7 @@ export default function StoryComment({ comment, profile }) {
                 sx={{ width: 24, height: 24 }}
                 size="sm"
                 alt="User 1"
-                src={profile && profile.avatar && `/assets/images/users/${profile.avatar}`}
+                src={profile && profile.avatar && getImageUrl(`${profile.avatar}`, ImagePath.USERS)}
               />
             </Grid>
             <Grid item xs zeroMinWidth>

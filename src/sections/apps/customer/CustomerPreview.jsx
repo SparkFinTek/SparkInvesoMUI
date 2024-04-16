@@ -36,6 +36,7 @@ import Avatar from 'components/@extended/Avatar';
 import IconButton from 'components/@extended/IconButton';
 import SimpleBar from 'components/third-party/SimpleBar';
 import { PopupTransition } from 'components/@extended/Transitions';
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
 
 // assets
 import DeleteOutlined from '@ant-design/icons/DeleteOutlined';
@@ -125,7 +126,11 @@ export default function CustomerPreview({ customer, open, onClose, editCustomer 
                 }
               >
                 <ListItemAvatar sx={{ mr: 0.75 }}>
-                  <Avatar alt={customer.name} size="lg" src={`/assets/images/users/avatar-${!customer.avatar ? 1 : customer.avatar}.png`} />
+                  <Avatar
+                    alt={customer.name}
+                    size="lg"
+                    src={getImageUrl(`avatar-${!customer.avatar ? 1 : customer.avatar}.png`, ImagePath.USERS)}
+                  />
                 </ListItemAvatar>
                 <ListItemText
                   primary={<Typography variant="h5">{customer.name}</Typography>}

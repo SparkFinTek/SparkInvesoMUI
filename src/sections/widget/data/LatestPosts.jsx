@@ -1,19 +1,18 @@
-// next
-import NextLink from 'next/link';
+import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 
 // project imports
 import MainCard from 'components/MainCard';
 
 // assets
-const Dashboard1 = '/assets/images/widget/dashborad-1.jpg';
-const Dashboard2 = '/assets/images/widget/dashborad-3.jpg';
+import Dashboard1 from 'assets/images/widget/dashborad-1.jpg';
+import Dashboard2 from 'assets/images/widget/dashborad-3.jpg';
 
 const mediaSX = {
   width: 90,
@@ -29,9 +28,9 @@ export default function LatestPosts() {
       title="Latest Posts"
       content={false}
       secondary={
-        <NextLink href="#" passHref legacyBehavior>
-          <Link color="primary">View all</Link>
-        </NextLink>
+        <Link component={RouterLink} to="#" color="primary">
+          View all
+        </Link>
       }
     >
       <CardContent>

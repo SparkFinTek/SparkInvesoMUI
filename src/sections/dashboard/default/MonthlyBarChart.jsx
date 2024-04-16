@@ -1,17 +1,15 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 
+// third-party
+import ReactApexChart from 'react-apexcharts';
+
 // project import
 import { ThemeMode } from 'config';
 import useConfig from 'hooks/useConfig';
-
-// third-party
-import ReactApexChart from 'react-apexcharts';
 
 // chart options
 const barChartOptions = {
@@ -70,13 +68,6 @@ export default function MonthlyBarChart() {
       ...prevState,
       colors: [info],
       xaxis: {
-        categories: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
-        axisBorder: {
-          show: false
-        },
-        axisTicks: {
-          show: false
-        },
         labels: {
           style: {
             colors: [secondary, secondary, secondary, secondary, secondary, secondary, secondary]

@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 import { useState } from 'react';
 
 // material-ui
@@ -15,11 +13,12 @@ import ListItemText from '@mui/material/ListItemText';
 
 // project import
 import IconButton from 'components/@extended/IconButton';
-import Avatar from 'components/@extended/Avatar';
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
 
 // assets
 import CloseOutlined from '@ant-design/icons/CloseOutlined';
 import PlusOutlined from '@ant-design/icons/PlusOutlined';
+import Avatar from 'components/@extended/Avatar';
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 
@@ -39,7 +38,7 @@ function SimpleDialog({ onClose, selectedValue, open }) {
         spacing={2}
         justifyContent="space-between"
         alignItems="center"
-        sx={{ borderBottom: '1px solid', borderColor: 'divider' }}
+        sx={{ borderBottom: `1px solid`, borderColor: 'divider' }}
       >
         <Grid item>
           <DialogTitle>Set backup account</DialogTitle>
@@ -55,12 +54,12 @@ function SimpleDialog({ onClose, selectedValue, open }) {
         {emails.map((email, index) => (
           <ListItemButton selected={selectedValue === email} onClick={() => handleListItemClick(email)} key={email} sx={{ p: 1.25 }}>
             <ListItemAvatar>
-              <Avatar src={`/assets/images/users/avatar-${index + 1}.png`} />
+              <Avatar src={getImageUrl(`avatar-${index + 1}.png`, ImagePath.USERS)} />
             </ListItemAvatar>
             <ListItemText primary={email} />
           </ListItemButton>
         ))}
-        <ListItemButton onClick={() => handleListItemClick('addAccount')} sx={{ p: 1.25 }}>
+        <ListItemButton autoFocus onClick={() => handleListItemClick('addAccount')} sx={{ p: 1.25 }}>
           <ListItemAvatar>
             <Avatar size="sm">
               <PlusOutlined />

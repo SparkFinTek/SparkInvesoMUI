@@ -453,15 +453,12 @@ export async function editStory(newStory) {
     endpoints.key,
     (currentBacklog) => {
       const backlogs = currentBacklog.backlogs;
-
       backlogs.userStory.splice(
         backlogs.userStory.findIndex((c) => c.id === newStory.id),
         1,
         newStory
       );
-
       const userStory = [...backlogs.userStory];
-
       return {
         ...currentBacklog,
         backlogs: {
@@ -472,7 +469,6 @@ export async function editStory(newStory) {
     },
     false
   );
-
   // to hit server
   // you may need to refetch latest data after server hit and based on your logic
   //   const data = { story: newStory };

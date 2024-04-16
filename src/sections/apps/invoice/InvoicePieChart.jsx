@@ -1,5 +1,3 @@
-'use client';
-
 import { useState, useEffect } from 'react';
 
 // material-ui
@@ -19,7 +17,7 @@ import Dot from 'components/@extended/Dot';
 import { ThemeMode } from 'config';
 import useConfig from 'hooks/useConfig';
 
-//asset
+// asset
 import MoreOutlined from '@ant-design/icons/MoreOutlined';
 
 // chart options
@@ -60,7 +58,7 @@ const areaChartOptions = {
 
 // ==============================|| INVOICE - PIE CHART ||============================== //
 
-export default function InvoicePieChart() {
+const InvoicePieChart = () => {
   const theme = useTheme();
   const { mode } = useConfig();
 
@@ -165,7 +163,7 @@ export default function InvoicePieChart() {
           <Grid container>
             <Grid item></Grid>
             <Grid item xs sx={DotSize}>
-              <Dot sx={{ bgcolor: 'primary.lighter' }} size={12} />
+              <Dot sx={{ bgcolor: theme.palette.primary.lighter }} size={12} />
               <Typography variant="subtitle1" color="text.secondary">
                 Draft
               </Typography>
@@ -178,4 +176,6 @@ export default function InvoicePieChart() {
       </Grid>
     </MainCard>
   );
-}
+};
+
+export default InvoicePieChart;

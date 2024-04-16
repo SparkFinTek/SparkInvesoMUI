@@ -179,10 +179,7 @@ const LoadingButtonStyle = styled(MuiLoadingButton, { shouldForwardProp: (prop) 
     ...(variant === 'dashed' && {
       border: '1px dashed'
     }),
-    ...((variant === 'contained' || variant === 'shadow') &&
-      loading && {
-        color: '#fff'
-      }),
+    ...((variant === 'contained' || variant === 'shadow') && loading && { color: '#fff' }),
     ...(variant !== 'text' && {
       ...getColorStyle({ variant, theme, color, loadingPosition })
     }),
@@ -213,6 +210,8 @@ function LoadingButton({ variant = 'text', shape, children, color = 'primary', .
     </LoadingButtonStyle>
   );
 }
+
+LoadingButton.displayName = 'LoadingButton';
 
 export default forwardRef(LoadingButton);
 

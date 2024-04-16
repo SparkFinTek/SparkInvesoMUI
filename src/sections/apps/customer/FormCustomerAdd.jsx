@@ -46,6 +46,7 @@ import CircularWithPath from 'components/@extended/progress/CircularWithPath';
 import { ThemeMode, Gender } from 'config';
 import { openSnackbar } from 'api/snackbar';
 import { insertCustomer, updateCustomer } from 'api/customer';
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
 
 // assets
 import CameraOutlined from '@ant-design/icons/CameraOutlined';
@@ -140,7 +141,7 @@ export default function FormCustomerAdd({ customer, closeModal }) {
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(undefined);
   const [avatar, setAvatar] = useState(
-    `/assets/images/users/avatar-${customer && customer !== null && customer?.avatar ? customer.avatar : 1}.png`
+    getImageUrl(`avatar-${customer && customer !== null && customer?.avatar ? customer.avatar : 1}.png`, ImagePath.USERS)
   );
 
   useEffect(() => {

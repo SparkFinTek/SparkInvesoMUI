@@ -19,10 +19,10 @@ import CheckOutlined from '@ant-design/icons/CheckOutlined';
 import CloseOutlined from '@ant-design/icons/CloseOutlined';
 import ClockCircleOutlined from '@ant-design/icons/ClockCircleOutlined';
 
-const avatar1 = '/assets/images/users/avatar-1.png';
-const avatar2 = '/assets/images/users/avatar-2.png';
-const avatar3 = '/assets/images/users/avatar-3.png';
-const avatar4 = '/assets/images/users/avatar-4.png';
+import avatar1 from 'assets/images/users/avatar-1.png';
+import avatar2 from 'assets/images/users/avatar-2.png';
+import avatar3 from 'assets/images/users/avatar-3.png';
+import avatar4 from 'assets/images/users/avatar-4.png';
 
 // avatar style
 const avatarSX = {
@@ -43,7 +43,7 @@ const actionSX = {
 
 // ==============================|| TRANSACTION HISTORY ||============================== //
 
-function TransactionHistory() {
+export default function TransactionHistory() {
   return (
     <>
       <Grid container alignItems="center" justifyContent="space-between">
@@ -66,12 +66,7 @@ function TransactionHistory() {
         >
           <ListItemButton divider>
             <ListItemAvatar>
-              <Avatar
-                sx={{
-                  color: 'success.main',
-                  bgcolor: 'success.lighter'
-                }}
-              >
+              <Avatar sx={{ color: 'success.main', bgcolor: 'success.lighter' }}>
                 <CheckOutlined />
               </Avatar>
             </ListItemAvatar>
@@ -155,5 +150,3 @@ function TransactionHistory() {
     </>
   );
 }
-
-export default TransactionHistory;

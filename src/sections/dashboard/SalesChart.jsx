@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 
 // project import
 import MainCard from 'components/MainCard';
+
 import { ThemeMode } from 'config';
 import useConfig from 'hooks/useConfig';
 
@@ -90,8 +91,6 @@ const initialSeries = [
 
 export default function SalesChart() {
   const theme = useTheme();
-  const xsDown = useMediaQuery(theme.breakpoints.down('sm'));
-
   const { mode } = useConfig();
 
   const [legend, setLegend] = useState({
@@ -114,6 +113,7 @@ export default function SalesChart() {
     setLegend({ ...legend, [event.target.name]: event.target.checked });
   };
 
+  const xsDown = useMediaQuery(theme.breakpoints.down('sm'));
   const [options, setOptions] = useState(columnChartOptions);
 
   useEffect(() => {
@@ -159,13 +159,13 @@ export default function SalesChart() {
       grid: {
         borderColor: line
       },
-      theme: {
-        mode: mode === ThemeMode.DARK ? 'dark' : 'light'
-      },
       plotOptions: {
         bar: {
           columnWidth: xsDown ? '60%' : '30%'
         }
+      },
+      theme: {
+        mode: mode === ThemeMode.DARK ? 'dark' : 'light'
       }
     }));
   }, [mode, primary, secondary, line, warning, primaryMain, successDark, income, cos, xsDown]);

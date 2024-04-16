@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import { createContext } from 'react';
 
 // project import
-import defaultConfig from 'config';
+import config from 'config';
 import useLocalStorage from 'hooks/useLocalStorage';
 
 // initial state
 const initialState = {
-  ...defaultConfig,
+  ...config,
   onChangeContainer: () => {},
   onChangeLocalization: () => {},
   onChangeMode: () => {},
@@ -23,7 +23,7 @@ const initialState = {
 const ConfigContext = createContext(initialState);
 
 function ConfigProvider({ children }) {
-  const [config, setConfig] = useLocalStorage('mantis-react-next-ts-config', initialState);
+  const [config, setConfig] = useLocalStorage('mantis-react-ts-config', initialState);
 
   const onChangeContainer = () => {
     setConfig({

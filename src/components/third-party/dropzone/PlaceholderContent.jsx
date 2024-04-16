@@ -3,19 +3,20 @@ import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import CardMedia from '@mui/material/CardMedia';
-import { DropzoneType } from 'config';
+
+// project-import
+import { DropzopType } from 'config';
 
 // assets
+import UploadCover from 'assets/images/upload/upload.svg';
 import CameraOutlined from '@ant-design/icons/CameraOutlined';
-
-const UploadCover = '/assets/images/upload/upload.svg';
 
 // ==============================|| UPLOAD - PLACEHOLDER ||============================== //
 
 export default function PlaceholderContent({ type }) {
   return (
     <>
-      {type !== DropzoneType.STANDARD && (
+      {type !== DropzopType.STANDARD && (
         <Stack
           spacing={2}
           alignItems="center"
@@ -37,7 +38,7 @@ export default function PlaceholderContent({ type }) {
           </Stack>
         </Stack>
       )}
-      {type === DropzoneType.STANDARD && (
+      {type === DropzopType.STANDARD && (
         <Stack alignItems="center" justifyContent="center" sx={{ height: 1 }}>
           <CameraOutlined style={{ fontSize: '32px' }} />
         </Stack>

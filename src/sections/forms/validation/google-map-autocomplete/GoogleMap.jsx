@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 
 // material-ui
 import Autocomplete from '@mui/material/Autocomplete';
@@ -41,7 +41,7 @@ export default function GoogleMaps({ formik, disabled }) {
   if (typeof window !== 'undefined' && !loaded.current) {
     if (!document.querySelector('#google-maps')) {
       loadScript(
-        `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`,
+        `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY}&libraries=places`,
         document.querySelector('head'),
         'google-maps'
       );

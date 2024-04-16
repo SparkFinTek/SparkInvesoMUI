@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-/* eslint-disable */
 import { useEffect, useState } from 'react';
 
 // third-party

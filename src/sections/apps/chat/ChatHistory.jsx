@@ -21,6 +21,8 @@ import { useGetUserChat } from 'api/chat';
 // assets
 import EditOutlined from '@ant-design/icons/EditOutlined';
 
+// ==============================|| CHAT MESSAGE HISTORY ||============================== //
+
 export default function ChatHistory({ theme, user }) {
   const bottomRef = useRef(null);
   const { chat, chatLoading } = useGetUserChat(user.name);

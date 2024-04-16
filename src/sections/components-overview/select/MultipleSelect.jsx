@@ -3,11 +3,11 @@ import { useState } from 'react';
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import FormControl from '@mui/material/FormControl';
-import OutlinedInput from '@mui/material/OutlinedInput';
+import Stack from '@mui/material/Stack';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import Stack from '@mui/material/Stack';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
 // project import
 import MainCard from 'components/MainCard';
@@ -58,8 +58,28 @@ export default function MultipleSelect() {
     );
   };
 
+  const multipleSelectCodeString = `// MultipleSelect.tsx
+<FormControl fullWidth>
+  <InputLabel id="demo-multiple-name-label">Name</InputLabel>
+  <Select
+    labelId="demo-multiple-name-label"
+    id="demo-multiple-name"
+    multiple
+    value={personName}
+    onChange={handleChange}
+    input={<OutlinedInput />}
+    MenuProps={MenuProps}
+  >
+    {names.map((name) => (
+      <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
+        {name}
+      </MenuItem>
+    ))}
+  </Select>
+</FormControl>`;
+
   return (
-    <MainCard title="Multiple">
+    <MainCard title="Multiple" codeString={multipleSelectCodeString}>
       <Stack spacing={1}>
         <InputLabel id="demo-multiple-name-label">Name</InputLabel>
         <FormControl fullWidth>

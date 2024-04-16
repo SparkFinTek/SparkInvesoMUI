@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-
-// next
-import NextLink from 'next/link';
+import { Link } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Drawer from '@mui/material/Drawer';
@@ -20,18 +19,16 @@ import MenuItem from '@mui/material/MenuItem';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import useMediaQuery from '@mui/material/useMediaQuery';
 
 // project imports
 import UserAvatar from './UserAvatar';
 import UserList from './UserList';
-
 import MainCard from 'components/MainCard';
 import IconButton from 'components/@extended/IconButton';
 import SimpleBar from 'components/third-party/SimpleBar';
 
+import useAuth from 'hooks/useAuth';
 import { ThemeMode } from 'config';
-import useUser from 'hooks/useUser';
 
 // assets
 import CheckCircleFilled from '@ant-design/icons/CheckCircleFilled';
@@ -42,9 +39,9 @@ import RightOutlined from '@ant-design/icons/RightOutlined';
 import SearchOutlined from '@ant-design/icons/SearchOutlined';
 import SettingOutlined from '@ant-design/icons/SettingOutlined';
 
-function ChatDrawer({ handleDrawerOpen, openChatDrawer, setUser, selectedUser }) {
+export default function ChatDrawer({ handleDrawerOpen, openChatDrawer, setUser, selectedUser }) {
   const theme = useTheme();
-  const user = useUser();
+  const { user } = useAuth();
 
   const downLG = useMediaQuery(theme.breakpoints.down('lg'));
   const drawerBG = theme.palette.mode === ThemeMode.DARK ? 'dark.main' : 'white';
@@ -130,8 +127,7 @@ function ChatDrawer({ handleDrawerOpen, openChatDrawer, setUser, selectedUser })
               onChange={handleSearch}
               sx={{
                 '& .MuiOutlinedInput-input': {
-                  p: '10.5px 0px 12px',
-                  color: 'darkgray'
+                  p: '10.5px 0px 12px'
                 }
               }}
               startAdornment={
@@ -150,7 +146,7 @@ function ChatDrawer({ handleDrawerOpen, openChatDrawer, setUser, selectedUser })
             minHeight: downLG ? 0 : 420
           }}
         >
-          <Box sx={{ p: 3, py: 0 }}>
+          <Box sx={{ p: 3, pt: 0 }}>
             <UserList setUser={setUser} search={search} selectedUser={selectedUser} />
           </Box>
         </SimpleBar>
@@ -180,18 +176,14 @@ function ChatDrawer({ handleDrawerOpen, openChatDrawer, setUser, selectedUser })
                   <UserAvatar user={{ online_status: status, avatar: 'avatar-1.png', name: 'User 1' }} />
                 </Grid>
                 <Grid item xs zeroMinWidth>
-                  <NextLink href="/apps/profiles/user/personal" passHref legacyBehavior>
-                    {user && (
-                      <Stack sx={{ cursor: 'pointer', textDecoration: 'none' }}>
-                        <Typography variant="h5" color="text.primary">
-                          {user.name}
-                        </Typography>
-                        <Typography variant="caption" color="text.secondary">
-                          {user.role}
-                        </Typography>
-                      </Stack>
-                    )}
-                  </NextLink>
+                  <Stack sx={{ cursor: 'pointer', textDecoration: 'none' }} component={Link} to="/apps/profiles/user/personal">
+                    <Typography variant="h5" color="text.primary">
+                      {user?.name}
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      {user?.role}
+                    </Typography>
+                  </Stack>
                 </Grid>
                 <Grid item>
                   <IconButton onClick={handleClickRightMenu} size="small" color="secondary">
@@ -204,11 +196,11 @@ function ChatDrawer({ handleDrawerOpen, openChatDrawer, setUser, selectedUser })
                     open={Boolean(anchorEl)}
                     onClose={handleCloseRightMenu}
                     anchorOrigin={{
-                      vertical: 'bottom',
+                      vertical: 'top',
                       horizontal: 'right'
                     }}
                     transformOrigin={{
-                      vertical: 'top',
+                      vertical: 'bottom',
                       horizontal: 'right'
                     }}
                     sx={{
@@ -268,11 +260,9 @@ function ChatDrawer({ handleDrawerOpen, openChatDrawer, setUser, selectedUser })
   );
 }
 
-export default ChatDrawer;
-
 ChatDrawer.propTypes = {
   handleDrawerOpen: PropTypes.func,
-  openChatDrawer: PropTypes.oneOfType([PropTypes.bool, PropTypes.any]),
+  openChatDrawer: PropTypes.oneOfType([PropTypes.any, PropTypes.bool]),
   setUser: PropTypes.func,
-  selectedUser: PropTypes.oneOfType([PropTypes.any, PropTypes.string])
+  selectedUser: PropTypes.oneOfType([PropTypes.string, PropTypes.any])
 };

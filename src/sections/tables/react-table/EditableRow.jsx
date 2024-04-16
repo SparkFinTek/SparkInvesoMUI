@@ -1,10 +1,7 @@
-'use client';
 import PropTypes from 'prop-types';
-
 import { useMemo, useState } from 'react';
 
 // material-ui
-import Stack from '@mui/material/Stack';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
@@ -12,6 +9,7 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Tooltip from '@mui/material/Tooltip';
+import Stack from '@mui/material/Stack';
 
 // third-party
 import { useReactTable, getCoreRowModel, flexRender } from '@tanstack/react-table';

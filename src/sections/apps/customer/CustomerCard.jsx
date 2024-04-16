@@ -28,6 +28,7 @@ import CustomerModal from './CustomerModal';
 import CustomerPreview from './CustomerPreview';
 import AlertCustomerDelete from './AlertCustomerDelete';
 import ListSmallCard from './exportpdf/ListSmallCard';
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
 
 import MainCard from 'components/MainCard';
 import Avatar from 'components/@extended/Avatar';
@@ -92,7 +93,7 @@ export default function CustomerCard({ customer }) {
                 }
               >
                 <ListItemAvatar>
-                  <Avatar alt={customer.name} src={`/assets/images/users/avatar-${!customer.avatar ? 1 : customer.avatar}.png`} />
+                  <Avatar alt={customer.name} src={getImageUrl(`avatar-${!customer.avatar ? 1 : customer.avatar}.png`, ImagePath.USERS)} />
                 </ListItemAvatar>
                 <ListItemText
                   primary={<Typography variant="subtitle1">{customer.name}</Typography>}

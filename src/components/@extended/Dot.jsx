@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -8,7 +6,7 @@ import Box from '@mui/material/Box';
 // project import
 import getColors from 'utils/getColors';
 
-function Dot({ color, size, variant, sx }) {
+export default function Dot({ color, size, variant, sx }) {
   const theme = useTheme();
   const colors = getColors(theme, color || 'primary');
   const { main } = colors;
@@ -20,13 +18,11 @@ function Dot({ color, size, variant, sx }) {
         height: size || 8,
         borderRadius: '50%',
         bgcolor: variant === 'outlined' ? '' : main,
-        ...(variant === 'outlined' && { border: '1px solid', borderColor: main }),
+        ...(variant === 'outlined' && { border: `1px solid ${main}` }),
         ...sx
       }}
     />
   );
 }
-
-export default Dot;
 
 Dot.propTypes = { color: PropTypes.any, size: PropTypes.number, variant: PropTypes.string, sx: PropTypes.any };

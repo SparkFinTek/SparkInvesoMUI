@@ -120,6 +120,7 @@
   "stepper": "Pas à pas",
   "sticky": "Collant",
   "sticky-bar": "Barre collante",
+  "virtualized": "Virtualisées",
   "surfaces": "Surfaces",
   "switch": "Changer",
   "tabs": "Onglets",
@@ -134,7 +135,6 @@
   "user-list": "liste d'utilisateur",
   "user-profile": "Profil de l'utilisateur",
   "utils": "Utilitaires",
-  "virtualized": "Virtualisées",
   "widgets": "Widget",
   "more-items": "Plus d'articles"
 }

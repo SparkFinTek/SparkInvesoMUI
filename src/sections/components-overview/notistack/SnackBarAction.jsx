@@ -1,5 +1,3 @@
-'use client';
-
 // material-ul
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -32,8 +30,27 @@ export default function SnackBarAction() {
     </Stack>
   );
 
+  const NotistackActionCodeString = `const actionTask = (snackbarId: SnackbarKey) => (
+  <>
+    <Button
+      variant="text"
+      onClick={() => {
+        alert("I belong to snackbar with id {snackbarId}");
+      }}
+    >
+      Undo
+    </Button>
+    <Button variant="text" onClick={() => closeSnackbar(snackbarId)}>
+      Dismiss
+    </Button>
+  </>
+);
+<Button variant="outlined" onClick={() => enqueueSnackbar('Your notification here', { action: (key) => actionTask(key) })}>
+ Show Snackbar
+</Button>`;
+
   return (
-    <MainCard title="With Action">
+    <MainCard title="With Action" codeString={NotistackActionCodeString}>
       <Button
         variant="contained"
         fullWidth

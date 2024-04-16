@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 import { useMemo } from 'react';
 
 // material-ui
@@ -10,8 +8,8 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TableCell from '@mui/material/TableCell';
-import TableFooter from '@mui/material/TableFooter';
 import TableHead from '@mui/material/TableHead';
+import TableFooter from '@mui/material/TableFooter';
 import TableRow from '@mui/material/TableRow';
 
 // third-party
@@ -154,9 +152,5 @@ export default function FooterTable() {
 
   return <ReactTable {...{ data, columns }} />;
 }
-
-FooterTable.propTypes = {
-  getValue: PropTypes.func
-};
 
 ReactTable.propTypes = { columns: PropTypes.array, data: PropTypes.array };

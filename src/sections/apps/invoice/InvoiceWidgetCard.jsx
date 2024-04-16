@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 import { useState, useEffect } from 'react';
 
 // material-ui
@@ -14,12 +12,15 @@ import ReactApexChart from 'react-apexcharts';
 
 // project import
 import MainCard from 'components/MainCard';
-import { ThemeMode } from 'config';
+
 import useConfig from 'hooks/useConfig';
+import { ThemeMode } from 'config';
 
 // assets
 import CaretUpOutlined from '@ant-design/icons/CaretUpOutlined';
 import CaretDownOutlined from '@ant-design/icons/CaretDownOutlined';
+
+// ==============================|| INVOICE - CARD ||============================== //
 
 export default function TableWidgetCard({ color, title, count, percentage, isLoss, invoice, isActive }) {
   const { mode } = useConfig();
@@ -27,7 +28,10 @@ export default function TableWidgetCard({ color, title, count, percentage, isLos
   return (
     <MainCard
       {...(isActive && {
-        sx: { bgcolor: mode === ThemeMode.DARK ? 'background.default' : 'secondary.lighter', borderColor: 'secondary.lighter' }
+        sx: {
+          bgcolor: mode === ThemeMode.DARK ? 'background.default' : 'secondary.lighter',
+          borderColor: 'secondary.lighter'
+        }
       })}
     >
       <Grid container spacing={1.25}>
@@ -61,7 +65,7 @@ export default function TableWidgetCard({ color, title, count, percentage, isLos
 
 // ==============================|| ORDERS CARD CHART ||============================== //
 
-export function WidgetChart({ color, data }) {
+export const WidgetChart = ({ color, data }) => {
   const theme = useTheme();
   const { mode } = useConfig();
 
@@ -163,7 +167,7 @@ export function WidgetChart({ color, data }) {
   ]);
 
   return <ReactApexChart options={options} series={series} type="area" height={80} />;
-}
+};
 
 TableWidgetCard.propTypes = {
   color: PropTypes.any,
@@ -174,5 +178,3 @@ TableWidgetCard.propTypes = {
   invoice: PropTypes.string,
   isActive: PropTypes.bool
 };
-
-WidgetChart.propTypes = { color: PropTypes.any, data: PropTypes.any };

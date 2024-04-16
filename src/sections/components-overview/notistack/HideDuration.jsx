@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 
 // material-ul
@@ -49,8 +47,23 @@ export default function HideDuration() {
     return `${value}s`;
   }
 
+  const NotistackHideDurationCodeString = `<Button
+  variant="contained"
+  fullWidth
+  sx={{ marginBlockStart: 2 }}
+  onClick={() => {
+    if (value !== 11) {
+      enqueueSnackbar('Your notification here', { autoHideDuration: value * 1000 });
+    } else {
+      enqueueSnackbar('Your notification here', { persist: true });
+    }
+  }}
+>
+  Show Snackbar
+</Button>`;
+
   return (
-    <MainCard title="Hide Duration">
+    <MainCard title="Hide Duration" codeString={NotistackHideDurationCodeString}>
       <Slider
         value={value}
         min={1}

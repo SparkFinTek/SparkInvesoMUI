@@ -1,5 +1,4 @@
-// next
-import NextLink from 'next/link';
+import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
 import Divider from '@mui/material/Divider';
@@ -22,9 +21,9 @@ export default function IncomingRequests() {
       title="Incoming Requests"
       content={false}
       secondary={
-        <NextLink href="#" passHref legacyBehavior>
-          <Link color="primary">View all</Link>
-        </NextLink>
+        <Link component={RouterLink} to="#" color="primary">
+          View all
+        </Link>
       }
     >
       <SimpleBar sx={{ height: 334 }}>

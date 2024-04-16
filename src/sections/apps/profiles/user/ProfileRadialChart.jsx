@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 
-// project-imports
-import { ThemeMode } from 'config';
-import useConfig from 'hooks/useConfig';
-
 // third-party
 import ReactApexChart from 'react-apexcharts';
+
+// project-import
+import useConfig from 'hooks/useConfig';
+import { ThemeMode } from 'config';
 
 // chart options
 const redialBarChartOptions = {
@@ -55,14 +55,11 @@ export default function ProfileRadialChart() {
       ...prevState,
       colors: [primary],
       plotOptions: {
-        ...prevState.plotOptions,
         radialBar: {
-          ...prevState.plotOptions.radialBar,
           track: {
             background: mode === ThemeMode.DARK ? grey200 : grey0
           },
           dataLabels: {
-            ...prevState.plotOptions.radialBar.dataLabels,
             value: {
               fontSize: '1rem',
               fontWeight: 600,
@@ -70,10 +67,10 @@ export default function ProfileRadialChart() {
               color: textPrimary
             }
           }
-        },
-        theme: {
-          mode: mode === ThemeMode.DARK ? 'dark' : 'light'
         }
+      },
+      theme: {
+        mode: mode === ThemeMode.DARK ? 'dark' : 'light'
       }
     }));
   }, [mode, grey200, grey0, grey500, textPrimary, primary]);

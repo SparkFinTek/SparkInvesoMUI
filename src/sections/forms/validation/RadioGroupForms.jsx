@@ -1,14 +1,12 @@
-'use client';
-
 // material-ui
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormHelperText from '@mui/material/FormHelperText';
+import Stack from '@mui/material/Stack';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
-import Stack from '@mui/material/Stack';
 
 // project imports
 import MainCard from 'components/MainCard';

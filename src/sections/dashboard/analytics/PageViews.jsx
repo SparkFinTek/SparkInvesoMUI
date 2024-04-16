@@ -11,7 +11,7 @@ import MainCard from 'components/MainCard';
 
 // ==============================|| PAGE VIEWS BY PAGE TITLE ||============================== //
 
-function PageViews() {
+export default function PageViews() {
   return (
     <>
       <Grid container alignItems="center" justifyContent="space-between">
@@ -107,4 +107,3 @@ function PageViews() {
     </>
   );
 }
-export default PageViews;

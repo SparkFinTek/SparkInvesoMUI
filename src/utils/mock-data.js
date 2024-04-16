@@ -32,7 +32,7 @@ const skills = [
 
 const time = ['just now', '1 day ago', '2 min ago', '2 days ago', '1 week ago', '1 year ago', '5 months ago', '3 hours ago', '1 hour ago'];
 
-function mockData(index) {
+export default function mockData(index) {
   return {
     id: `${chance.bb_pin()}${index}`,
     email: chance.email({ domain: 'gmail.com' }),
@@ -74,5 +74,3 @@ function mockData(index) {
     time: lodash.sampleSize(time)
   };
 }
-
-export default mockData;

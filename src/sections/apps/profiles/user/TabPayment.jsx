@@ -1,9 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-// next
-import Image from 'next/image';
-
 // material-ui
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -21,6 +18,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 // third party
@@ -29,10 +27,9 @@ import { Formik } from 'formik';
 import { PatternFormat } from 'react-number-format';
 
 // project import
+import { openSnackbar } from 'api/snackbar';
 import IconButton from 'components/@extended/IconButton';
 import MainCard from 'components/MainCard';
-
-import { openSnackbar } from 'api/snackbar';
 
 // assets
 import DeleteOutlined from '@ant-design/icons/DeleteOutlined';
@@ -40,9 +37,9 @@ import EyeOutlined from '@ant-design/icons/EyeOutlined';
 import EyeInvisibleOutlined from '@ant-design/icons/EyeInvisibleOutlined';
 import PlusOutlined from '@ant-design/icons/PlusOutlined';
 
-const masterCard = '/assets/images/icons/master-card.png';
-const paypal = '/assets/images/icons/paypal.png';
-const visaCard = '/assets/images/icons/visa-card.png';
+import masterCard from 'assets/images/icons/master-card.png';
+import paypal from 'assets/images/icons/paypal.png';
+import visaCard from 'assets/images/icons/visa-card.png';
 
 // style & constant
 const buttonStyle = { color: 'text.primary', fontWeight: 600 };
@@ -94,13 +91,7 @@ function PaymentCard({ card }) {
               </Grid>
               <Grid item>
                 <Stack direction="row" justifyContent="flex-end" alignItems="center" spacing={1}>
-                  <Image
-                    src={type === 'master' ? masterCard : visaCard}
-                    alt="payment card"
-                    width={type === 'master' ? 22 : 30}
-                    height={type === 'master' ? 22 : 30}
-                    style={{ maxWidth: '100%', height: 'auto' }}
-                  />
+                  <img src={type === 'master' ? masterCard : visaCard} alt="payment card" />
                   <IconButton color="secondary">
                     <DeleteOutlined />
                   </IconButton>
@@ -146,7 +137,7 @@ export default function TabPayment() {
                 color={method === 'card' || method === 'add' ? 'primary' : 'secondary'}
                 sx={buttonStyle}
                 onClick={() => setMethod(method !== 'card' ? 'card' : method)}
-                startIcon={<Image src={masterCard} alt="master card" width={12} height={12} style={{ maxWidth: '100%', height: 'auto' }} />}
+                startIcon={<img src={masterCard} alt="master card" />}
               >
                 Card
               </Button>
@@ -155,7 +146,7 @@ export default function TabPayment() {
                 color={method === 'paypal' ? 'primary' : 'secondary'}
                 sx={buttonStyle}
                 onClick={() => setMethod(method !== 'paypal' ? 'paypal' : method)}
-                startIcon={<Image src={paypal} alt="paypal" width={12} height={12} style={{ maxWidth: '100%', height: 'auto' }} />}
+                startIcon={<img src={paypal} alt="paypal" />}
               >
                 Paypal
               </Button>
@@ -223,7 +214,6 @@ export default function TabPayment() {
                       color: 'success'
                     }
                   });
-
                   setStatus({ success: false });
                   setSubmitting(false);
                 } catch (err) {
@@ -300,7 +290,6 @@ export default function TabPayment() {
                       color: 'success'
                     }
                   });
-
                   resetForm();
                   setStatus({ success: false });
                   setSubmitting(false);

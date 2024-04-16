@@ -29,42 +29,42 @@ const pages = {
           id: 'login',
           title: <FormattedMessage id="login" />,
           type: 'item',
-          url: '/pages/login',
+          url: '/auth/login',
           target: true
         },
         {
           id: 'register',
           title: <FormattedMessage id="register" />,
           type: 'item',
-          url: '/pages/register',
+          url: '/auth/register',
           target: true
         },
         {
           id: 'forgot-password',
           title: <FormattedMessage id="forgot-password" />,
           type: 'item',
-          url: '/pages/forget-pass',
+          url: '/auth/forgot-password',
           target: true
         },
         {
           id: 'reset-password',
           title: <FormattedMessage id="reset-password" />,
           type: 'item',
-          url: '/pages/reset-pass',
+          url: '/auth/reset-password',
           target: true
         },
         {
           id: 'check-mail',
           title: <FormattedMessage id="check-mail" />,
           type: 'item',
-          url: '/pages/check-mail',
+          url: '/auth/check-mail',
           target: true
         },
         {
           id: 'code-verification',
           title: <FormattedMessage id="code-verification" />,
           type: 'item',
-          url: '/pages/verify-code',
+          url: '/auth/code-verification',
           target: true
         }
       ]
@@ -80,28 +80,28 @@ const pages = {
           id: 'error-404',
           title: <FormattedMessage id="error-404" />,
           type: 'item',
-          url: '/pages/404',
+          url: '/maintenance/404',
           target: true
         },
         {
           id: 'error-500',
           title: <FormattedMessage id="error-500" />,
           type: 'item',
-          url: '/pages/500',
+          url: '/maintenance/500',
           target: true
         },
         {
           id: 'coming-soon',
           title: <FormattedMessage id="coming-soon" />,
           type: 'item',
-          url: '/pages/coming-soon',
+          url: '/maintenance/coming-soon',
           target: true
         },
         {
           id: 'under-construction',
           title: <FormattedMessage id="under-construction" />,
           type: 'item',
-          url: '/pages/under-construction',
+          url: '/maintenance/under-construction',
           target: true
         }
       ]
@@ -118,7 +118,7 @@ const pages = {
       id: 'pricing',
       title: <FormattedMessage id="pricing" />,
       type: 'item',
-      url: '/pages/pricing',
+      url: '/pricing',
       icon: icons.DollarOutlined
     }
   ]

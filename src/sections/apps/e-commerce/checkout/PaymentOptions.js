@@ -1,6 +1,6 @@
 // assets
-const paypal = '/assets/images/e-commerce/paypal.png';
-const card = '/assets/images/e-commerce/card.png';
+import paypal from 'assets/images/e-commerce/paypal.png';
+import card from 'assets/images/e-commerce/card.png';
 
 // ==============================|| CHECKOUT - PAYMENT OPTIONS ||============================== //
 

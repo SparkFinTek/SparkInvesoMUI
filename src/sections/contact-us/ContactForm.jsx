@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 
 // material-ui
@@ -46,7 +44,7 @@ const sizes = [
 
 // ==============================|| CONTACT US - FORM ||============================== //
 
-function ContactForm() {
+export default function ContactForm() {
   const [budget, setBudget] = useState(1);
   const handleProjectBudget = (event) => {
     setBudget(Number(event.target?.value));
@@ -83,7 +81,7 @@ function ContactForm() {
               <TextField fullWidth type="email" placeholder="Email Address" />
             </Grid>
             <Grid item xs={12} md={6}>
-              <TextField fullWidth type="number" placeholder="Phone Number" inputProps={{ min: 0 }} />
+              <TextField fullWidth type="number" placeholder="Phone Number" />
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField select fullWidth placeholder="Company Size" value={size} onChange={handleCompanySize}>
@@ -137,5 +135,3 @@ function ContactForm() {
     </Box>
   );
 }
-
-export default ContactForm;

@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-
-// next
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -28,9 +26,9 @@ import * as yup from 'yup';
 import ColorOptions from '../products/ColorOptions';
 import Avatar from 'components/@extended/Avatar';
 
-import { ThemeMode } from 'config';
 import { addToCart, useGetCart } from 'api/cart';
 import { openSnackbar } from 'api/snackbar';
+import { ThemeMode } from 'config';
 
 // assets
 import DownOutlined from '@ant-design/icons/DownOutlined';
@@ -51,7 +49,6 @@ const validationSchema = yup.object({
 
 function Colors({ checked, colorsData }) {
   const theme = useTheme();
-
   return (
     <Grid item>
       <Tooltip title={colorsData.length && colorsData[0] && colorsData[0].label ? colorsData[0].label : ''}>
@@ -88,7 +85,7 @@ export default function ProductInfo({ product }) {
   const theme = useTheme();
 
   const [value, setValue] = useState(1);
-  const router = useRouter();
+  const history = useNavigate();
   const { cart } = useGetCart();
 
   const formik = useFormik({
@@ -117,7 +114,7 @@ export default function ProductInfo({ product }) {
         }
       });
 
-      router.push('/apps/e-commerce/checkout');
+      history('/apps/e-commerce/checkout');
     }
   });
 

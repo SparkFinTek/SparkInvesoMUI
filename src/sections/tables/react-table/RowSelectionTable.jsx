@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 import { useEffect, useMemo, useState } from 'react';
 
 // material-ui

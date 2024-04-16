@@ -1,19 +1,17 @@
-'use client';
 import PropTypes from 'prop-types';
-
 import { Fragment, useEffect, useMemo, useState } from 'react';
 
 // material-ui
 import { alpha, useTheme } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';
 import Paper from '@mui/material/Paper';
-import Skeleton from '@mui/material/Skeleton';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import Skeleton from '@mui/material/Skeleton';
 
 // third-party
 import { flexRender, useReactTable, getExpandedRowModel, getCoreRowModel } from '@tanstack/react-table';
@@ -200,7 +198,7 @@ function ReactTable({ columns, data }) {
 
 // ==============================|| REACT TABLE - EXPANDING SUB TABLE ||============================== //
 
-export default function ExpandingTable() {
+export default function ExpandingSubTable() {
   const data = makeData(10);
 
   const columns = useMemo(

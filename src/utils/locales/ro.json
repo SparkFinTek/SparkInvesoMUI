@@ -120,6 +120,7 @@
   "stepper": "Stepper",
   "sticky": "Sticky",
   "sticky-bar": "Sticky Bar",
+  "virtualized": "Virtualizate",
   "surfaces": "Suprafeţe",
   "switch": "Intrerupator",
   "tabs": "Filele",
@@ -134,7 +135,6 @@
   "user-list": "Lista utilizatorilor",
   "user-profile": "Profil utilizator",
   "utils": "Utils",
-  "virtualized": "Virtualizate",
   "widgets": "Widgeturi",
   "more-items": "Mai multe articole"
 }

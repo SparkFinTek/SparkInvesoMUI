@@ -1,4 +1,3 @@
-'use client';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 // material-ui
@@ -127,7 +126,7 @@ function ReactTable() {
 
   // we must flatten the array of arrays from the useInfiniteQuery hook
   const flatData = useMemo(() => data?.pages?.flatMap((page) => page.data) ?? [], [data]);
-  const totalDBRowCount = data?.pages?.[0]?.meta?.totalRowCount ?? 0;
+  const totalDBRowCount = data?.pages?.[0]?.meta.totalRowCount ?? 0;
   const totalFetched = flatData.length;
 
   // called on scroll and possibly on mount to fetch more data as the user scrolls and reaches bottom of table

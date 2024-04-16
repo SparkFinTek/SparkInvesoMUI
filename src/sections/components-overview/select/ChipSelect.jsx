@@ -60,8 +60,35 @@ export default function ChipSelect() {
     );
   };
 
+  const chipSelectCodeString = `// ChipSelect.tsx
+<FormControl fullWidth>
+  <InputLabel id="demo-multiple-chip-label">Chip</InputLabel>
+  <Select
+    labelId="demo-multiple-chip-label"
+    id="demo-multiple-chip"
+    multiple
+    value={personName}
+    onChange={handleChange}
+    input={<OutlinedInput id="select-multiple-chip" placeholder="Chip" />}
+    renderValue={(selected) => (
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+        {selected.map((value) => (
+          <Chip key={value} label={value} variant="light" color="primary" size="small" />
+        ))}
+      </Box>
+    )}
+    MenuProps={MenuProps}
+  >
+    {names.map((name) => (
+      <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
+        {name}
+      </MenuItem>
+    ))}
+  </Select>
+</FormControl>`;
+
   return (
-    <MainCard title="With Chip">
+    <MainCard title="With Chip" codeString={chipSelectCodeString}>
       <Stack spacing={1}>
         <InputLabel id="demo-multiple-chip-label">Chip</InputLabel>
         <FormControl fullWidth>

@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 // material-ui
+import CardMedia from '@mui/material/CardMedia';
 import List from '@mui/material/List';
 import ListItemText from '@mui/material/ListItemText';
 import ListItem from '@mui/material/ListItem';
-import CardMedia from '@mui/material/CardMedia';
 
 // project import
 import IconButton from 'components/@extended/IconButton';
-import { DropzoneType } from 'config';
+import { DropzopType } from 'config';
 
 // utils
 import getDropzoneData from 'utils/getDropzoneData';
@@ -28,8 +28,8 @@ export default function FilesPreview({ showList = false, files, onRemove, type }
     <List
       disablePadding
       sx={{
-        ...(hasFile && type !== DropzoneType.STANDARD && { my: 3 }),
-        ...(type === DropzoneType.STANDARD && { width: 'calc(100% - 84px)' })
+        ...(hasFile && type !== DropzopType.STANDARD && { my: 3 }),
+        ...(type === DropzopType.STANDARD && { width: 'calc(100% - 84px)' })
       }}
     >
       {files.map((file, index) => {
@@ -42,8 +42,8 @@ export default function FilesPreview({ showList = false, files, onRemove, type }
               sx={{
                 p: 0,
                 m: 0.5,
-                width: layoutType === DropzoneType.STANDARD ? 64 : 80,
-                height: layoutType === DropzoneType.STANDARD ? 64 : 80,
+                width: layoutType === DropzopType.STANDARD ? 64 : 80,
+                height: layoutType === DropzopType.STANDARD ? 64 : 80,
                 borderRadius: 1.25,
                 position: 'relative',
                 display: 'inline-flex',

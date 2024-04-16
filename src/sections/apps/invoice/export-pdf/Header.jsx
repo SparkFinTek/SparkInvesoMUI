@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 // material-ui
 import { alpha, useTheme } from '@mui/material/styles';
 
@@ -9,7 +7,7 @@ import { Text, View, StyleSheet, Image } from '@react-pdf/renderer';
 import { format } from 'date-fns';
 
 // assets
-const Logo = '/assets/images/logo.png';
+import Logo from 'assets/images/logo.png';
 
 const textPrimary = '#262626';
 const textSecondary = '#8c8c8c';
@@ -75,7 +73,6 @@ export default function Header({ list }) {
     <View style={styles.mainContainer}>
       <View style={styles.container}>
         <View style={styles.leftColumn}>
-          {/* eslint-disable-next-line */}
           <Image src={Logo} style={styles.image} />
           <Text style={[styles.caption, { marginTop: 4 }]}>{`#${list?.invoice_id}`}</Text>
         </View>

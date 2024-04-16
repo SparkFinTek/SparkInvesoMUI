@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import { Link as RouterLink } from 'react-router-dom';
+
 // material-ui
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -11,9 +13,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 
+// third-party
+import { NumericFormat } from 'react-number-format';
+
 // project import
 import Dot from 'components/@extended/Dot';
-import { NumericFormat } from 'components/third-party';
 
 function createData(tracking_no, name, fat, carbs, protein) {
   return { tracking_no, name, fat, carbs, protein };
@@ -92,6 +96,8 @@ const headCells = [
   }
 ];
 
+// ==============================|| ORDER TABLE - HEADER ||============================== //
+
 function OrderTableHead({ order, orderBy }) {
   return (
     <TableHead>
@@ -143,7 +149,7 @@ function OrderStatus({ status }) {
 
 // ==============================|| ORDER TABLE ||============================== //
 
-export default function OrderTable() {
+export default function OrdersList() {
   const order = 'asc';
   const orderBy = 'tracking_no';
 
@@ -174,7 +180,9 @@ export default function OrderTable() {
                   key={row.tracking_no}
                 >
                   <TableCell component="th" id={labelId} scope="row">
-                    <Link color="secondary">{row.tracking_no}</Link>
+                    <Link color="secondary" component={RouterLink} to="">
+                      {row.tracking_no}
+                    </Link>
                   </TableCell>
                   <TableCell>{row.name}</TableCell>
                   <TableCell align="right">{row.fat}</TableCell>

@@ -11,6 +11,8 @@ import Avatar from 'components/@extended/Avatar';
 // assets
 import CheckOutlined from '@ant-design/icons/CheckOutlined';
 
+// ==============================|| CALENDAR - COLOR PALETTE ||============================== //
+
 export default function ColorPalette({ color, value }) {
   return (
     <Tooltip title={color}>

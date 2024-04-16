@@ -1,6 +1,4 @@
-// next
-import NextLink from 'next/link';
-import Image from 'next/image';
+import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -14,13 +12,12 @@ import Typography from '@mui/material/Typography';
 // third party
 import { motion } from 'framer-motion';
 
-// project import
+// project-import
 import AnimateButton from 'components/@extended/AnimateButton';
 
 // assets
 import EyeOutlined from '@ant-design/icons/EyeOutlined';
-
-const headertechimg = '/assets/images/landing/img-headertech.svg';
+import headertechimg from 'assets/images/landing/img-headertech.svg';
 
 // ==============================|| LANDING - HEADER PAGE ||============================== //
 
@@ -36,11 +33,7 @@ export default function HeaderPage() {
               <motion.div
                 initial={{ opacity: 0, translateY: 550 }}
                 animate={{ opacity: 1, translateY: 0 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 150,
-                  damping: 30
-                }}
+                transition={{ type: 'spring', stiffness: 150, damping: 30 }}
               >
                 <Typography
                   variant="h1"
@@ -63,21 +56,12 @@ export default function HeaderPage() {
               <motion.div
                 initial={{ opacity: 0, translateY: 550 }}
                 animate={{ opacity: 1, translateY: 0 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 150,
-                  damping: 30,
-                  delay: 0.2
-                }}
+                transition={{ type: 'spring', stiffness: 150, damping: 30, delay: 0.2 }}
               >
                 <Typography
                   variant="h6"
                   color="white"
-                  sx={{
-                    fontSize: { xs: '0.875rem', md: '1rem' },
-                    fontWeight: 400,
-                    lineHeight: { xs: 1.4, md: 1.4 }
-                  }}
+                  sx={{ fontSize: { xs: '0.875rem', md: '1rem' }, fontWeight: 400, lineHeight: { xs: 1.4, md: 1.4 } }}
                 >
                   Mantis React is a blazing-fast dashboard template built using the MUI React library.
                 </Typography>
@@ -87,21 +71,14 @@ export default function HeaderPage() {
               <motion.div
                 initial={{ opacity: 0, translateY: 550 }}
                 animate={{ opacity: 1, translateY: 0 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 150,
-                  damping: 30,
-                  delay: 0.4
-                }}
+                transition={{ type: 'spring', stiffness: 150, damping: 30, delay: 0.4 }}
               >
                 <Grid container spacing={2} sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }}>
                   <Grid item>
                     <AnimateButton>
-                      <NextLink href="/components-overview/buttons" passHref legacyBehavior>
-                        <Button size="large" color="primary" variant="outlined" component={Link} target="_blank">
-                          Explore Components
-                        </Button>
-                      </NextLink>
+                      <Button component={RouterLink} to="/components-overview/buttons" size="large" color="primary" variant="outlined">
+                        Explore Components
+                      </Button>
                     </AnimateButton>
                   </Grid>
                   <Grid item>
@@ -126,19 +103,13 @@ export default function HeaderPage() {
               <motion.div
                 initial={{ opacity: 0, translateY: 550 }}
                 animate={{ opacity: 1, translateY: 0 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 150,
-                  damping: 30,
-                  delay: 0.6
-                }}
+                transition={{ type: 'spring', stiffness: 150, damping: 30, delay: 0.6 }}
               >
-                <Image src={headertechimg} alt="Mantis" width={281} height={49} style={{ zIndex: 9, maxWidth: '100%', height: 'auto' }} />
+                <img src={headertechimg} alt="Mantis" style={{ zIndex: 9 }} />
               </motion.div>
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={12} lg={7} md={6} sx={{ display: { xs: 'none', md: 'flex' } }} />
       </Grid>
     </Container>
   );

@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 
 // material-ui
@@ -23,8 +21,31 @@ export default function BasicDateTimePickers() {
     setValue(newValue);
   };
 
+  const basicDatepickerCodeString = `<LocalizationProvider dateAdapter={AdapterDateFns}>
+  <Stack spacing={3}>
+    <DesktopDatePicker
+      label="Date Desktop"
+      inputFormat="MM/dd/yyyy"
+      value={value}
+      onChange={handleChange}
+    />
+    <MobileDatePicker
+      label="Date Mobile"
+      inputFormat="MM/dd/yyyy"
+      value={value}
+      onChange={handleChange}
+    />
+    <TimePicker label="Time" value={value} onChange={handleChange} />
+    <DateTimePicker
+      label="Date & Time Picker"
+      value={value}
+      onChange={handleChange}
+    />
+  </Stack>
+</LocalizationProvider>`;
+
   return (
-    <MainCard title="Basic Picker">
+    <MainCard title="Basic Picker" codeString={basicDatepickerCodeString}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Stack spacing={3}>
           <DesktopDatePicker format="MM/dd/yyyy" value={value} onChange={handleChange} />

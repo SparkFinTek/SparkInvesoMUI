@@ -1,11 +1,7 @@
-// next
-import Image from 'next/legacy/image';
-
 // material-ui
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
 
 // project import
 import countries from 'data/countries';
@@ -14,8 +10,40 @@ import MainCard from 'components/MainCard';
 // ==============================|| AUTOCOMPLETE - COUNTRY ||============================== //
 
 export default function CountryAutocomplete() {
+  const countryAutocompleteCodeString = `<Autocomplete
+  id="country-select-demo"
+  fullWidth
+  options={countries}
+  autoHighlight
+  getOptionLabel={(option) => option.label}
+  renderOption={({ key, ...props }, option) => (
+    <Box key={key} component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+      {option.code && (
+        <img
+          loading="lazy"
+          width="20"
+          src={https://flagcdn.com/w20/{option.code.toLowerCase()}.png}
+          srcSet={https://flagcdn.com/w40/{option.code.toLowerCase()}.png 2x}
+          alt=""
+        />
+      )}
+      {option.label} ({option.code}) +{option.phone}
+    </Box>
+  )}
+  renderInput={(params) => (
+    <TextField
+      {...params}
+      placeholder="Choose a country"
+      inputProps={{
+        ...params.inputProps,
+        autoComplete: 'new-password' // disable autocomplete and autofill
+      }}
+    />
+  )}
+/>`;
+
   return (
-    <MainCard title="With Image">
+    <MainCard title="With Image" codeString={countryAutocompleteCodeString}>
       <Autocomplete
         id="country-select-demo"
         fullWidth
@@ -26,18 +54,15 @@ export default function CountryAutocomplete() {
         renderOption={({ key, ...props }, option) => (
           <Box key={key} component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
             {option.code && (
-              <Image
+              <img
                 loading="lazy"
-                width={21}
-                height={14}
-                layout="intrinsic"
+                width="20"
                 src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
-                alt={option.code.toLowerCase()}
+                srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+                alt=""
               />
             )}
-            <Typography sx={{ ml: option.code ? 1.25 : 0 }}>
-              {option.label} ({option.code}) +{option.phone}
-            </Typography>
+            {option.label} ({option.code}) +{option.phone}
           </Box>
         )}
         renderInput={(params) => (

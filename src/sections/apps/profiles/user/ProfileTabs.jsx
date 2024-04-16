@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-
-// next
-import NextLink from 'next/link';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -22,8 +20,7 @@ import MainCard from 'components/MainCard';
 import Avatar from 'components/@extended/Avatar';
 import IconButton from 'components/@extended/IconButton';
 
-import useUser from 'hooks/useUser';
-import { ThemeMode, facebookColor, linkedInColor, twitterColor } from 'config';
+import { facebookColor, linkedInColor, twitterColor, ThemeMode } from 'config';
 
 // assets
 import FacebookFilled from '@ant-design/icons/FacebookFilled';
@@ -32,14 +29,14 @@ import MoreOutlined from '@ant-design/icons/MoreOutlined';
 import TwitterSquareFilled from '@ant-design/icons/TwitterSquareFilled';
 import CameraOutlined from '@ant-design/icons/CameraOutlined';
 
+import defaultImages from 'assets/images/users/default.png';
+
 // ==============================|| USER PROFILE - TAB CONTENT ||============================== //
 
 export default function ProfileTabs({ focusInput }) {
   const theme = useTheme();
-  const user = useUser();
-
   const [selectedImage, setSelectedImage] = useState(undefined);
-  const [avatar, setAvatar] = useState(user ? user.thumb : '');
+  const [avatar, setAvatar] = useState(defaultImages);
 
   useEffect(() => {
     if (selectedImage) {
@@ -91,18 +88,18 @@ export default function ProfileTabs({ focusInput }) {
                 horizontal: 'right'
               }}
             >
-              <NextLink href="/apps/profiles/user/personal" passHref legacyBehavior>
-                <MenuItem
-                  onClick={() => {
-                    handleClose();
-                    setTimeout(() => {
-                      focusInput();
-                    });
-                  }}
-                >
-                  Edit
-                </MenuItem>
-              </NextLink>
+              <MenuItem
+                component={Link}
+                to="/apps/profiles/user/personal"
+                onClick={() => {
+                  handleClose();
+                  setTimeout(() => {
+                    focusInput();
+                  });
+                }}
+              >
+                Edit
+              </MenuItem>
               <MenuItem onClick={handleClose} disabled>
                 Delete
               </MenuItem>
@@ -119,13 +116,13 @@ export default function ProfileTabs({ focusInput }) {
                 cursor: 'pointer'
               }}
             >
-              {user && <Avatar alt={user.name} src={avatar} sx={{ width: 124, height: 124, border: '1px dashed' }} />}
+              <Avatar alt="Avatar 1" src={avatar} sx={{ width: 124, height: 124, border: '1px dashed' }} />
               <Box
                 sx={{
                   position: 'absolute',
                   top: 0,
                   left: 0,
-                  background: theme.palette.mode === ThemeMode.DARK ? 'rgba(255, 255, 255, .75)' : 'rgba(0,0,0, .65)',
+                  background: theme.palette.mode === ThemeMode.DARK ? 'rgba(255, 255, 255, .75)' : 'rgba(0,0,0,.65)',
                   width: '100%',
                   height: '100%',
                   opacity: 0,
@@ -148,12 +145,10 @@ export default function ProfileTabs({ focusInput }) {
               sx={{ display: 'none' }}
               onChange={(e) => setSelectedImage(e.target.files?.[0])}
             />
-            {user && (
-              <Stack spacing={0.5} alignItems="center">
-                <Typography variant="h5">{user.name}</Typography>
-                <Typography color="secondary">{user.role}</Typography>
-              </Stack>
-            )}
+            <Stack spacing={0.5} alignItems="center">
+              <Typography variant="h5">Stebin Ben</Typography>
+              <Typography color="secondary">Full Stack Developer</Typography>
+            </Stack>
             <Stack direction="row" spacing={3} sx={{ '& svg': { fontSize: '1.15rem', cursor: 'pointer' } }}>
               <TwitterSquareFilled style={{ color: twitterColor }} />
               <FacebookFilled style={{ color: facebookColor }} />

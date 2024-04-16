@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 
 // material-ul
@@ -23,8 +21,14 @@ export default function Dense() {
     handlerDense(event.target.checked);
   };
 
+  const NotistackDenseCodeString = `<Checkbox checked={checked} onChange={handleChange} inputProps={{ 'aria-label': 'controlled' }} />
+Dense margins
+<Button variant="outlined" fullWidth sx={{ marginBlockStart: 2 }} onClick={() => enqueueSnackbar('Your notification here')}>
+  Show snackbar
+</Button>`;
+
   return (
-    <MainCard title="Dense">
+    <MainCard title="Dense" codeString={NotistackDenseCodeString}>
       <Checkbox checked={checked} onChange={handleChange} inputProps={{ 'aria-label': 'controlled' }} />
       Dense margins
       <Button variant="outlined" fullWidth sx={{ marginBlockStart: 2 }} onClick={() => enqueueSnackbar('Your notification here')}>

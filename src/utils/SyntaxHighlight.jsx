@@ -6,7 +6,7 @@ import { useTheme } from '@mui/material/styles';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { a11yDark, a11yLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
-// project import
+// project-import
 import { ThemeMode } from 'config';
 
 // ==============================|| CODE HIGHLIGHTER ||============================== //

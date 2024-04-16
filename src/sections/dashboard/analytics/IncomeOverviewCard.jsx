@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 
 // material-ui
@@ -71,7 +69,7 @@ export default function IncomeOverviewCard() {
                 <MenuItem value="By margin">By Margin</MenuItem>
                 <MenuItem value="By sales">By Sales</MenuItem>
               </Select>
-              <IconButton size="small" sx={{ border: '1px solid', borderColor: 'grey.400', '&:hover': { bgcolor: 'transparent' } }}>
+              <IconButton size="small" sx={{ border: `1px solid`, borderColor: ' grey.400', '&:hover': { bgcolor: 'transparent' } }}>
                 <DownloadOutlined style={{ color: theme.palette.grey[900] }} />
               </IconButton>
             </Stack>

@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 
 // material-ul
@@ -31,8 +29,20 @@ export default function MaxSnackbar() {
     handlerIncrease(value);
   };
 
+  const NotiStackMaxSnackbarCodeString = `<Button
+variant="contained"
+fullWidth
+sx={{ marginBlockStart: 2 }}
+onClick={() => {
+  enqueueSnackbar('Your notification here');
+  handlerIncrease(value);
+}}
+>
+  Show Snackbar
+</Button>`;
+
   return (
-    <MainCard title="Maximum snackbars">
+    <MainCard title="Maximum snackbars" codeString={NotiStackMaxSnackbarCodeString}>
       <Stack justifyContent={'space-between'} flexDirection={'row'}>
         <Button
           variant="outlined"

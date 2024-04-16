@@ -120,6 +120,7 @@
   "stepper": "Stepper",
   "sticky": "Sticky",
   "sticky-bar": "Sticky Bar",
+  "virtualized": "Virtualized",
   "surfaces": "Surfaces",
   "switch": "Switch",
   "tabs": "Tabs",
@@ -134,7 +135,6 @@
   "user-list": "User List",
   "user-profile": "User Profile",
   "utils": "Utils",
-  "virtualized": "Virtualized",
   "widgets": "Widgets",
   "more-items": "More Items"
 }

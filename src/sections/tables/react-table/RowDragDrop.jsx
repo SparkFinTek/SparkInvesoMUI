@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 import { useMemo, useState } from 'react';
 
 // material-ui
@@ -174,9 +172,5 @@ export default function RowDragDrop() {
     </DndProvider>
   );
 }
-
-RowDragDrop.propTypes = {
-  getValue: PropTypes.func
-};
 
 ReactTable.propTypes = { defaultColumns: PropTypes.array, defaultData: PropTypes.array };

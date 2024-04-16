@@ -1,5 +1,4 @@
-// next
-import NextLink from 'next/link';
+import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
 import Grid from '@mui/material/Grid';
@@ -42,9 +41,9 @@ export default function InvoiceNotificationList() {
             <Grid item xs zeroMinWidth>
               <Typography variant="subtitle1">
                 Johnny sent you an invoice billed{' '}
-                <NextLink href="/" passHref legacyBehavior>
-                  <Link underline="hover">$1,000.</Link>
-                </NextLink>
+                <Link component={RouterLink} to="#" underline="hover">
+                  $1,000.
+                </Link>
               </Typography>
               <Typography variant="caption" color="secondary">
                 2 August
@@ -65,9 +64,9 @@ export default function InvoiceNotificationList() {
             <Grid item xs zeroMinWidth>
               <Typography variant="subtitle1">
                 Sent an invoice to Aida Bugg amount of{' '}
-                <NextLink href="/" passHref legacyBehavior>
-                  <Link underline="hover">$200.</Link>
-                </NextLink>
+                <Link component={RouterLink} to="#" underline="hover">
+                  $200.
+                </Link>
               </Typography>
               <Typography variant="caption" color="secondary">
                 7 hours ago

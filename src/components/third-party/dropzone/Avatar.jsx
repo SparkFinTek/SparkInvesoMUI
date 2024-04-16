@@ -54,18 +54,12 @@ export default function AvatarUpload({ error, file, setFieldValue, sx }) {
   const theme = useTheme();
 
   const { getRootProps, getInputProps, isDragActive, isDragReject, fileRejections } = useDropzone({
-    accept: {
-      'image/*': []
-    },
+    accept: { 'image/*': [] },
     multiple: false,
     onDrop: (acceptedFiles) => {
       setFieldValue(
         'files',
-        acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file)
-          })
-        )
+        acceptedFiles.map((file) => Object.assign(file, { preview: URL.createObjectURL(file) }))
       );
     }
   });

@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 
 // material-ui
@@ -21,13 +19,15 @@ import { PatternFormat } from 'react-number-format';
 // project import
 import Avatar from 'components/@extended/Avatar';
 import MainCard from 'components/MainCard';
-import { ThemeMode, facebookColor, linkedInColor, twitterColor } from 'config';
+import { facebookColor, linkedInColor, twitterColor, ThemeMode } from 'config';
 
 // assets
 import FacebookFilled from '@ant-design/icons/FacebookFilled';
 import LinkedinFilled from '@ant-design/icons/LinkedinFilled';
 import TwitterSquareFilled from '@ant-design/icons/TwitterSquareFilled';
 import CameraOutlined from '@ant-design/icons/CameraOutlined';
+
+import defaultImages from 'assets/images/users/default.png';
 
 // styles & constant
 const ITEM_HEIGHT = 48;
@@ -45,7 +45,7 @@ const MenuProps = {
 export default function TabPersonal() {
   const theme = useTheme();
   const [selectedImage, setSelectedImage] = useState(undefined);
-  const [avatar, setAvatar] = useState('/assets/images/users/default.png');
+  const [avatar, setAvatar] = useState(defaultImages);
 
   useEffect(() => {
     if (selectedImage) {
@@ -211,7 +211,7 @@ export default function TabPersonal() {
           <Grid item xs={12}>
             <MainCard title="Contact Information">
               <Grid container spacing={3}>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} sm={6}>
                   <Stack spacing={1}>
                     <InputLabel htmlFor="personal-phone">Phone Number</InputLabel>
                     <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
@@ -242,7 +242,7 @@ export default function TabPersonal() {
                     </Stack>
                   </Stack>
                 </Grid>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} sm={6}>
                   <Stack spacing={1}>
                     <InputLabel htmlFor="personal-email">Email Address</InputLabel>
                     <TextField type="email" fullWidth defaultValue="stebin.ben@gmail.com" id="personal-email" placeholder="Email Address" />

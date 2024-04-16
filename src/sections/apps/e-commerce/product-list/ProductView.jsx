@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
-// next
-import Image from 'next/image';
-
 // material-ui
+import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Chip from '@mui/material/Chip';
@@ -10,20 +8,23 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
+// project import
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
+
 // ==============================|| CUSTOMER - VIEW ||============================== //
 
 export default function ProductView({ data }) {
+  const theme = useTheme();
+
   return (
     <Grid container spacing={2.5} sx={{ pl: { xs: 0, sm: 5, md: 6, lg: 10, xl: 12 } }}>
       <Grid item xs={6} sm={5} md={4} lg={3}>
         <Box sx={{ position: 'relative' }}>
           <Box sx={{ bgcolor: 'grey.200', width: '100%' }}>
-            <Image
-              src={data.image && `/assets/images/e-commerce/${data.image}`}
+            <img
+              src={data.image && getImageUrl(`${data.image}`, ImagePath.ECOMMERCE)}
               alt="product"
-              width={400}
-              height={400}
-              style={{ maxWidth: '100%', height: 'auto' }}
+              style={{ background: theme.palette.grey[200], width: '100%' }}
             />
           </Box>
           <Chip

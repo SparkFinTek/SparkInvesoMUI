@@ -27,7 +27,7 @@ const chance = new Chance();
 
 // ==============================|| CHAT - USER LIST  ||============================== //
 
-function UserList({ setUser, search, selectedUser }) {
+export default function UserList({ setUser, search, selectedUser }) {
   const theme = useTheme();
   const [data, setData] = useState([]);
   const { usersLoading, users } = useGetUsers();
@@ -140,10 +140,8 @@ function UserList({ setUser, search, selectedUser }) {
   );
 }
 
-export default UserList;
-
 UserList.propTypes = {
   setUser: PropTypes.func,
   search: PropTypes.string,
-  selectedUser: PropTypes.oneOfType([PropTypes.any, PropTypes.string])
+  selectedUser: PropTypes.oneOfType([PropTypes.string, PropTypes.any])
 };

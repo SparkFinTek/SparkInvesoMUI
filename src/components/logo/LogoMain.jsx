@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 // material-ui
 import { useTheme } from '@mui/material/styles';
 
@@ -10,8 +8,8 @@ import { ThemeMode } from 'config';
 /**
  * if you want to use image instead of <svg> uncomment following.
  *
- * const logoDark = 'assets/images/logo-dark.svg';
- * const logo = 'assets/images/logo.svg';
+ * import logoDark from 'assets/images/logo-dark.svg';
+ * import logo from 'assets/images/logo.svg';
  *
  */
 
@@ -19,12 +17,11 @@ import { ThemeMode } from 'config';
 
 export default function LogoMain({ reverse }) {
   const theme = useTheme();
-
   return (
     /**
      * if you want to use image instead of svg uncomment following, and comment out <svg> element.
      *
-     * <Image src={theme.palette.mode === ThemeMode.DARK ? logoDark : logo} alt="Mantis" width={118} height={35} />
+     * <img src={theme.palette.mode === ThemeMode.DARK ? logoDark : logo} alt="Mantis" width="100" />
      *
      */
     <>

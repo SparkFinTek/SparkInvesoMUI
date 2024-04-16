@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-// next
-import NextLink from 'next/link';
+import { Link } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -52,11 +51,9 @@ export default function ProfileCard({ focusInput }) {
           </Stack>
         </Grid>
         <Grid item sx={{ mx: { xs: 2, sm: 3 }, my: { xs: 1, sm: 0 }, mb: { xs: 2, sm: 0 } }} xs={downSM ? 12 : 'auto'}>
-          <NextLink href="/apps/profiles/user/personal" passHref legacyBehavior>
-            <Button variant="contained" fullWidth={downSM} onClick={focusInput}>
-              Edit Your Profile
-            </Button>
-          </NextLink>
+          <Button variant="contained" fullWidth={downSM} component={Link} to="/apps/profiles/user/personal" onClick={focusInput}>
+            Edit Your Profile
+          </Button>
         </Grid>
       </Grid>
       <Box

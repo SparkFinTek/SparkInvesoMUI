@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 
 // material-ul
@@ -48,8 +46,25 @@ export default function TransitionBar() {
     }
   };
 
+  const NotiStackSnackbarCodeString = `<Button variant="contained" 
+  onClick={() => enqueueSnackbar('Your notification here', { TransitionComponent: Slide })>
+  Slide
+</Button>
+<Button variant="contained" 
+  onClick={() => enqueueSnackbar('Your notification here', { TransitionComponent: Grow })>
+  Grow
+</Button>
+<Button variant="contained" 
+  onClick={() => enqueueSnackbar('Your notification here', { TransitionComponent: Fade })>
+  Fade
+</Button>
+<Button variant="contained" 
+  onClick={() => enqueueSnackbar('Your notification here', { TransitionComponent: Zoom })>
+  Zoom
+</Button>`;
+
   return (
-    <MainCard title="Animation">
+    <MainCard title="Animation" codeString={NotiStackSnackbarCodeString}>
       <FormControl>
         <RadioGroup
           row

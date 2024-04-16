@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 import { useEffect, useState } from 'react';
 
 // material-ui
@@ -18,7 +16,6 @@ import ComponentWrapper from 'sections/components-overview/ComponentWrapper';
 
 export default function ComponentSkeleton({ children }) {
   const [isLoading, setLoading] = useState(true);
-
   useEffect(() => {
     setLoading(false);
   }, []);

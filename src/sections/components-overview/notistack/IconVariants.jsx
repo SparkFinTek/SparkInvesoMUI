@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 
 // material-ul
@@ -24,8 +22,20 @@ export default function IconVariants() {
     setValue(event.target.value);
   };
 
+  const NotiStackIconVariantsSnackbarCodeString = `<Button
+variant="contained"
+fullWidth
+sx={{ marginBlockStart: 2 }}
+onClick={() => {
+  enqueueSnackbar('Your notification here', { variant: 'info' });
+  handlerIconVariants(value);
+}}
+>
+  Show Snackbar
+</Button>`;
+
   return (
-    <MainCard title="With Icons">
+    <MainCard title="With Icons" codeString={NotiStackIconVariantsSnackbarCodeString}>
       <FormControl>
         <RadioGroup
           row

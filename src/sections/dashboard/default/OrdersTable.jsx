@@ -11,9 +11,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 
+// third-party
+import { NumericFormat } from 'react-number-format';
+
 // project import
 import Dot from 'components/@extended/Dot';
-import { NumericFormat } from 'components/third-party';
 
 function createData(tracking_no, name, fat, carbs, protein) {
   return { tracking_no, name, fat, carbs, protein };
@@ -91,6 +93,8 @@ const headCells = [
     label: 'Total Amount'
   }
 ];
+
+// ==============================|| ORDER TABLE - HEADER ||============================== //
 
 function OrderTableHead({ order, orderBy }) {
   return (
@@ -174,7 +178,7 @@ export default function OrderTable() {
                   key={row.tracking_no}
                 >
                   <TableCell component="th" id={labelId} scope="row">
-                    <Link color="secondary">{row.tracking_no}</Link>
+                    <Link color="secondary"> {row.tracking_no}</Link>
                   </TableCell>
                   <TableCell>{row.name}</TableCell>
                   <TableCell align="right">{row.fat}</TableCell>

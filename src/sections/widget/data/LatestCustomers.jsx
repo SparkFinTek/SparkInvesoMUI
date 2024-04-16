@@ -1,13 +1,12 @@
-// next
-import NextLink from 'next/link';
+import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
 import CardMedia from '@mui/material/CardMedia';
 import Link from '@mui/material/Link';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
+import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
@@ -16,11 +15,11 @@ import MainCard from 'components/MainCard';
 import SimpleBar from 'components/third-party/SimpleBar';
 
 // assets
-const Flag1 = '/assets/images/widget/AUSTRALIA.jpg';
-const Flag2 = '/assets/images/widget/BRAZIL.jpg';
-const Flag3 = '/assets/images/widget/GERMANY.jpg';
-const Flag4 = '/assets/images/widget/UK.jpg';
-const Flag5 = '/assets/images/widget/USA.jpg';
+import Flag1 from 'assets/images/widget/AUSTRALIA.jpg';
+import Flag2 from 'assets/images/widget/BRAZIL.jpg';
+import Flag3 from 'assets/images/widget/GERMANY.jpg';
+import Flag4 from 'assets/images/widget/UK.jpg';
+import Flag5 from 'assets/images/widget/USA.jpg';
 
 // table data
 function createData(image, subject, dept, date) {
@@ -47,9 +46,9 @@ export default function LatestCustomers() {
       title="Latest Customers"
       content={false}
       secondary={
-        <NextLink href="#" passHref legacyBehavior>
-          <Link color="primary">View all</Link>
-        </NextLink>
+        <Link component={RouterLink} to="#" color="primary">
+          View all
+        </Link>
       }
     >
       <SimpleBar sx={{ height: 290 }}>

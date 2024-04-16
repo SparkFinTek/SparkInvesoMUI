@@ -1,15 +1,13 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
 
 // project imports
-import { ThemeMode } from 'config';
 import useConfig from 'hooks/useConfig';
 
 // third-party
+import { ThemeMode } from 'config';
 import ReactApexChart from 'react-apexcharts';
 
 // ==============================|| ACQUISITION-CHANNELS CHART ||============================== //
@@ -101,13 +99,13 @@ export default function AcquisitionChart() {
     setOptions((prevState) => ({
       ...prevState,
       colors: [theme.palette.grey[900], theme.palette.primary.main, theme.palette.primary[200]],
-      theme: {
-        mode: mode === ThemeMode.DARK ? 'dark' : 'light'
-      },
       legend: {
         labels: {
           colors: 'grey.500'
         }
+      },
+      theme: {
+        mode: mode === ThemeMode.DARK ? 'dark' : 'light'
       }
     }));
   }, [mode, primary, secondary, line, theme]);

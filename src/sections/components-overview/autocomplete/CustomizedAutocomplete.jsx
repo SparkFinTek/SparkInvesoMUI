@@ -1,8 +1,6 @@
-import PropTypes from 'prop-types';
 // material-ui
 import { useAutocomplete } from '@mui/base';
 import { styled } from '@mui/material/styles';
-import { autocompleteClasses } from '@mui/material/Autocomplete';
 
 // project import
 import MainCard from 'components/MainCard';
@@ -19,6 +17,7 @@ color: ${theme.palette.mode === ThemeMode.DARK ? 'rgba(255,255,255,0.65)' : 'rgb
 font-size: 14px;
 `
 );
+Root.displayName = 'Root';
 
 const InputWrapper = styled('div')(
   ({ theme }) => `
@@ -54,7 +53,8 @@ flex-wrap: wrap;
 `
 );
 
-function Tag({ label, onDelete, ...other }) {
+function Tag(props) {
+  const { label, onDelete, ...other } = props;
   return (
     <div {...other}>
       <span>{label}</span>
@@ -128,7 +128,7 @@ z-index: 1;
   }
 }
 
-& li.${autocompleteClasses.focused} {
+& li[data-focus='true'] {
   background-color: ${theme.palette.primary.lighter};
   cursor: pointer;
 
@@ -151,13 +151,35 @@ export default function CustomizedAutocomplete() {
       getOptionLabel: (option) => option.label
     });
 
+  const customAutocompleteCodeString = `// CustomizedAutocomplete.tsx
+<Root>
+  <div {...getRootProps()}>
+    <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
+      {value.map((option: FilmOptionType, index: number) => (
+        <StyledTag label={option.label} {...getTagProps({ index })} />
+      ))}
+      <input {...getInputProps()} />
+    </InputWrapper>
+  </div>
+  {groupedOptions.length > 0 ? (
+    <Listbox {...getListboxProps()}>
+      {(groupedOptions as typeof data).map((option, index) => (
+        <li {...getOptionProps({ option, index })}>
+          <span>{option.label}</span>
+          <CheckOutlined style={{ marginTop: 2 }} />
+        </li>
+      ))}
+    </Listbox>
+  ) : null}
+</Root>`;
+
   return (
-    <MainCard title="Customized" sx={{ overflow: 'visible' }}>
+    <MainCard title="Customized" sx={{ overflow: 'visible' }} codeString={customAutocompleteCodeString}>
       <Root>
         <div {...getRootProps()}>
           <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
             {value.map((option, index) => (
-              <StyledTag label={option.label} {...getTagProps({ index })} key={option.key + index} />
+              <StyledTag label={option.label} {...getTagProps({ index })} key={index} />
             ))}
             <input {...getInputProps()} />
           </InputWrapper>
@@ -166,8 +188,8 @@ export default function CustomizedAutocomplete() {
           <Listbox {...getListboxProps()}>
             {groupedOptions.map((option, index) => (
               <li {...getOptionProps({ option, index })} key={index}>
-                <span key={option.key + index + 1000}>{option.label}</span>
-                <CheckOutlined style={{ marginTop: 2 }} key={option.key + index + 2000} />
+                <span>{option.label}</span>
+                <CheckOutlined style={{ marginTop: 2 }} />
               </li>
             ))}
           </Listbox>
@@ -176,5 +198,3 @@ export default function CustomizedAutocomplete() {
     </MainCard>
   );
 }
-
-Tag.propTypes = { label: PropTypes.string, onDelete: PropTypes.any, other: PropTypes.any };

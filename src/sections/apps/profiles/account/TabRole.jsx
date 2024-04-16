@@ -1,5 +1,3 @@
-'use client';
-
 // material-ui
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
@@ -20,6 +18,7 @@ import Typography from '@mui/material/Typography';
 import MainCard from 'components/MainCard';
 import Avatar from 'components/@extended/Avatar';
 import IconButton from 'components/@extended/IconButton';
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
 
 // assets
 import EllipsisOutlined from '@ant-design/icons/EllipsisOutlined';
@@ -83,7 +82,7 @@ export default function TabRole() {
                   <TableRow hover key={row.name}>
                     <TableCell sx={{ pl: 3 }}>
                       <Stack direction="row" alignItems="center" spacing={1.25}>
-                        <Avatar alt="Avatar 1" src={`/assets/images/users/${row.avatar}`} />
+                        <Avatar alt="Avatar 1" src={getImageUrl(`${row.avatar}`, ImagePath.USERS)} />
                         <Stack spacing={0}>
                           <Typography variant="subtitle1">{row.name}</Typography>
                           <Typography variant="caption" color="secondary">

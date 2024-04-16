@@ -8,8 +8,8 @@ import { useTheme } from '@mui/material/styles';
 import ReactApexChart from 'react-apexcharts';
 
 // project import
-import { ThemeMode } from 'config';
 import useConfig from 'hooks/useConfig';
+import { ThemeMode } from 'config';
 
 // ==============================|| INVOICE - CHART ||============================== //
 

@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 
 // ==============================|| PRODUCT DETAILS - FEATURES ||============================== //
 
-function ProductFeatures() {
+export default function ProductFeatures() {
   return (
     <Grid container spacing={2}>
       <Grid item xs={3}>
@@ -54,5 +54,3 @@ function ProductFeatures() {
     </Grid>
   );
 }
-
-export default ProductFeatures;

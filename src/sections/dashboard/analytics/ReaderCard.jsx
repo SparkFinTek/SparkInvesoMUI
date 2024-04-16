@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 
 // material-ui
@@ -23,17 +21,17 @@ import { ThemeDirection } from 'config';
 // assets
 import PlusOutlined from '@ant-design/icons/PlusOutlined';
 
-const avatar1 = '/assets/images/users/avatar-1.png';
-const avatar2 = '/assets/images/users/avatar-2.png';
-const avatar3 = '/assets/images/users/avatar-3.png';
-const avatar4 = '/assets/images/users/avatar-4.png';
-const avatar5 = '/assets/images/users/avatar-5.png';
-const avatar6 = '/assets/images/users/avatar-6.png';
-const Reader = '/assets/images/analytics/reader.svg';
+import Reader from 'assets/images/analytics/reader.svg';
+import avatar1 from 'assets/images/users/avatar-1.png';
+import avatar2 from 'assets/images/users/avatar-2.png';
+import avatar3 from 'assets/images/users/avatar-3.png';
+import avatar4 from 'assets/images/users/avatar-4.png';
+import avatar5 from 'assets/images/users/avatar-5.png';
+import avatar6 from 'assets/images/users/avatar-6.png';
 
 // ==============================|| READER CARD ||============================== //
 
-function ReaderCard() {
+export default function ReaderCard() {
   const theme = useTheme();
   const [show, setShow] = useState(false);
 
@@ -146,5 +144,3 @@ function ReaderCard() {
     </Grid>
   );
 }
-
-export default ReaderCard;

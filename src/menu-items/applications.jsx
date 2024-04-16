@@ -70,6 +70,7 @@ const applications = {
       title: <FormattedMessage id="kanban" />,
       type: 'item',
       icon: BuildOutlined,
+      link: '/apps/kanban/:tab',
       url: '/apps/kanban/board',
       breadcrumbs: false
     },
@@ -83,7 +84,7 @@ const applications = {
           id: 'customer-list',
           title: <FormattedMessage id="list" />,
           type: 'item',
-          url: '/apps/customer/list',
+          url: '/apps/customer/customer-list',
           actions: [
             {
               type: NavActionType.FUNCTION,
@@ -97,7 +98,7 @@ const applications = {
           id: 'customer-card',
           title: <FormattedMessage id="cards" />,
           type: 'item',
-          url: '/apps/customer/card'
+          url: '/apps/customer/customer-card'
         }
       ]
     },
@@ -120,6 +121,7 @@ const applications = {
           id: 'invoice-details',
           title: <FormattedMessage id="details" />,
           type: 'item',
+          link: '/apps/invoice/details/:id',
           url: '/apps/invoice/details/1',
           breadcrumbs: false
         },
@@ -134,6 +136,7 @@ const applications = {
           id: 'invoice-edit',
           title: <FormattedMessage id="edit" />,
           type: 'item',
+          link: '/apps/invoice/edit/:id',
           url: '/apps/invoice/edit/1',
           breadcrumbs: false
         }
@@ -149,6 +152,7 @@ const applications = {
           id: 'user-profile',
           title: <FormattedMessage id="user-profile" />,
           type: 'item',
+          link: '/apps/profiles/user/:tab',
           url: '/apps/profiles/user/personal',
           breadcrumbs: false
         },
@@ -156,11 +160,13 @@ const applications = {
           id: 'account-profile',
           title: <FormattedMessage id="account-profile" />,
           type: 'item',
+          link: '/apps/profiles/account/:tab',
           url: '/apps/profiles/account/basic',
           breadcrumbs: false
         }
       ]
     },
+
     {
       id: 'e-commerce',
       title: <FormattedMessage id="e-commerce" />,
@@ -177,6 +183,7 @@ const applications = {
           id: 'product-details',
           title: <FormattedMessage id="product-details" />,
           type: 'item',
+          link: '/apps/e-commerce/product-details/:id',
           url: '/apps/e-commerce/product-details/1',
           breadcrumbs: false
         },
@@ -184,13 +191,13 @@ const applications = {
           id: 'product-list',
           title: <FormattedMessage id="product-list" />,
           type: 'item',
-          url: '/apps/e-commerce/products-list'
+          url: '/apps/e-commerce/product-list'
         },
         {
           id: 'add-new-product',
           title: <FormattedMessage id="add-new-product" />,
           type: 'item',
-          url: '/apps/e-commerce/add-product'
+          url: '/apps/e-commerce/add-new-product'
         },
         {
           id: 'checkout',

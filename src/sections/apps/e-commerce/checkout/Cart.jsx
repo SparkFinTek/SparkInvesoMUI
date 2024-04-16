@@ -1,15 +1,12 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-
-// next
-import NextLink from 'next/link';
+import { Link } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -29,6 +26,7 @@ import MainCard from 'components/MainCard';
 import IconButton from 'components/@extended/IconButton';
 import Avatar from 'components/@extended/Avatar';
 import ColorOptions from '../products/ColorOptions';
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
 
 // assets
 import DeleteOutlined from '@ant-design/icons/DeleteOutlined';
@@ -123,20 +121,21 @@ export default function Cart({ checkout, onNext, removeProduct, updateQuantity }
                                     variant="rounded"
                                     color="secondary"
                                     type="combined"
-                                    src={row.image ? `/assets/images/e-commerce/thumbs/${row.image}` : ''}
+                                    src={row.image ? getImageUrl(`thumbs/${row.image}`, ImagePath.ECOMMERCE) : ''}
                                   />
                                 </Grid>
                                 <Grid item>
                                   <Stack spacing={0}>
-                                    <Link
-                                      href={`/apps/e-commerce/product-details/${row.id}`}
+                                    <Typography
+                                      component={Link}
+                                      to={`/apps/e-commerce/product-details/${row.id}`}
                                       target="_blank"
                                       variant="subtitle1"
                                       color="text.primary"
                                       sx={{ textDecoration: 'none' }}
                                     >
                                       {row.name}
-                                    </Link>
+                                    </Typography>
                                     <Typography color="text.secondary">{colorsData ? colorsData[0].label : 'Multicolor'}</Typography>
                                   </Stack>
                                 </Grid>
@@ -171,13 +170,11 @@ export default function Cart({ checkout, onNext, removeProduct, updateQuantity }
             </Grid>
           </MainCard>
           <Grid item sx={{ textAlign: 'right' }}>
-            <NextLink href="/apps/e-commerce/products" passHref legacyBehavior>
-              <Button color="secondary" variant="text" startIcon={<LeftOutlined />}>
-                <Typography variant="h6" color="text.primary">
-                  Back to Shopping
-                </Typography>
-              </Button>
-            </NextLink>
+            <Button color="secondary" component={Link} to="/apps/e-commerce/products" variant="text" startIcon={<LeftOutlined />}>
+              <Typography variant="h6" color="text.primary">
+                Back to Shopping
+              </Typography>
+            </Button>
           </Grid>
         </Stack>
       </Grid>
@@ -197,7 +194,7 @@ export default function Cart({ checkout, onNext, removeProduct, updateQuantity }
 }
 
 Increment.propTypes = {
-  itemId: PropTypes.oneOfType([PropTypes.number, PropTypes.any, PropTypes.string]),
+  itemId: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.any]),
   quantity: PropTypes.number,
   updateQuantity: PropTypes.func
 };

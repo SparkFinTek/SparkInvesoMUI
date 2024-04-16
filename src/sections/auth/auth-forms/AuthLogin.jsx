@@ -1,18 +1,10 @@
-'use client';
 import PropTypes from 'prop-types';
+import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
-import React, { useState } from 'react';
-
-// next
-import Image from 'next/legacy/image';
-import NextLink from 'next/link';
-import { signIn } from 'next-auth/react';
-
-import useMediaQuery from '@mui/material/useMediaQuery';
-import Box from '@mui/material/Box';
+// material-ui
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
-import Divider from '@mui/material/Divider';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormHelperText from '@mui/material/FormHelperText';
 import Grid from '@mui/material/Grid';
@@ -25,33 +17,31 @@ import Typography from '@mui/material/Typography';
 
 // third party
 import * as Yup from 'yup';
-import { preload } from 'swr';
 import { Formik } from 'formik';
+import { preload } from 'swr';
 
 // project import
-import FirebaseSocial from './FirebaseSocial';
 import IconButton from 'components/@extended/IconButton';
 import AnimateButton from 'components/@extended/AnimateButton';
 
-import { APP_DEFAULT_PATH } from 'config';
+import useAuth from 'hooks/useAuth';
+import useScriptRef from 'hooks/useScriptRef';
+
 import { fetcher } from 'utils/axios';
 
 // assets
 import EyeOutlined from '@ant-design/icons/EyeOutlined';
 import EyeInvisibleOutlined from '@ant-design/icons/EyeInvisibleOutlined';
 
-const Auth0 = '/assets/images/icons/auth0.svg';
-const Cognito = '/assets/images/icons/aws-cognito.svg';
-const Google = '/assets/images/icons/google.svg';
+// ============================|| JWT - LOGIN ||============================ //
 
-// ============================|| AWS CONNITO - LOGIN ||============================ //
+export default function AuthLogin({ isDemo = false }) {
+  const [checked, setChecked] = React.useState(false);
 
-export default function AuthLogin({ providers, csrfToken }) {
-  const downSM = useMediaQuery((theme) => theme.breakpoints.down('sm'));
-  const [checked, setChecked] = useState(false);
-  const [capsWarning, setCapsWarning] = useState(false);
+  const { login } = useAuth();
+  const scriptedRef = useScriptRef();
 
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -60,52 +50,38 @@ export default function AuthLogin({ providers, csrfToken }) {
     event.preventDefault();
   };
 
-  const onKeyDown = (keyEvent) => {
-    if (keyEvent.getModifierState('CapsLock')) {
-      setCapsWarning(true);
-    } else {
-      setCapsWarning(false);
-    }
-  };
-
   return (
     <>
       <Formik
         initialValues={{
-          email: 'info@codedthemes.com',
-          password: '123456',
+          email: 'jsuryapraksh@sparkinfotech.com',
+          password: 'Spark@2024',
           submit: null
         }}
         validationSchema={Yup.object().shape({
           email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
           password: Yup.string().max(255).required('Password is required')
         })}
-        onSubmit={(values, { setErrors, setSubmitting }) => {
-          signIn('login', {
-            redirect: true,
-            email: values.email,
-            password: values.password,
-            callbackUrl: APP_DEFAULT_PATH
-          }).then(
-            (res) => {
-              if (res?.error) {
-                setErrors({ submit: res.error });
-                setSubmitting(false);
-              } else {
-                preload('api/menu/dashboard', fetcher); // load menu on login success
-                setSubmitting(false);
-              }
-            },
-            (res) => {
-              setErrors({ submit: res.error });
+        onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
+          try {
+            await login(values.email, values.password);
+            if (scriptedRef.current) {
+              setStatus({ success: true });
+              setSubmitting(false);
+              preload('api/menu/dashboard', fetcher); // load menu on login success
+            }
+          } catch (err) {
+            console.error(err);
+            if (scriptedRef.current) {
+              setStatus({ success: false });
+              setErrors({ submit: err.message });
               setSubmitting(false);
             }
-          );
+          }
         }}
       >
         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
           <form noValidate onSubmit={handleSubmit}>
-            <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <Stack spacing={1}>
@@ -133,17 +109,12 @@ export default function AuthLogin({ providers, csrfToken }) {
                   <InputLabel htmlFor="password-login">Password</InputLabel>
                   <OutlinedInput
                     fullWidth
-                    color={capsWarning ? 'warning' : 'primary'}
                     error={Boolean(touched.password && errors.password)}
                     id="-password-login"
                     type={showPassword ? 'text' : 'password'}
                     value={values.password}
                     name="password"
-                    onBlur={(event) => {
-                      setCapsWarning(false);
-                      handleBlur(event);
-                    }}
-                    onKeyDown={onKeyDown}
+                    onBlur={handleBlur}
                     onChange={handleChange}
                     endAdornment={
                       <InputAdornment position="end">
@@ -160,11 +131,6 @@ export default function AuthLogin({ providers, csrfToken }) {
                     }
                     placeholder="Enter password"
                   />
-                  {capsWarning && (
-                    <Typography variant="caption" sx={{ color: 'warning.main' }} id="warning-helper-text-password-login">
-                      Caps lock on!
-                    </Typography>
-                  )}
                 </Stack>
                 {touched.password && errors.password && (
                   <FormHelperText error id="standard-weight-helper-text-password-login">
@@ -187,11 +153,9 @@ export default function AuthLogin({ providers, csrfToken }) {
                     }
                     label={<Typography variant="h6">Keep me sign in</Typography>}
                   />
-                  <NextLink href={'/forget-pass'} passHref legacyBehavior>
-                    <Link variant="h6" color="text.primary">
-                      Forgot Password?
-                    </Link>
-                  </NextLink>
+                  <Link variant="h6" component={RouterLink} to={isDemo ? '/auth/forgot-password' : '/forgot-password'} color="text.primary">
+                    Forgot Password?
+                  </Link>
                 </Stack>
               </Grid>
               {errors.submit && (
@@ -210,69 +174,8 @@ export default function AuthLogin({ providers, csrfToken }) {
           </form>
         )}
       </Formik>
-
-      {providers && (
-        <Stack
-          direction="row"
-          spacing={{ xs: 1, sm: 2 }}
-          justifyContent={{ xs: 'space-around', sm: 'space-between' }}
-          sx={{ mt: 3, '& .MuiButton-startIcon': { mr: { xs: 0, sm: 1 }, ml: { xs: 0, sm: -0.5 } } }}
-        >
-          {Object.values(providers).map((provider) => {
-            if (provider.id === 'login' || provider.id === 'register') {
-              return;
-            }
-
-            return (
-              <Box key={provider.name} sx={{ width: '100%' }}>
-                <Divider sx={{ mt: 2 }}>
-                  <Typography variant="caption"> Login with</Typography>
-                </Divider>
-                {provider.id === 'google' && (
-                  <Button
-                    variant="outlined"
-                    color="secondary"
-                    fullWidth={!downSM}
-                    startIcon={<Image src={Google} alt="Twitter" width={16} height={16} />}
-                    onClick={() => signIn(provider.id, { callbackUrl: APP_DEFAULT_PATH })}
-                  >
-                    {!downSM && 'Google'}
-                  </Button>
-                )}
-                {provider.id === 'auth0' && (
-                  <Button
-                    variant="outlined"
-                    color="secondary"
-                    fullWidth={!downSM}
-                    startIcon={<Image src={Auth0} alt="Twitter" width={16} height={16} />}
-                    onClick={() => signIn(provider.id, { callbackUrl: APP_DEFAULT_PATH })}
-                  >
-                    {!downSM && 'Auth0'}
-                  </Button>
-                )}
-                {provider.id === 'cognito' && (
-                  <Button
-                    variant="outlined"
-                    color="secondary"
-                    fullWidth={!downSM}
-                    startIcon={<Image src={Cognito} alt="Twitter" width={16} height={16} />}
-                    onClick={() => signIn(provider.id, { callbackUrl: APP_DEFAULT_PATH })}
-                  >
-                    {!downSM && 'Cognito'}
-                  </Button>
-                )}
-              </Box>
-            );
-          })}
-        </Stack>
-      )}
-      {!providers && (
-        <Box sx={{ mt: 3 }}>
-          <FirebaseSocial />
-        </Box>
-      )}
     </>
   );
 }
 
-AuthLogin.propTypes = { providers: PropTypes.any, csrfToken: PropTypes.any };
+AuthLogin.propTypes = { isDemo: PropTypes.bool };

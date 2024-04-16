@@ -1,19 +1,15 @@
 import PropTypes from 'prop-types';
 import { Fragment } from 'react';
 
-// next
-import dynamic from 'next/dynamic';
+// third party
+import { TreeNode } from 'react-organizational-chart';
 
 // project imports
 import DataCard from './DataCard';
 
-const TreeNode = dynamic(() => import('react-organizational-chart').then((mod) => mod.TreeNode), {
-  ssr: false
-});
-
 // ==============================|| ORGANIZATION CHART - CARD ||============================== //
 
-function Card({ items }) {
+export default function Card({ items }) {
   return (
     <>
       {items.map((item, id) => (
@@ -54,6 +50,5 @@ function Card({ items }) {
     </>
   );
 }
-export default Card;
 
 Card.propTypes = { items: PropTypes.any };

@@ -59,7 +59,6 @@ export default function AddColumn() {
           color: 'success'
         }
       });
-
       setIsAddColumn((prev) => !prev);
       setTitle('');
     } else {

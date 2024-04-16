@@ -9,8 +9,8 @@ import Typography from '@mui/material/Typography';
 import MainCard from 'components/MainCard';
 
 // assets
-const visa = '/assets/images/e-commerce/visa.png';
-const mastercard = '/assets/images/e-commerce/mastercard.png';
+import visa from 'assets/images/e-commerce/visa.png';
+import mastercard from 'assets/images/e-commerce/mastercard.png';
 
 export default function PaymentCard({ type, paymentType, cardHandler }) {
   const theme = useTheme();

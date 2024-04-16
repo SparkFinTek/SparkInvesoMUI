@@ -2,7 +2,6 @@
 import { FormattedMessage } from 'react-intl';
 
 // project import
-import { useGetMenu } from 'api/menu';
 
 // assets
 import DashboardOutlined from '@ant-design/icons/DashboardOutlined';
@@ -11,11 +10,9 @@ import LoadingOutlined from '@ant-design/icons/LoadingOutlined';
 
 // type
 
-const icons = {
-  dashboard: DashboardOutlined,
-  components: GoldOutlined,
-  loading: LoadingOutlined
-};
+import { useGetMenu } from 'api/menu';
+
+const icons = { dashboard: DashboardOutlined, components: GoldOutlined, loading: LoadingOutlined };
 
 const loadingMenu = {
   id: 'group-dashboard-loading',
@@ -48,7 +45,7 @@ const loadingMenu = {
   ]
 };
 
-// ==============================|| MENU ITEMS - DASHBOARD ||============================== //
+// ==============================|| MENU ITEMS - API ||============================== //
 
 export function MenuFromAPI() {
   const { menu, menuLoading } = useGetMenu();

@@ -172,7 +172,7 @@ export default function Backlogs() {
                     '& th,& td': { whiteSpace: 'nowrap' },
                     '& .MuiTableRow-root:last-of-type .MuiTable-root .MuiTableCell-root': {
                       borderBottom: '1px solid',
-                      borderBottomColor: 'divider'
+                      borderColor: 'divider'
                     },
                     '& .MuiTableRow-root:hover': { bgcolor: 'transparent' }
                   }}

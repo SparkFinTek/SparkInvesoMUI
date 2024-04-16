@@ -1,4 +1,3 @@
-'use client';
 // material-ui
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';

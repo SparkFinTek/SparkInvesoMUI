@@ -12,13 +12,7 @@ export default function RejectionFiles({ fileRejections }) {
   return (
     <Paper
       variant="outlined"
-      sx={{
-        py: 1,
-        px: 2,
-        mt: 3,
-        borderColor: 'error.light',
-        bgcolor: (theme) => alpha(theme.palette.error.main, 0.08)
-      }}
+      sx={{ py: 1, px: 2, mt: 3, borderColor: 'error.light', bgcolor: (theme) => alpha(theme.palette.error.main, 0.08) }}
     >
       {fileRejections.map(({ file, errors }) => {
         const { path, size } = getDropzoneData(file);

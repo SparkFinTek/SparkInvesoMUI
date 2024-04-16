@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -8,7 +9,6 @@ import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
 import InputAdornment from '@mui/material/InputAdornment';
-import Link from '@mui/material/Link';
 import List from '@mui/material/List';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -28,11 +28,14 @@ import MainCard from 'components/MainCard';
 import Avatar from 'components/@extended/Avatar';
 import IconButton from 'components/@extended/IconButton';
 import { useGetAddress } from 'api/address';
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
 
 // assets
 import AppstoreOutlined from '@ant-design/icons/AppstoreOutlined';
 import LeftOutlined from '@ant-design/icons/LeftOutlined';
 import DeleteOutlined from '@ant-design/icons/DeleteOutlined';
+
+// ==============================|| CHECKOUT BILLING ADDRESS - MAIN ||============================== //
 
 export default function BillingAddress({ checkout, onBack, billingAddressHandler, removeProduct }) {
   const theme = useTheme();
@@ -288,21 +291,22 @@ export default function BillingAddress({ checkout, onBack, billingAddressHandler
                         variant="rounded"
                         color="secondary"
                         type="combined"
-                        src={row.image ? `/assets/images/e-commerce/thumbs/${row.image}` : ''}
+                        src={row.image ? getImageUrl(`thumbs/${row.image}`, ImagePath.ECOMMERCE) : ''}
                       />
                     </ListItemAvatar>
                     <ListItemText
                       disableTypography
                       primary={
-                        <Link
-                          href={`/apps/e-commerce/product-details/${row.id}`}
+                        <Typography
+                          component={Link}
+                          to={`/apps/e-commerce/product-details/${row.id}`}
                           target="_blank"
                           variant="subtitle1"
                           color="text.primary"
                           sx={{ textDecoration: 'none' }}
                         >
                           {row.name}
-                        </Link>
+                        </Typography>
                       }
                       secondary={
                         <Stack spacing={1}>

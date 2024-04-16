@@ -1,10 +1,8 @@
-'use client';
-
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 
-// project import
+// project-import
 import { ThemeDirection, ThemeMode } from 'config';
 
 // ==============================|| AUTH BLUR BACK SVG ||============================== //

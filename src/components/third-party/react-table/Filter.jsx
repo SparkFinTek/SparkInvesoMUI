@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 // material-ui
 import Stack from '@mui/material/Stack';
 
@@ -69,7 +67,7 @@ function TextInput({ columnId, columnFilterValue, header, setFilterValue }) {
 
 // ==============================|| FILTER - INPUT ||============================== //
 
-export function Filter({ column, table }) {
+export default function Filter({ column, table }) {
   const firstValue = table.getPreFilteredRowModel().flatRows[0]?.getValue(column.id);
 
   const columnFilterValue = column.getFilterValue();
@@ -89,8 +87,6 @@ export function Filter({ column, table }) {
     />
   );
 }
-
-export default Filter;
 
 NumberInput.propTypes = { columnFilterValue: PropTypes.number, getFacetedMinMaxValues: PropTypes.func, setFilterValue: PropTypes.func };
 

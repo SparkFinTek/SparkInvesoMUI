@@ -18,6 +18,7 @@ import { Draggable } from '@hello-pangea/dnd';
 import EditStory from '../Backlogs/EditStory';
 import AlertItemDelete from './AlertItemDelete';
 import IconButton from 'components/@extended/IconButton';
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
 
 import { deleteItem, handlerKanbanDialog, useGetBacklogs } from 'api/kanban';
 import { openSnackbar } from 'api/snackbar';
@@ -30,7 +31,7 @@ import MoreOutlined from '@ant-design/icons/MoreOutlined';
 const getDragWrapper = (isDragging, draggableStyle, theme, radius) => {
   return {
     userSelect: 'none',
-    margin: `0 0 ${8}px 0`,
+    margin: '0 0 8px 0',
     padding: 16,
     border: '1px solid',
     borderColor: theme.palette.divider,
@@ -46,7 +47,7 @@ export default function Items({ item, index }) {
   const theme = useTheme();
   const { backlogs } = useGetBacklogs();
 
-  const backProfile = item && item.image && `/assets/images/profile/${item.image}`;
+  const backProfile = !!item.image;
   const itemStory = backlogs?.userStory.filter((story) => story?.itemIds?.filter((itemId) => itemId === item.id)[0])[0];
 
   const handlerDetails = (id) => {
@@ -172,7 +173,12 @@ export default function Items({ item, index }) {
             </>
           )}
           {backProfile && (
-            <CardMedia component="img" image={backProfile} sx={{ width: '100%', borderRadius: 1, mt: 1.5 }} title="Slider5 image" />
+            <CardMedia
+              component="img"
+              image={getImageUrl(`${item.image}`, ImagePath.PROFILE)}
+              sx={{ width: '100%', borderRadius: 1, mt: 1.5 }}
+              title="Slider5 image"
+            />
           )}
         </div>
       )}

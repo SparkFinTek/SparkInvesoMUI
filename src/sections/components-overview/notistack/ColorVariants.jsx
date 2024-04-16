@@ -1,5 +1,3 @@
-'use client';
-
 // material-ul
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -13,8 +11,25 @@ import MainCard from 'components/MainCard';
 // ==============================|| NOTISTACK - COLOR VARIANTS ||============================== //
 
 export default function ColorVariants() {
+  const NotiStackSnackbarCodeString = `<Button variant="contained" onClick={() => enqueueSnackbar('This is default message.')}>
+  Default
+</Button>
+<Button variant="contained" onClick={() => enqueueSnackbar('his is success message', { variant: 'success' })}>
+  success
+</Button>
+<Button variant="contained" onClick={() => enqueueSnackbar('his is warning message', { variant: 'warning' })}>
+  Warning
+</Button>
+<Button variant="contained" onClick={() => enqueueSnackbar('his is info message', { variant: 'info' })}>
+  Info
+</Button>
+<Button variant="contained" onClick={() => enqueueSnackbar('his is error message', { variant: 'error' })}>
+  Error
+</Button>
+`;
+
   return (
-    <MainCard title="Color Variants">
+    <MainCard title="Color Variants" codeString={NotiStackSnackbarCodeString}>
       <Grid container spacing={2}>
         <Grid item>
           <Button variant="contained" onClick={() => enqueueSnackbar('This is default message.')}>

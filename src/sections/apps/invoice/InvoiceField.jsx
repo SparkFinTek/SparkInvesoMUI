@@ -12,7 +12,7 @@ export default function InvoiceField({ onEditItem, cellData }) {
         type={cellData.type}
         placeholder={cellData.placeholder}
         name={cellData.name}
-        id={cellData.id.toString()}
+        id={cellData.id}
         value={cellData.type === 'number' ? (cellData.value > 0 ? cellData.value : '') : cellData.value}
         onChange={onEditItem}
         label={cellData.label}

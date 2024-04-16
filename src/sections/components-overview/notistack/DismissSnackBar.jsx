@@ -1,10 +1,8 @@
-'use client';
-
 // material-ul
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
-// third party
+// third-party
 import { enqueueSnackbar, useSnackbar } from 'notistack';
 
 // project import
@@ -15,8 +13,16 @@ import MainCard from 'components/MainCard';
 export default function DismissSnackBar() {
   const { closeSnackbar } = useSnackbar();
 
+  const NotiStackDismissSnackBarCodeString = `<Button variant="outlined" 
+  onClick={() => enqueueSnackbar('No connection!', { variant: 'error',persist: true, anchorOrigin: { horizontal: 'center', vertical: 'bottom' }})}>
+  Back Online
+</Button>
+<Button variant="outlined" fullWidth sx={{ marginBlockStart: 2 }} onClick={() => closeSnackbar()}>
+    Back Online
+</Button>`;
+
   return (
-    <MainCard title="Dismiss Programmatically">
+    <MainCard title="Dismiss Programmatically" codeString={NotiStackDismissSnackBarCodeString}>
       <Stack flexDirection={'row'} justifyContent={'space-between'}>
         <Button
           variant="outlined"

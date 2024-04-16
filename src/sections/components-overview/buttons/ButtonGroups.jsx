@@ -11,8 +11,34 @@ import MainCard from 'components/MainCard';
 export default function ButtonGroups() {
   const buttons = [<Button key="one">One</Button>, <Button key="two">Two</Button>, <Button key="three">Three</Button>];
 
+  const groupButtonCodeString = `<ButtonGroup disableElevation variant="contained" aria-label="outlined primary button group">
+  <Button key="one">One</Button>
+  <Button key="two">Two</Button>
+  <Button key="three">Three</Button>
+</ButtonGroup>
+<ButtonGroup variant="outlined" aria-label="outlined button group">
+  <Button key="one">One</Button>
+  <Button key="two">Two</Button>
+  <Button key="three">Three</Button>
+</ButtonGroup>
+<ButtonGroup variant="text" aria-label="text button group">
+  <Button key="one">One</Button>
+  <Button key="two">Two</Button>
+  <Button key="three">Three</Button>
+</ButtonGroup>
+<ButtonGroup color="warning" aria-label="medium secondary button group">
+  <Button key="one">One</Button>
+  <Button key="two">Two</Button>
+  <Button key="three">Three</Button>
+</ButtonGroup>
+<ButtonGroup orientation="vertical" aria-label="vertical outlined button group">
+  <Button key="one">One</Button>
+  <Button key="two">Two</Button>
+  <Button key="three">Three</Button>
+</ButtonGroup>`;
+
   return (
-    <MainCard title="Button Group">
+    <MainCard title="Button Group" codeString={groupButtonCodeString}>
       <Grid container direction="column" spacing={2}>
         <Grid item>
           <ButtonGroup disableElevation variant="contained" aria-label="outlined primary button group">

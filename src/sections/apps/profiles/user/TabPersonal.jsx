@@ -1,7 +1,4 @@
-import { useRef } from 'react';
-
-// next
-import Image from 'next/legacy/image';
+import { useOutletContext } from 'react-router';
 
 // material-ui
 import Autocomplete from '@mui/material/Autocomplete';
@@ -17,9 +14,9 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
 
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 // third party
@@ -27,9 +24,9 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 
 // project import
+import { openSnackbar } from 'api/snackbar';
 import countries from 'data/countries';
 import MainCard from 'components/MainCard';
-import { openSnackbar } from 'api/snackbar';
 
 // assets
 import CloseOutlined from '@ant-design/icons/CloseOutlined';
@@ -87,6 +84,10 @@ const skills = [
   'Wordpress'
 ];
 
+function useInputRef() {
+  return useOutletContext();
+}
+
 // ==============================|| TAB - PERSONAL ||============================== //
 
 export default function TabPersonal() {
@@ -100,7 +101,8 @@ export default function TabPersonal() {
 
   const maxDate = new Date();
   maxDate.setFullYear(maxDate.getFullYear() - 18);
-  const inputRef = useRef();
+
+  const inputRef = useInputRef();
 
   return (
     <MainCard content={false} title="Personal Information" sx={{ '& .MuiInputLabel-root': { fontSize: '0.875rem' } }}>
@@ -162,7 +164,6 @@ export default function TabPersonal() {
                 color: 'success'
               }
             });
-
             setStatus({ success: false });
             setSubmitting(false);
           } catch (err) {
@@ -416,20 +417,18 @@ export default function TabPersonal() {
                       getOptionLabel={(option) => option.label}
                       // @ts-ignore
                       renderOption={({ key, ...props }, option) => (
-                        <Box key={key} component="li" {...props}>
+                        <Box key={key} component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
                           {option.code && (
-                            <Image
+                            <img
                               loading="lazy"
-                              width={21}
-                              height={14}
-                              layout="intrinsic"
+                              width="20"
                               src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
-                              alt={option.code.toLowerCase()}
+                              srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+                              alt=""
                             />
                           )}
-                          <Typography sx={{ ml: option.code ? 1.25 : 0 }}>
-                            {option.label} ({option.code}) +{option.phone}
-                          </Typography>
+                          {option.label}
+                          {option.code && `(${option.code}) ${option.phone}`}
                         </Box>
                       )}
                       renderInput={(params) => (

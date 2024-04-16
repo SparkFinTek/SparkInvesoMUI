@@ -1,7 +1,4 @@
 import PropTypes from 'prop-types';
-//next
-import Image from 'next/image';
-
 // material-ui
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -32,19 +29,21 @@ import { Chance } from 'chance';
 import { useFormik } from 'formik';
 
 // project imports
-import IconButton from 'components/@extended/IconButton';
+import UploadMultiFile from 'components/third-party/dropzone/MultiFile';
 import AnimateButton from 'components/@extended/AnimateButton';
 import SimpleBar from 'components/third-party/SimpleBar';
-import UploadMultiFile from 'components/third-party/dropzone/MultiFile';
+import IconButton from 'components/@extended/IconButton';
 
-import { DropzoneType } from 'config';
+import { DropzopType } from 'config';
 import { addItem, useGetBacklogs } from 'api/kanban';
 import { openSnackbar } from 'api/snackbar';
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
 
 // assets
 import CloseOutlined from '@ant-design/icons/CloseOutlined';
 
 const chance = new Chance();
+
 const validationSchema = yup.object({
   title: yup.string().required('Task title is required'),
   dueDate: yup.date().required('Due date is required').nullable()
@@ -118,12 +117,7 @@ export default function AddItem({ open, handleDrawerOpen, storyId }) {
       onClose={handleDrawerOpen}
     >
       {open && (
-        <SimpleBar
-          sx={{
-            overflowX: 'hidden',
-            height: '100vh'
-          }}
-        >
+        <SimpleBar sx={{ overflowX: 'hidden', height: '100vh' }}>
           <Box sx={{ p: 3 }}>
             <Stack direction="row" alignItems="center" justifyContent="space-between">
               <Typography variant="h4">Add Task</Typography>
@@ -171,14 +165,7 @@ export default function AddItem({ open, handleDrawerOpen, storyId }) {
                         // @ts-ignore
                         renderOption={({ key, ...props }, option) => (
                           <Box key={key} component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
-                            <Image
-                              width={20}
-                              height={20}
-                              loading="lazy"
-                              src={`/assets/images/users/${option.avatar}`}
-                              alt=""
-                              style={{ maxWidth: '100%', height: 'auto' }}
-                            />
+                            <img loading="lazy" width="20" src={getImageUrl(`${option.avatar}`, ImagePath.USERS)} alt="" />
                             {option.name}
                           </Box>
                         )}
@@ -277,7 +264,7 @@ export default function AddItem({ open, handleDrawerOpen, storyId }) {
                       </Grid>
                       <Grid item xs={12}>
                         <UploadMultiFile
-                          type={DropzoneType.STANDARD}
+                          type={DropzopType.STANDARD}
                           showList={true}
                           setFieldValue={formik.setFieldValue}
                           files={formik.values.files}

@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 
 // material-ui
@@ -49,8 +47,25 @@ export default function OpenIconSpeedDial() {
     setHidden((prevHidden) => !prevHidden);
   };
 
+  const customSpeeddialCodeString = `<Box sx={{ height: 430, transform: 'translateZ(0px)', flexGrow: 1 }}>
+  <Button onClick={handleVisibility}>Toggle Speed Dial</Button>
+  <SpeedDial
+    ariaLabel="SpeedDial openIcon example"
+    hidden={hidden}
+    icon={<SpeedDialIcon openIcon={<EditOutlined style={{ fontSize: '1.3rem' }} />} />}
+    onClose={handleClose}
+    onOpen={handleOpen}
+    open={open}
+    sx={{ position: 'absolute', bottom: 16, right: 16 }}
+  >
+    {actions.map((action) => (
+      <SpeedDialAction key={action.name} icon={action.icon} tooltipTitle={action.name} onClick={handleClose} />
+    ))}
+  </SpeedDial>
+</Box>`;
+
   return (
-    <MainCard title="Custom Close Icon">
+    <MainCard title="Custom Close Icon" codeString={customSpeeddialCodeString}>
       <Box sx={{ height: 430, transform: 'translateZ(0px)', flexGrow: 1 }}>
         <Button onClick={handleVisibility}>Toggle Speed Dial</Button>
         <SpeedDial

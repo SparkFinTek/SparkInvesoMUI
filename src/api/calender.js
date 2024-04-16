@@ -1,7 +1,7 @@
 import useSWR, { mutate } from 'swr';
 import { useMemo } from 'react';
 
-// third-party
+// project import
 import { v4 as UIDV4 } from 'uuid';
 
 // utils

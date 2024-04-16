@@ -105,10 +105,7 @@ function Address({ handlerAddress }) {
             borderColor: 'grey.200',
             borderRadius: 1,
             p: 1.25,
-            '&:hover': {
-              bgcolor: 'primary.lighter',
-              borderColor: 'primary.lighter'
-            }
+            '&:hover': { bgcolor: 'primary.lighter', borderColor: 'primary.lighter' }
           }}
         >
           <Typography variant="subtitle1">{address.name}</Typography>

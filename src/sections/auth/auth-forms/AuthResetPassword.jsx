@@ -1,9 +1,5 @@
-'use client';
-
 import { useEffect, useState } from 'react';
-
-// next
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 
 // material-ui
 import Box from '@mui/material/Box';
@@ -22,12 +18,13 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 
 // project import
+import useAuth from 'hooks/useAuth';
+import useScriptRef from 'hooks/useScriptRef';
 import IconButton from 'components/@extended/IconButton';
 import AnimateButton from 'components/@extended/AnimateButton';
 
-import { openSnackbar } from 'api/snackbar';
-import useScriptRef from 'hooks/useScriptRef';
 import { strengthColor, strengthIndicator } from 'utils/password-strength';
+import { openSnackbar } from 'api/snackbar';
 
 // assets
 import EyeOutlined from '@ant-design/icons/EyeOutlined';
@@ -37,7 +34,9 @@ import EyeInvisibleOutlined from '@ant-design/icons/EyeInvisibleOutlined';
 
 export default function AuthResetPassword() {
   const scriptedRef = useScriptRef();
-  const router = useRouter();
+  const navigate = useNavigate();
+
+  const { isLoggedIn } = useAuth();
 
   const [level, setLevel] = useState();
   const [showPassword, setShowPassword] = useState(false);
@@ -77,7 +76,6 @@ export default function AuthResetPassword() {
           if (scriptedRef.current) {
             setStatus({ success: true });
             setSubmitting(false);
-
             openSnackbar({
               open: true,
               message: 'Successfuly reset password.',
@@ -89,7 +87,7 @@ export default function AuthResetPassword() {
             });
 
             setTimeout(() => {
-              router.push('/login');
+              navigate(isLoggedIn ? '/auth/login' : '/login', { replace: true });
             }, 1500);
           }
         } catch (err) {

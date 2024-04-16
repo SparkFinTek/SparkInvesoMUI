@@ -46,6 +46,8 @@ const viewOptions = [
   }
 ];
 
+// ==============================|| CALENDAR - TOOLBAR ||============================== //
+
 export default function Toolbar({ date, view, onClickNext, onClickPrev, onClickToday, onChangeView }) {
   const matchDownSM = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 

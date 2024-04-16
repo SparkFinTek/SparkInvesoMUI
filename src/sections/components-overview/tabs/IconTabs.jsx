@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 import { useState } from 'react';
 
 // material-ui
@@ -42,8 +40,40 @@ export default function IconTabs() {
     setValue(newValue);
   };
 
+  const iconTabCodeString = `// IconTabs.tsx
+<Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+  <Tab label="Profile" icon={<UserOutlined />} iconPosition="start" {...a11yProps(0)} />
+  <Tab label="Followers" icon={<BookOutlined />} iconPosition="start" {...a11yProps(1)} />
+  <Tab label="Friends" icon={<UsergroupAddOutlined />} iconPosition="start" {...a11yProps(2)} />
+  <Tab label="Gallery" icon={<FileImageOutlined />} iconPosition="start" {...a11yProps(3)} />
+</Tabs>
+<TabPanel value={value} index={0}>
+  <Typography variant="h6">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non libero dignissim, viverra augue eu, semper ligula. Mauris
+    purus sem, sagittis eu mauris et, viverra lobortis urna.
+  </Typography>
+</TabPanel>
+<TabPanel value={value} index={1}>
+  <Typography variant="h6">
+    Suspendisse sed lectus ac nunc rhoncus scelerisque. Integer vitae fringilla leo. Aliquam tincidunt et turpis non mattis. Ut sed
+    semper orci, sed facilisis mauris. Suspendisse blandit velit sit amet velit porta aliquet.
+  </Typography>
+</TabPanel>
+<TabPanel value={value} index={2}>
+  <Typography variant="h6">
+    Nam egestas sollicitudin nisl, sit amet aliquam risus pharetra ac. Donec ac lacinia orci. Phasellus ut enim eu ligula placerat
+    cursus in nec est.
+  </Typography>
+</TabPanel>
+<TabPanel value={value} index={3}>
+  <Typography variant="h6">
+    Suspendisse sed lectus ac nunc rhoncus scelerisque. Integer vitae fringilla leo. Aliquam tincidunt et turpis non mattis. Ut sed
+    semper orci, sed facilisis mauris. Suspendisse blandit velit sit amet velit porta aliquet.
+  </Typography>
+</TabPanel>`;
+
   return (
-    <MainCard>
+    <MainCard codeString={iconTabCodeString}>
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">

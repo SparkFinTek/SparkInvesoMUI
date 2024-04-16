@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 // third party
-import 'react-quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 // ==============================|| QUILL EDITOR ||============================== //
 
@@ -13,6 +13,5 @@ export default function ReactQuillDemo() {
   const handleChange = (value) => {
     setText(value);
   };
-
   return <ReactQuill value={text} onChange={handleChange} />;
 }

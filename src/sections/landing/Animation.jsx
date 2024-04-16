@@ -6,7 +6,7 @@ import { motion, useAnimation, useInView } from 'framer-motion';
 
 // =============================|| LANDING - FADE IN ANIMATION ||============================= //
 
-function Animation({ children, variants }) {
+export default function Animation({ children, variants }) {
   const controls = useAnimation();
   const ref = useRef(null);
   const inView = useInView(ref);
@@ -37,7 +37,5 @@ function Animation({ children, variants }) {
     </motion.div>
   );
 }
-
-export default Animation;
 
 Animation.propTypes = { children: PropTypes.node, variants: PropTypes.any };

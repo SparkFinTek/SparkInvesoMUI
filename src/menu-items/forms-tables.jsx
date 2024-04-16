@@ -55,25 +55,25 @@ const formsTables = {
           id: 'basic',
           title: <FormattedMessage id="basic" />,
           type: 'item',
-          url: '/forms/layouts/basic'
+          url: '/forms/layout/basic'
         },
         {
           id: 'multi-column',
           title: <FormattedMessage id="multi-column" />,
           type: 'item',
-          url: '/forms/layouts/multi-column'
+          url: '/forms/layout/multi-column'
         },
         {
           id: 'action-bar',
           title: <FormattedMessage id="action-bar" />,
           type: 'item',
-          url: '/forms/layouts/action-bar'
+          url: '/forms/layout/action-bar'
         },
         {
           id: 'sticky-bar',
           title: <FormattedMessage id="sticky-bar" />,
           type: 'item',
-          url: '/forms/layouts/sticky-bar'
+          url: '/forms/layout/sticky-bar'
         }
       ]
     },

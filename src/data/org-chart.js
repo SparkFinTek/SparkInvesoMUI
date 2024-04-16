@@ -1,12 +1,12 @@
-const Avatar1 = '/assets/images/users/avatar-6.png';
-const Avatar2 = '/assets/images/users/avatar-1.png';
-const Avatar3 = '/assets/images/users/avatar-2.png';
-const Avatar5 = '/assets/images/users/avatar-4.png';
-const Avatar6 = '/assets/images/users/avatar-5.png';
-const Avatar7 = '/assets/images/users/avatar-7.png';
-const Avatar8 = '/assets/images/users/avatar-8.png';
-const Avatar9 = '/assets/images/users/avatar-9.png';
-const Avatar10 = '/assets/images/users/avatar-10.png';
+import Avatar1 from 'assets/images/users/avatar-6.png';
+import Avatar2 from 'assets/images/users/avatar-1.png';
+import Avatar3 from 'assets/images/users/avatar-2.png';
+import Avatar5 from 'assets/images/users/avatar-4.png';
+import Avatar6 from 'assets/images/users/avatar-5.png';
+import Avatar7 from 'assets/images/users/avatar-7.png';
+import Avatar8 from 'assets/images/users/avatar-8.png';
+import Avatar9 from 'assets/images/users/avatar-9.png';
+import Avatar10 from 'assets/images/users/avatar-10.png';
 
 export const data = [
   {

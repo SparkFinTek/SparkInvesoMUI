@@ -1,11 +1,6 @@
-'use client';
 import PropTypes from 'prop-types';
-
 import { useEffect, useState } from 'react';
-
-// next
-import NextLink from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link, useLocation } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -16,23 +11,23 @@ import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
 
 // project import
 import MainCard from 'components/MainCard';
-import { ThemeDirection } from 'config';
 import navigation from 'menu-items';
+import { ThemeDirection } from 'config';
 
 // assets
 import ApartmentOutlined from '@ant-design/icons/ApartmentOutlined';
 import HomeOutlined from '@ant-design/icons/HomeOutlined';
 import HomeFilled from '@ant-design/icons/HomeFilled';
 
-function Breadcrumbs({
+export default function Breadcrumbs({
   card = false,
   custom = false,
   divider = false,
   heading,
   icon,
   icons,
-  maxItems,
   links,
+  maxItems,
   rightAlign,
   separator,
   title = true,
@@ -41,7 +36,7 @@ function Breadcrumbs({
   ...others
 }) {
   const theme = useTheme();
-  const location = usePathname();
+  const location = useLocation();
   const [main, setMain] = useState();
   const [item, setItem] = useState();
 
@@ -53,11 +48,11 @@ function Breadcrumbs({
     color: theme.palette.secondary.main
   };
 
-  let customLocation = location;
+  let customLocation = location.pathname;
 
   // only used for component demo breadcrumbs
   if (customLocation.includes('/components-overview/breadcrumbs')) {
-    customLocation = '/apps/customer/card';
+    customLocation = '/apps/customer/customer-card';
   }
 
   useEffect(() => {
@@ -110,18 +105,17 @@ function Breadcrumbs({
   if (!custom && main && main.type === 'collapse' && main.breadcrumbs === true) {
     CollapseIcon = main.icon ? main.icon : ApartmentOutlined;
     mainContent = (
-      <NextLink href={main.url} passHref legacyBehavior>
-        <Typography
-          variant={window.location.pathname === main.url ? 'subtitle1' : 'h6'}
-          sx={{ textDecoration: 'none', cursor: 'pointer' }}
-          color={window.location.pathname === main.url ? 'text.primary' : 'text.secondary'}
-        >
-          {icons && <CollapseIcon style={iconSX} />}
-          {main.title}
-        </Typography>
-      </NextLink>
+      <Typography
+        component={Link}
+        to={main.url}
+        variant={window.location.pathname === main.url ? 'subtitle1' : 'h6'}
+        sx={{ textDecoration: 'none' }}
+        color={window.location.pathname === main.url ? 'text.primary' : 'text.secondary'}
+      >
+        {icons && <CollapseIcon style={iconSX} />}
+        {main.title}
+      </Typography>
     );
-
     breadcrumbContent = (
       <MainCard
         border={card}
@@ -139,13 +133,11 @@ function Breadcrumbs({
         >
           <Grid item>
             <MuiBreadcrumbs aria-label="breadcrumb" maxItems={maxItems || 8} separator={separatorIcon}>
-              <NextLink href="/" passHref legacyBehavior>
-                <Typography color="text.secondary" variant="h6" sx={{ textDecoration: 'none', cursor: 'pointer' }}>
-                  {icons && <HomeOutlined style={iconSX} />}
-                  {icon && !icons && <HomeFilled style={{ ...iconSX, marginRight: 0 }} />}
-                  {(!icon || icons) && 'Home'}
-                </Typography>
-              </NextLink>
+              <Typography component={Link} to="/" color="text.secondary" variant="h6" sx={{ textDecoration: 'none' }}>
+                {icons && <HomeOutlined style={iconSX} />}
+                {icon && !icons && <HomeFilled style={{ ...iconSX, marginRight: 0 }} />}
+                {(!icon || icons) && 'Home'}
+              </Typography>
               {mainContent}
             </MuiBreadcrumbs>
           </Grid>
@@ -174,13 +166,11 @@ function Breadcrumbs({
 
     let tempContent = (
       <MuiBreadcrumbs aria-label="breadcrumb" maxItems={maxItems || 8} separator={separatorIcon}>
-        <NextLink href="/" passHref legacyBehavior>
-          <Typography color="text.secondary" variant="h6" sx={{ textDecoration: 'none', cursor: 'pointer' }}>
-            {icons && <HomeOutlined style={iconSX} />}
-            {icon && !icons && <HomeFilled style={{ ...iconSX, marginRight: 0 }} />}
-            {(!icon || icons) && 'Home'}
-          </Typography>
-        </NextLink>
+        <Typography component={Link} to="/" color="text.secondary" variant="h6" sx={{ textDecoration: 'none' }}>
+          {icons && <HomeOutlined style={iconSX} />}
+          {icon && !icons && <HomeFilled style={{ ...iconSX, marginRight: 0 }} />}
+          {(!icon || icons) && 'Home'}
+        </Typography>
         {mainContent}
         {itemContent}
       </MuiBreadcrumbs>
@@ -191,26 +181,19 @@ function Breadcrumbs({
         <MuiBreadcrumbs aria-label="breadcrumb" maxItems={maxItems || 8} separator={separatorIcon}>
           {links?.map((link, index) => {
             CollapseIcon = link.icon ? link.icon : ApartmentOutlined;
-            const key = index.toString();
-            let breadcrumbLink = (
+
+            return (
               <Typography
                 key={index}
+                {...(link.to && { component: Link, to: link.to })}
                 variant={!link.to ? 'subtitle1' : 'h6'}
-                sx={{ textDecoration: 'none', ...(link.to && { cursor: 'pointer' }) }}
+                sx={{ textDecoration: 'none' }}
                 color={!link.to ? 'text.primary' : 'text.secondary'}
               >
                 {link.icon && <CollapseIcon style={iconSX} />}
                 {link.title}
               </Typography>
             );
-            if (link.to) {
-              breadcrumbLink = (
-                <NextLink key={key} href={link.to} passHref legacyBehavior>
-                  {breadcrumbLink}
-                </NextLink>
-              );
-            }
-            return breadcrumbLink;
           })}
         </MuiBreadcrumbs>
       );
@@ -254,8 +237,6 @@ function Breadcrumbs({
   return breadcrumbContent;
 }
 
-export default Breadcrumbs;
-
 Breadcrumbs.propTypes = {
   card: PropTypes.bool,
   custom: PropTypes.bool,
@@ -263,8 +244,8 @@ Breadcrumbs.propTypes = {
   heading: PropTypes.string,
   icon: PropTypes.bool,
   icons: PropTypes.bool,
-  maxItems: PropTypes.number,
   links: PropTypes.array,
+  maxItems: PropTypes.number,
   rightAlign: PropTypes.bool,
   separator: PropTypes.any,
   title: PropTypes.bool,

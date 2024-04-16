@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 import { useState, forwardRef, useCallback } from 'react';
 
 //material
@@ -25,11 +23,7 @@ import CheckCircleFilled from '@ant-design/icons/CheckCircleFilled';
 import CloseOutlined from '@ant-design/icons/CloseOutlined';
 import DownOutlined from '@ant-design/icons/DownOutlined';
 
-const SnackbarBox = styled(SnackbarContent)({
-  '@media (min-width:600px)': {
-    minWidth: '344px !important'
-  }
-});
+const SnackbarBox = styled(SnackbarContent)({ '@media (min-width:600px)': { minWidth: '344px !important' } });
 
 function CustomNotistackExtended({ id, message }, ref) {
   const { closeSnackbar } = useSnackbar();
@@ -83,8 +77,25 @@ const CustomNotistack = forwardRef(CustomNotistackExtended);
 // ==============================|| NOTISTACK - CUSTOM STYLE ||============================== //
 
 export default function CustomComponent() {
+  const NotistackCustomCodeString = `<Button
+  variant="outlined"
+  fullWidth
+  sx={{ marginBlockStart: 2 }}
+  onClick={() => {
+    enqueueSnackbar("You're report is ready", {
+      anchorOrigin: {
+        vertical: 'bottom',
+        horizontal: 'right'
+      },
+      content: (key: SnackbarKey, message: SnackbarMessage) => <CustomNotistack id={key} message={message} />
+    });
+  }}
+>
+  Show snackbar
+</Button>`;
+
   return (
-    <MainCard title="Custom Component">
+    <MainCard title="Custom Component" codeString={NotistackCustomCodeString}>
       <Button
         variant="outlined"
         fullWidth

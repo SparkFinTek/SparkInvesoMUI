@@ -1,11 +1,10 @@
-// next
-import NextLink from 'next/link';
+import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 
 // project imports
 import MainCard from 'components/MainCard';
@@ -26,9 +25,9 @@ export default function TasksCard() {
       title="Tasks"
       content={false}
       secondary={
-        <NextLink href="#" passHref legacyBehavior>
-          <Link color="primary">View all</Link>
-        </NextLink>
+        <Link component={RouterLink} to="#" color="primary">
+          View all
+        </Link>
       }
     >
       <CardContent>
@@ -38,10 +37,7 @@ export default function TasksCard() {
           alignItems="center"
           sx={{
             position: 'relative',
-            '&>*': {
-              position: 'relative',
-              zIndex: '5'
-            },
+            '&>*': { position: 'relative', zIndex: '5' },
             '&:after': {
               content: '""',
               position: 'absolute',
@@ -112,13 +108,13 @@ export default function TasksCard() {
                   </Grid>
                   <Grid item xs={12}>
                     <Typography variant="body2">
-                      <NextLink href="#" passHref legacyBehavior>
-                        <Link underline="hover">Jenny</Link>
-                      </NextLink>{' '}
+                      <Link component={RouterLink} to="#" underline="hover">
+                        Jenny
+                      </Link>{' '}
                       assign you a task{' '}
-                      <NextLink href="#" passHref legacyBehavior>
-                        <Link underline="hover">Mockup Design</Link>
-                      </NextLink>
+                      <Link component={RouterLink} to="#" underline="hover">
+                        Mockup Design
+                      </Link>
                       .
                     </Typography>
                   </Grid>

@@ -16,8 +16,35 @@ import FileSearchOutlined from '@ant-design/icons/FileSearchOutlined';
 // ==============================|| LIST - FOLDER ||============================== //
 
 export default function FolderList() {
+  const folderListCodeString = `<List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+  <ListItem>
+    <ListItemAvatar>
+      <AntAvatar alt="Basic" type="combined" color="warning">
+        <CameraOutlined />
+      </AntAvatar>
+    </ListItemAvatar>
+    <ListItemText primary="Photos" secondary="Jan 9, 2014" />
+  </ListItem>
+  <ListItem>
+    <ListItemAvatar>
+      <AntAvatar alt="Basic" type="combined">
+        <FileSearchOutlined />
+      </AntAvatar>
+    </ListItemAvatar>
+    <ListItemText primary="Work" secondary="Jan 7, 2014" />
+  </ListItem>
+  <ListItem>
+    <ListItemAvatar>
+      <AntAvatar alt="Basic" type="combined" color="info">
+        <AimOutlined />
+      </AntAvatar>
+    </ListItemAvatar>
+    <ListItemText primary="Vacation" secondary="July 20, 2014" />
+  </ListItem>
+</List>`;
+
   return (
-    <MainCard content={false}>
+    <MainCard content={false} codeString={folderListCodeString}>
       <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
         <ListItem>
           <ListItemAvatar>

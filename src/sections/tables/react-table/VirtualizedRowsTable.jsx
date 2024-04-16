@@ -1,17 +1,15 @@
-'use client';
 import PropTypes from 'prop-types';
-
 import { useMemo, useRef } from 'react';
 
 // material-ui
 import Chip from '@mui/material/Chip';
-import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 // third-party
 import { flexRender, useReactTable, getCoreRowModel } from '@tanstack/react-table';
@@ -94,7 +92,7 @@ function ReactTable({ columns, data }) {
                 return (
                   <TableRow key={row.id}>
                     {row.getVisibleCells().map((cell) => (
-                      <TableCell sx={{ whiteSpace: 'nowrap' }} key={cell.id} {...cell.column.columnDef.meta}>
+                      <TableCell key={cell.id} sx={{ whiteSpace: 'nowrap' }} {...cell.column.columnDef.meta}>
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </TableCell>
                     ))}

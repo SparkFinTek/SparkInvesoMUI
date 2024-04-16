@@ -16,8 +16,45 @@ import RadiusUprightOutlined from '@ant-design/icons/RadiusUprightOutlined';
 // ==============================|| LIST - BASIC ||============================== //
 
 export default function BasicList() {
+  const basicListCodeString = `<List sx={{ p: 0 }}>
+  <ListItem disablePadding divider>
+    <ListItemButton>
+      <ListItemText primary="List item 01" />
+    </ListItemButton>
+  </ListItem>
+  <ListItem disablePadding divider>
+    <ListItemButton>
+      <ListItemText primary="List item 02" />
+    </ListItemButton>
+  </ListItem>
+  <ListItem disablePadding divider>
+    <ListItemButton>
+      <ListItemIcon>
+        <LayoutOutlined />
+      </ListItemIcon>
+      <ListItemText primary="Sample" />
+    </ListItemButton>
+  </ListItem>
+  <ListItem disablePadding divider>
+    <ListItemButton>
+      <ListItemIcon>
+        <FilePptOutlined />
+      </ListItemIcon>
+      <ListItemText primary="Page" />
+    </ListItemButton>
+  </ListItem>
+  <ListItem disablePadding>
+    <ListItemButton>
+      <ListItemIcon>
+        <RadiusUprightOutlined />
+      </ListItemIcon>
+      <ListItemText primary="UI Elements" />
+    </ListItemButton>
+  </ListItem>
+</List>`;
+
   return (
-    <MainCard content={false}>
+    <MainCard content={false} codeHighlight codeString={basicListCodeString}>
       <List sx={{ p: 0 }}>
         <ListItem disablePadding divider>
           <ListItemButton>

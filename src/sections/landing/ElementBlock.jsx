@@ -12,11 +12,12 @@ import { motion } from 'framer-motion';
 // project import
 import { ThemeMode } from 'config';
 import useConfig from 'hooks/useConfig';
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
 
 // assets
 import CheckCircleOutlined from '@ant-design/icons/CheckCircleOutlined';
-const imgelementmsg = 'assets/images/landing/img-element-msg.png';
-const imgelementwidget = 'assets/images/landing/img-element-widget.png';
+import imgelementmsg from 'assets/images/landing/img-element-msg.png';
+import imgelementwidget from 'assets/images/landing/img-element-widget.png';
 
 // ==============================|| LANDING - ELEMENT PAGE ||============================== //
 
@@ -95,7 +96,7 @@ export default function ElementBlock() {
               >
                 <CardMedia
                   component="img"
-                  image={`/assets/images/landing/img-element-main-${presetColor}.png`}
+                  image={getImageUrl(`img-element-main-${presetColor}.png`, ImagePath.LANDING)}
                   sx={{ width: '100%', m: '0 auto' }}
                 />
               </motion.div>

@@ -120,6 +120,7 @@
   "stepper": "步进器",
   "sticky": "黏",
   "sticky-bar": "粘性条",
+  "virtualized": "虚拟化",
   "surfaces": "表面",
   "switch": "转变",
   "tabs": "制表符",
@@ -134,7 +135,6 @@
   "user-list": "用户列表",
   "user-profile": "用户资料",
   "utils": "实用程序",
-  "virtualized": "虚拟化",
   "widgets": "小部件",
   "more-items": "更多項目"
 }

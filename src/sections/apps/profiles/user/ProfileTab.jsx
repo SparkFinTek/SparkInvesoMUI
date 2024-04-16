@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-
-// next
-import { useRouter, usePathname } from 'next/navigation';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // material-ui
 import List from '@mui/material/List';
@@ -15,9 +13,9 @@ import LockOutlined from '@ant-design/icons/LockOutlined';
 import SettingOutlined from '@ant-design/icons/SettingOutlined';
 import UserOutlined from '@ant-design/icons/UserOutlined';
 
-function getPathIndex(asPath) {
+function getPathIndex(pathname) {
   let selectedTab = 0;
-  switch (asPath) {
+  switch (pathname) {
     case '/apps/profiles/user/payment':
       selectedTab = 1;
       break;
@@ -31,20 +29,19 @@ function getPathIndex(asPath) {
     default:
       selectedTab = 0;
   }
-
   return selectedTab;
 }
 
 // ==============================|| USER PROFILE - TAB ||============================== //
 
 export default function ProfileTab() {
-  const router = useRouter();
-  const pathname = usePathname();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const [selectedIndex, setSelectedIndex] = useState(getPathIndex(pathname));
   const handleListItemClick = (index, route) => {
     setSelectedIndex(index);
-    router.replace(route);
+    navigate(route);
   };
 
   useEffect(() => {

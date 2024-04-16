@@ -120,16 +120,7 @@ export default function ChatMessageSend({ user }) {
               anchorEl={anchorElEmoji}
               disablePortal
               sx={{ zIndex: 1200 }}
-              popperOptions={{
-                modifiers: [
-                  {
-                    name: 'offset',
-                    options: {
-                      offset: [-20, 125]
-                    }
-                  }
-                ]
-              }}
+              popperOptions={{ modifiers: [{ name: 'offset', options: { offset: [-20, 125] } }] }}
             >
               <ClickAwayListener onClickAway={handleCloseEmoji}>
                 <MainCard elevation={8} content={false}>

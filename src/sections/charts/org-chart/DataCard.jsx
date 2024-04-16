@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 // material-ui
 import { alpha, useTheme } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';
@@ -19,11 +17,11 @@ import TwitterSquareFilled from '@ant-design/icons/TwitterSquareFilled';
 
 // ==============================|| ORGANIZATION CHART - DATACARD||============================== //
 
-function DataCard({ name, role, avatar, linkedin, facebook, skype, root }) {
+export default function DataCard({ name, role, avatar, linkedin, facebook, skype, root }) {
   const theme = useTheme();
 
   const linkHandler = (link) => {
-    if (typeof window !== 'undefined') window.open(link);
+    window.open(link);
   };
 
   return (
@@ -78,8 +76,6 @@ function DataCard({ name, role, avatar, linkedin, facebook, skype, root }) {
     </MainCard>
   );
 }
-
-export default DataCard;
 
 DataCard.propTypes = {
   name: PropTypes.string,

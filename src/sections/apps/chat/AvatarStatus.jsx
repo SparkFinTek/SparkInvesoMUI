@@ -20,7 +20,7 @@ export default function AvatarStatus({ status }) {
       return <MinusCircleFilled style={{ color: theme.palette.secondary.main }} />;
 
     case 'offline':
-      return <ClockCircleFilled style={{ color: theme.palette.error.main }} />;
+      return <ClockCircleFilled style={{ color: theme.palette.warning.main }} />;
 
     default:
       return null;

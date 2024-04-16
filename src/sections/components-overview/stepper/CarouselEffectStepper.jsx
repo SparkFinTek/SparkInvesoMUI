@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 // material-ui
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -20,8 +18,8 @@ import LeftOutlined from '@ant-design/icons/LeftOutlined';
 
 function SampleNextArrow({ className, style, onClick }) {
   return (
-    <Box className={className} sx={{ ...style, display: 'block', top: '87%', right: 64 }}>
-      <Button onClick={onClick} endIcon={<RightOutlined size={14} />} sx={{ my: 2, mx: 1 }} size="small">
+    <Box className={className} style={{ ...style, display: 'block', top: '87%', right: 64 }}>
+      <Button onClick={onClick} endIcon={<RightOutlined />} sx={{ my: 2, mx: 1 }} size="small">
         Next
       </Button>
     </Box>
@@ -30,15 +28,15 @@ function SampleNextArrow({ className, style, onClick }) {
 
 function SamplePrevArrow({ className, style, onClick }) {
   return (
-    <Box className={className} sx={{ ...style, display: 'block', top: '87%', left: 0 }}>
-      <Button onClick={onClick} startIcon={<LeftOutlined size={14} />} sx={{ my: 2, mx: 1 }} size="small">
+    <Box className={className} style={{ ...style, display: 'block', top: '87%', left: 0 }}>
+      <Button onClick={onClick} startIcon={<LeftOutlined />} sx={{ my: 2, mx: 1 }} size="small">
         Back
       </Button>
     </Box>
   );
 }
 
-function CarouselEffectStepper() {
+export default function CarouselEffectStepper() {
   const images = [
     {
       label: 'San Francisco',
@@ -96,7 +94,6 @@ function CarouselEffectStepper() {
     </MainCard>
   );
 }
-export default CarouselEffectStepper;
 
 SampleNextArrow.propTypes = { className: PropTypes.any, style: PropTypes.any, onClick: PropTypes.any };
 

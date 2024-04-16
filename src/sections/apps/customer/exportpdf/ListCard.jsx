@@ -2,6 +2,9 @@ import PropTypes from 'prop-types';
 //material-ui
 import { useTheme } from '@mui/material/styles';
 
+// project import
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
+
 // third-party
 import { Page, View, Document, StyleSheet, Image, Text, Link } from '@react-pdf/renderer';
 
@@ -132,12 +135,7 @@ export default function ListCard({ customer }) {
       <Page size="A4" style={styles.page}>
         <View style={styles.container}>
           <View style={styles.row}>
-            {/* eslint-disable-next-line */}
-            <Image
-              style={styles.image}
-              key={`${!customer.avatar ? 1 : customer.avatar}.png`}
-              src={`/assets/images/users/avatar-${!customer.avatar ? 1 : customer.avatar}.png`}
-            />
+            <Image style={styles.image} src={getImageUrl(`avatar-${!customer.avatar ? 1 : customer.avatar}.png`, ImagePath.USERS)} />
             <View style={styles.CardInfo}>
               <Text style={styles.title}>{customer.name}</Text>
               <Text style={styles.role}>{customer.role}</Text>

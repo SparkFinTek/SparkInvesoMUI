@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 import { useEffect, useRef, useState } from 'react';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -20,7 +18,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 const options = ['None', 'Atria', 'Callisto', 'Dione', 'Ganymede', 'Hangouts Call', 'Luna', 'Oberon', 'Phobos', 'Pyxis'];
 
 function ConfirmationDialogRaw({ onClose, value: valueProp, open, ...other }) {
-  const matchDownMD = useMediaQuery((theme) => theme.breakpoints.down('md'));
+  const downMD = useMediaQuery((theme) => theme.breakpoints.down('md'));
 
   const [value, setValue] = useState(valueProp);
   const radioGroupRef = useRef(null);
@@ -52,14 +50,14 @@ function ConfirmationDialogRaw({ onClose, value: valueProp, open, ...other }) {
   return (
     <Dialog
       sx={{ '& .MuiDialog-paper': { width: '80%', maxHeight: 435 } }}
-      maxWidth={matchDownMD ? 'sm' : 'lg'}
+      maxWidth={downMD ? 'sm' : 'lg'}
       TransitionProps={{ onEntering: handleEntering }}
       open={open}
       {...other}
     >
       <DialogTitle>Phone Ringtone</DialogTitle>
       <DialogContent dividers>
-        <RadioGroup row={!matchDownMD} ref={radioGroupRef} aria-label="ringtone" name="ringtone" value={value} onChange={handleChange}>
+        <RadioGroup row={!downMD} ref={radioGroupRef} aria-label="ringtone" name="ringtone" value={value} onChange={handleChange}>
           {options.map((option) => (
             <FormControlLabel value={option} key={option} control={<Radio />} label={option} />
           ))}

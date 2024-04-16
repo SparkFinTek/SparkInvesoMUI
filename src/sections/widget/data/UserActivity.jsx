@@ -1,5 +1,4 @@
-// next
-import NextLink from 'next/link';
+import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
 import Avatar from '@mui/material/Avatar';
@@ -17,9 +16,9 @@ import MainCard from 'components/MainCard';
 // assets
 import ClockCircleOutlined from '@ant-design/icons/ClockCircleOutlined';
 
-const Avatar1 = '/assets/images/users/avatar-5.png';
-const Avatar2 = '/assets/images/users/avatar-6.png';
-const Avatar3 = '/assets/images/users/avatar-7.png';
+import Avatar1 from 'assets/images/users/avatar-5.png';
+import Avatar2 from 'assets/images/users/avatar-6.png';
+import Avatar3 from 'assets/images/users/avatar-7.png';
 
 // ===========================|| DATA WIDGET - USER ACTIVITY CARD ||=========================== //
 
@@ -33,9 +32,9 @@ export default function UserActivity() {
       title="User Activity"
       content={false}
       secondary={
-        <NextLink href="#" passHref legacyBehavior>
-          <Link color="primary">View all</Link>
-        </NextLink>
+        <Link component={RouterLink} to="#" color="primary">
+          View all
+        </Link>
       }
     >
       <CardContent>

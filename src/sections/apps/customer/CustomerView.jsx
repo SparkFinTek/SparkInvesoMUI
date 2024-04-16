@@ -20,6 +20,7 @@ import { PatternFormat } from 'react-number-format';
 import MainCard from 'components/MainCard';
 import Avatar from 'components/@extended/Avatar';
 import Transitions from 'components/@extended/Transitions';
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
 
 // assets
 import EnvironmentOutlined from '@ant-design/icons/EnvironmentOutlined';
@@ -53,7 +54,7 @@ export default function CustomerView({ data }) {
                 <Grid container spacing={3}>
                   <Grid item xs={12}>
                     <Stack spacing={2.5} alignItems="center">
-                      <Avatar alt="Avatar 1" size="xl" src={`/assets/images/users/avatar-${data.avatar}.png`} />
+                      <Avatar alt="Avatar 1" size="xl" src={getImageUrl(`avatar-${data.avatar}.png`, ImagePath.USERS)} />
                       <Stack spacing={0.5} alignItems="center">
                         <Typography variant="h5">{data.name}</Typography>
                         <Typography color="secondary">{data.role}</Typography>

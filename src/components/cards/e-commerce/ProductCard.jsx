@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-
-// next
-import NextLink from 'next/link';
+import { Link } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -23,6 +21,7 @@ import IconButton from 'components/@extended/IconButton';
 import SkeletonProductPlaceholder from 'components/cards/skeleton/ProductPlaceholder';
 import { useGetCart, addToCart } from 'api/cart';
 import { openSnackbar } from 'api/snackbar';
+import { ImagePath, getImageUrl } from 'utils/getImageUrl';
 
 // assets
 import HeartOutlined from '@ant-design/icons/HeartOutlined';
@@ -32,9 +31,9 @@ import HeartFilled from '@ant-design/icons/HeartFilled';
 
 export default function ProductCard({ id, color, name, brand, offer, isStock, image, description, offerPrice, salePrice, rating }) {
   const theme = useTheme();
+
   const { cart } = useGetCart();
 
-  const prodProfile = image && `/assets/images/e-commerce/${image}`;
   const [wishlisted, setWishlisted] = useState(false);
 
   const addCart = () => {
@@ -73,21 +72,15 @@ export default function ProductCard({ id, color, name, brand, offer, isStock, im
       {isLoading ? (
         <SkeletonProductPlaceholder />
       ) : (
-        <MainCard
-          content={false}
-          boxShadow
-          sx={{
-            '&:hover': {
-              transform: 'scale3d(1.02, 1.02, 1)',
-              transition: 'all .4s ease-in-out'
-            }
-          }}
-        >
-          <NextLink href={`/apps/e-commerce/product-details/${id}`} passHref legacyBehavior>
-            <Box sx={{ width: 250, m: 'auto' }}>
-              <CardMedia sx={{ cursor: 'pointer', height: 250, textDecoration: 'none', opacity: isStock ? 1 : 0.25 }} image={prodProfile} />
-            </Box>
-          </NextLink>
+        <MainCard content={false} boxShadow sx={{ '&:hover': { transform: 'scale3d(1.02, 1.02, 1)', transition: 'all .4s ease-in-out' } }}>
+          <Box sx={{ width: 250, m: 'auto' }}>
+            <CardMedia
+              sx={{ height: 250, textDecoration: 'none', opacity: isStock ? 1 : 0.25 }}
+              image={image && getImageUrl(`${image}`, ImagePath.ECOMMERCE)}
+              component={Link}
+              to={`/apps/e-commerce/product-details/${id}`}
+            />
+          </Box>
           <Stack
             direction="row"
             alignItems="center"
@@ -109,15 +102,15 @@ export default function ProductCard({ id, color, name, brand, offer, isStock, im
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <Stack>
-                  <NextLink href={`/apps/e-commerce/product-details/${id}`} passHref legacyBehavior>
-                    <Typography
-                      color="text.primary"
-                      variant="h5"
-                      sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block', cursor: 'pointer' }}
-                    >
-                      {name}
-                    </Typography>
-                  </NextLink>
+                  <Typography
+                    component={Link}
+                    to={`/apps/e-commerce/product-details/${id}`}
+                    color="text.primary"
+                    variant="h5"
+                    sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block', textDecoration: 'none' }}
+                  >
+                    {name}
+                  </Typography>
                   <Typography variant="h6" color="text.secondary">
                     {brand}
                   </Typography>

@@ -1,6 +1,4 @@
-// next
-import Image from 'next/image';
-import NextLink from 'next/link';
+import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
 import Box from '@mui/material/Box';
@@ -11,15 +9,15 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 
 // project import
-import Animation from './Animation';
 import MainCard from 'components/MainCard';
-import AnimateButton from 'components/@extended/AnimateButton';
+import Animation from './Animation';
 
 // assets
 import SendOutlined from '@ant-design/icons/SendOutlined';
-const imgdemo1 = '/assets/images/landing/img-demo1.jpg';
-const imgdemo2 = '/assets/images/landing/img-demo2.jpg';
-const imgdemo3 = '/assets/images/landing/img-demo3.jpg';
+import imgdemo1 from 'assets/images/landing/img-demo1.jpg';
+import imgdemo2 from 'assets/images/landing/img-demo2.jpg';
+import imgdemo3 from 'assets/images/landing/img-demo3.jpg';
+import AnimateButton from 'components/@extended/AnimateButton';
 
 // ==============================|| LANDING - DEMO PAGE ||============================== //
 
@@ -86,10 +84,8 @@ export default function DemoBlock() {
                     </AnimateButton>
                   </Box>
                 </Grid>
-                <Grid item xs={12}>
-                  <Box sx={{ position: 'relative', width: `calc(100% + 24px)`, mb: '-30px !important' }}>
-                    <Image src={imgdemo2} alt="feature" width={370} height={325} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
-                  </Box>
+                <Grid item xs={12} sx={{ '& img': { mb: -3.75, width: `calc( 100% + 24px)` } }}>
+                  <img src={imgdemo2} alt="feature" />
                 </Grid>
               </Grid>
             </MainCard>
@@ -117,18 +113,14 @@ export default function DemoBlock() {
                 <Grid item xs={12}>
                   <Box sx={{ display: 'inline-block' }}>
                     <AnimateButton>
-                      <NextLink href="/components-overview/buttons" passHref legacyBehavior>
-                        <Button variant="contained" sx={{ my: 2 }} component={Link} target="_blank">
-                          View All Components
-                        </Button>
-                      </NextLink>
+                      <Button variant="contained" sx={{ my: 2 }} component={RouterLink} to="/components-overview/buttons" target="_blank">
+                        View All Components
+                      </Button>
                     </AnimateButton>
                   </Box>
                 </Grid>
-                <Grid item xs={12}>
-                  <Box sx={{ position: 'relative', width: `calc(100% + 24px)`, mb: '-30px !important' }}>
-                    <Image src={imgdemo1} alt="feature" width={370} height={325} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
-                  </Box>
+                <Grid item xs={12} sx={{ '& img': { mb: -3.75, width: `calc( 100% + 24px)` } }}>
+                  <img src={imgdemo1} alt="feature" />
                 </Grid>
               </Grid>
             </MainCard>
@@ -169,10 +161,8 @@ export default function DemoBlock() {
                     </AnimateButton>
                   </Box>
                 </Grid>
-                <Grid item xs={12}>
-                  <Box sx={{ position: 'relative', width: `calc(100% + 24px)`, mb: '-30px !important' }}>
-                    <Image src={imgdemo3} alt="feature" width={370} height={325} sizes="100vw" style={{ width: '100%', height: 'auto' }} />
-                  </Box>
+                <Grid item xs={12} sx={{ '& img': { mb: -3.75, width: `calc( 100% + 24px)` } }}>
+                  <img src={imgdemo3} alt="feature" />
                 </Grid>
               </Grid>
             </MainCard>

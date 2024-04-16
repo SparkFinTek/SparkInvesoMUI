@@ -1,6 +1,3 @@
-// next
-import { Public_Sans } from 'next/font/google';
-
 // ==============================|| THEME CONSTANT ||============================== //
 
 export const twitterColor = '#1DA1F2';
@@ -11,8 +8,6 @@ export const APP_DEFAULT_PATH = '/dashboard/analytics';
 export const HORIZONTAL_MAX_ITEM = 7;
 export const DRAWER_WIDTH = 260;
 export const MINI_DRAWER_WIDTH = 60;
-
-const publicSans = Public_Sans({ subsets: ['latin'], weight: ['400', '500', '300', '700'] });
 
 export let SimpleLayoutType;
 
@@ -56,17 +51,17 @@ export let Gender;
   Gender['FEMALE'] = 'Female';
 })(Gender || (Gender = {}));
 
-export let DropzoneType;
+export let DropzopType;
 
-(function (DropzoneType) {
-  DropzoneType['DEFAULT'] = 'default';
-  DropzoneType['STANDARD'] = 'standard';
-})(DropzoneType || (DropzoneType = {}));
+(function (DropzopType) {
+  DropzopType['DEFAULT'] = 'default';
+  DropzopType['STANDARD'] = 'standard';
+})(DropzopType || (DropzopType = {}));
 
 // ==============================|| THEME CONFIG ||============================== //
 
 const config = {
-  fontFamily: publicSans.style.fontFamily,
+  fontFamily: `'Public Sans', sans-serif`,
   i18n: 'en',
   menuOrientation: MenuOrientation.VERTICAL,
   miniDrawer: false,

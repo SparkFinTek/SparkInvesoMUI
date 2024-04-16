@@ -19,6 +19,7 @@ import MainCard from 'components/MainCard';
 import Avatar from 'components/@extended/Avatar';
 import IconButton from 'components/@extended/IconButton';
 import SimpleBar from 'components/third-party/SimpleBar';
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
 import { ThemeMode } from 'config';
 
 // assets
@@ -34,6 +35,8 @@ import PhoneOutlined from '@ant-design/icons/PhoneOutlined';
 import PictureOutlined from '@ant-design/icons/PictureOutlined';
 import RightOutlined from '@ant-design/icons/RightOutlined';
 import VideoCameraOutlined from '@ant-design/icons/VideoCameraOutlined';
+
+// ==============================|| USER PROFILE / DETAILS ||============================== //
 
 export default function UserDetails({ user, onClose }) {
   const theme = useTheme();
@@ -76,7 +79,7 @@ export default function UserDetails({ user, onClose }) {
             <Stack>
               <Avatar
                 alt={user.name}
-                src={user.avatar && `/assets/images/users/${user.avatar}`}
+                src={user.avatar && getImageUrl(`${user.avatar}`, ImagePath.USERS)}
                 size="xl"
                 sx={{
                   m: '8px auto',

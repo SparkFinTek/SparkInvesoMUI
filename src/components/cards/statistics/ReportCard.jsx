@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 // project imports
 import MainCard from 'components/MainCard';
 
+// ==============================|| REPORT CARD ||============================== //
+
 export default function ReportCard({ primary, secondary, iconPrimary, color }) {
   const IconPrimary = iconPrimary;
   const primaryIcon = iconPrimary ? <IconPrimary fontSize="large" /> : null;

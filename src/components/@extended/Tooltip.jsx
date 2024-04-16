@@ -54,14 +54,14 @@ export default function CustomTooltip({ children, arrow = true, labelColor = '',
 }
 
 getVariantStyle.propTypes = {
-  color: PropTypes.oneOfType([PropTypes.any, PropTypes.string]),
+  color: PropTypes.oneOfType([PropTypes.string, PropTypes.any]),
   theme: PropTypes.any,
-  labelColor: PropTypes.oneOfType([PropTypes.any, PropTypes.string])
+  labelColor: PropTypes.oneOfType([PropTypes.string, PropTypes.any])
 };
 
 CustomTooltip.propTypes = {
   children: PropTypes.any,
   arrow: PropTypes.bool,
-  labelColor: PropTypes.oneOfType([PropTypes.any, PropTypes.string]),
+  labelColor: PropTypes.oneOfType([PropTypes.string, PropTypes.any]),
   rest: PropTypes.any
 };

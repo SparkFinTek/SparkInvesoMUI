@@ -12,7 +12,7 @@ import { useDropzone } from 'react-dropzone';
 import RejectionFiles from './RejectionFiles';
 import PlaceholderContent from './PlaceholderContent';
 import FilesPreview from './FilesPreview';
-import { DropzoneType } from 'config';
+import { DropzopType } from 'config';
 
 const DropzoneWrapper = styled('div')(({ theme }) => ({
   outline: 'none',
@@ -30,22 +30,11 @@ export default function MultiFileUpload({ error, showList = false, files, type, 
     multiple: true,
     onDrop: (acceptedFiles) => {
       if (files) {
-        setFieldValue('files', [
-          ...files,
-          ...acceptedFiles.map((file) =>
-            Object.assign(file, {
-              preview: URL.createObjectURL(file)
-            })
-          )
-        ]);
+        setFieldValue('files', [...files, ...acceptedFiles.map((file) => Object.assign(file, { preview: URL.createObjectURL(file) }))]);
       } else {
         setFieldValue(
           'files',
-          acceptedFiles.map((file) =>
-            Object.assign(file, {
-              preview: URL.createObjectURL(file)
-            })
-          )
+          acceptedFiles.map((file) => Object.assign(file, { preview: URL.createObjectURL(file) }))
         );
       }
     }
@@ -62,17 +51,18 @@ export default function MultiFileUpload({ error, showList = false, files, type, 
 
   return (
     <>
-      <Box sx={{ width: '100%', ...(type === DropzoneType.STANDARD && { width: 'auto', display: 'flex' }), ...sx }}>
-        <Stack {...(type === DropzoneType.STANDARD && { alignItems: 'center' })}>
+      <Box
+        sx={{
+          width: '100%',
+          ...(type === DropzopType.STANDARD && { width: 'auto', display: 'flex' }),
+          ...sx
+        }}
+      >
+        <Stack {...(type === DropzopType.STANDARD && { alignItems: 'center' })}>
           <DropzoneWrapper
             {...getRootProps()}
             sx={{
-              ...(type === DropzoneType.STANDARD && {
-                p: 0,
-                m: 1,
-                width: 64,
-                height: 64
-              }),
+              ...(type === DropzopType.STANDARD && { p: 0, m: 1, width: 64, height: 64 }),
               ...(isDragActive && { opacity: 0.72 }),
               ...((isDragReject || error) && {
                 color: 'error.main',
@@ -84,7 +74,7 @@ export default function MultiFileUpload({ error, showList = false, files, type, 
             <input {...getInputProps()} />
             <PlaceholderContent type={type} />
           </DropzoneWrapper>
-          {type === DropzoneType.STANDARD && files && files.length > 1 && (
+          {type === DropzopType.STANDARD && files && files.length > 1 && (
             <Button variant="contained" color="error" size="extraSmall" onClick={onRemoveAll}>
               Remove all
             </Button>
@@ -94,7 +84,7 @@ export default function MultiFileUpload({ error, showList = false, files, type, 
         {files && files.length > 0 && <FilesPreview files={files} showList={showList} onRemove={onRemove} type={type} />}
       </Box>
 
-      {type !== DropzoneType.STANDARD && files && files.length > 0 && (
+      {type !== DropzopType.STANDARD && files && files.length > 0 && (
         <Stack direction="row" justifyContent="flex-end" spacing={1.5} sx={{ mt: 1.5 }}>
           <Button color="inherit" size="small" onClick={onRemoveAll}>
             Remove all

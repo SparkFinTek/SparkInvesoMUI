@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 // material-ui
 import { useTheme } from '@mui/material/styles';
 
@@ -107,7 +105,6 @@ export default function Content({ list }) {
   const taxRate = (Number(list?.tax) * subtotal) / 100;
   const discountRate = (Number(list?.discount) * subtotal) / 100;
   const total = subtotal - discountRate + taxRate;
-
   return (
     <View style={styles.container}>
       <View style={[styles.row, styles.subRow]}>

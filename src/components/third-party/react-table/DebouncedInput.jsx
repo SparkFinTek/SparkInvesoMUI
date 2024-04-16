@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 import { useEffect, useState } from 'react';
 
 // material-ui
@@ -11,7 +9,7 @@ import SearchOutlined from '@ant-design/icons/SearchOutlined';
 
 // ==============================|| FILTER - INPUT ||============================== //
 
-export function DebouncedInput({
+export default function DebouncedInput({
   value: initialValue,
   onFilterChange,
   debounce = 500,
@@ -47,8 +45,6 @@ export function DebouncedInput({
     />
   );
 }
-
-export default DebouncedInput;
 
 DebouncedInput.propTypes = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

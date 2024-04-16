@@ -1,4 +1,3 @@
-'use client';
 // material-ui
 import { TreeView } from '@mui/x-tree-view/TreeView';
 import { TreeItem } from '@mui/x-tree-view/TreeItem';
@@ -40,8 +39,19 @@ export default function RichObjectTreeView() {
     </TreeItem>
   );
 
+  const richTreeviewCodeString = `// RichObjectTreeView.tsx
+<TreeView
+  aria-label="rich object"
+  defaultCollapseIcon={<DownOutlined />}
+  defaultExpandIcon={<RightOutlined />}
+  defaultExpanded={['root']}
+  sx={{ height: 180, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
+>
+  {renderTree(data)}
+</TreeView>`;
+
   return (
-    <MainCard title="Rich Object">
+    <MainCard title="Rich Object" codeString={richTreeviewCodeString}>
       <TreeView
         aria-label="rich object"
         defaultCollapseIcon={<DownOutlined />}

@@ -1,13 +1,11 @@
-'use client';
-
 import { useState } from 'react';
 
 // material-ui
-import Backdrop from '@mui/material/Backdrop';
 import Button from '@mui/material/Button';
+import Backdrop from '@mui/material/Backdrop';
 import Divider from '@mui/material/Divider';
-import CardContent from '@mui/material/CardContent';
 import Fade from '@mui/material/Fade';
+import CardContent from '@mui/material/CardContent';
 import Modal from '@mui/material/Modal';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';

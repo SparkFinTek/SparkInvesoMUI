@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-// ==============================|| LOCAL STORAGE ||============================== //
+// ----------------------------------------------------------------------
 
 export default function useLocalStorage(key, defaultValue) {
   const [value, setValue] = useState(() => {

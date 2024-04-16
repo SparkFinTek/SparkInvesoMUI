@@ -1,22 +1,21 @@
 import PropTypes from 'prop-types';
-import NextLink from 'next/link';
-
+import { Link } from 'react-router-dom';
 import ButtonBase from '@mui/material/ButtonBase';
 
 // project import
-import LogoMain from './LogoMain';
+import Logo from './LogoMain';
 import LogoIcon from './LogoIcon';
-
 import { APP_DEFAULT_PATH } from 'config';
+import useAuth from 'hooks/useAuth';
 
 export default function LogoSection({ reverse, isIcon, sx, to }) {
+  const { isLoggedIn } = useAuth();
+
   return (
-    <NextLink href={!to ? APP_DEFAULT_PATH : to} passHref legacyBehavior>
-      <ButtonBase disableRipple sx={sx}>
-        {isIcon ? <LogoIcon /> : <LogoMain reverse={reverse} />}
-      </ButtonBase>
-    </NextLink>
+    <ButtonBase disableRipple {...(isLoggedIn && { component: Link, to: !to ? APP_DEFAULT_PATH : to, sx })}>
+      {isIcon ? <LogoIcon /> : <Logo reverse={reverse} />}
+    </ButtonBase>
   );
 }
 
-LogoSection.propTypes = { reverse: PropTypes.bool, isIcon: PropTypes.bool, sx: PropTypes.any, to: PropTypes.string };
+LogoSection.propTypes = { reverse: PropTypes.bool, isIcon: PropTypes.bool, sx: PropTypes.any, to: PropTypes.any };

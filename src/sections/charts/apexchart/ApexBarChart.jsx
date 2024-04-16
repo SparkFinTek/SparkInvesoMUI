@@ -7,9 +7,9 @@ import Box from '@mui/material/Box';
 // third-party
 import ReactApexChart from 'react-apexcharts';
 
-// project importS
-import { ThemeMode } from 'config';
+// project import
 import useConfig from 'hooks/useConfig';
+import { ThemeMode } from 'config';
 
 // chart options
 const barChartOptions = {

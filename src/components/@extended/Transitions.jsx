@@ -51,7 +51,14 @@ function transitions({ children, position = 'top-left', type = 'grow', direction
   return (
     <Box ref={ref}>
       {type === 'grow' && (
-        <Grow {...others} timeout={{ appear: 0, enter: 150, exit: 150 }}>
+        <Grow
+          {...others}
+          timeout={{
+            appear: 0,
+            enter: 150,
+            exit: 150
+          }}
+        >
           <Box sx={positionSX}>{children}</Box>
         </Grow>
       )}
@@ -100,11 +107,10 @@ function transitions({ children, position = 'top-left', type = 'grow', direction
 
 export default forwardRef(transitions);
 
-function transition(props, ref) {
+function popupTransition(props, ref) {
   return <Zoom ref={ref} timeout={200} {...props} />;
 }
-
-export const PopupTransition = forwardRef(transition);
+export const PopupTransition = forwardRef(popupTransition);
 
 transitions.propTypes = {
   children: PropTypes.node,

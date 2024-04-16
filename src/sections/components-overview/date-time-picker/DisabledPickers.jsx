@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 
 // material-ui
@@ -19,8 +17,70 @@ import MainCard from 'components/MainCard';
 export default function DisabledPickers() {
   const [value, setValue] = useState(null);
 
+  const disabledDatepickerCodeString = `<MainCard title="Disabled Pickers" codeString={disabledDatepickerCodeString}>
+  <Stack spacing={3}>
+    <Typography variant="h6">Date Picker</Typography>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <DatePicker
+        label="disabled"
+        disabled
+        value={value}
+        onChange={(newValue: any) => {
+          setValue(newValue);
+        }}
+      />
+      <DatePicker
+        label="read-only"
+        readOnly
+        value={value}
+        onChange={(newValue: any) => {
+          setValue(newValue);
+        }}
+      />
+    </LocalizationProvider>
+
+    <Typography variant="h6">Date Time Picker</Typography>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <DateTimePicker
+        label="disabled"
+        disabled
+        value={value}
+        onChange={(newValue: any) => {
+          setValue(newValue);
+        }}
+      />
+      <DateTimePicker
+        label="read-only"
+        readOnly
+        value={value}
+        onChange={(newValue: any) => {
+          setValue(newValue);
+        }}
+      />
+
+      <Typography variant="h6">Time Picker</Typography>
+      <TimePicker
+        label="disabled"
+        disabled
+        value={value}
+        onChange={(newValue: any) => {
+          setValue(newValue);
+        }}
+      />
+      <TimePicker
+        label="read-only"
+        readOnly
+        value={value}
+        onChange={(newValue: any) => {
+          setValue(newValue);
+        }}
+      />
+    </LocalizationProvider>
+  </Stack>
+</MainCard>`;
+
   return (
-    <MainCard title="Disabled Pickers">
+    <MainCard title="Disabled Pickers" codeString={disabledDatepickerCodeString}>
       <Stack spacing={3}>
         <Typography variant="h6">Date Picker</Typography>
         <LocalizationProvider dateAdapter={AdapterDateFns}>

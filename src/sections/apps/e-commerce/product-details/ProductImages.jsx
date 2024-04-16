@@ -13,8 +13,10 @@ import Stack from '@mui/material/Stack';
 import MainCard from 'components/MainCard';
 import Avatar from 'components/@extended/Avatar';
 import IconButton from 'components/@extended/IconButton';
+
 import { ThemeMode } from 'config';
 import { openSnackbar } from 'api/snackbar';
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
 
 // third-party
 import Slider from 'react-slick';
@@ -31,20 +33,19 @@ import UpOutlined from '@ant-design/icons/UpOutlined';
 import RightOutlined from '@ant-design/icons/RightOutlined';
 import LeftOutlined from '@ant-design/icons/LeftOutlined';
 
-const prod1 = '/assets/images/e-commerce/prod-1.png';
-const prod2 = '/assets/images/e-commerce/prod-2.png';
-const prod3 = '/assets/images/e-commerce/prod-3.png';
-const prod4 = '/assets/images/e-commerce/prod-4.png';
-const prod5 = '/assets/images/e-commerce/prod-5.png';
-const prod6 = '/assets/images/e-commerce/prod-6.png';
-const prod7 = '/assets/images/e-commerce/prod-7.png';
-const prod8 = '/assets/images/e-commerce/prod-8.png';
-const prod9 = '/assets/images/e-commerce/prod-9.png';
+import prod1 from 'assets/images/e-commerce/prod-1.png';
+import prod2 from 'assets/images/e-commerce/prod-2.png';
+import prod3 from 'assets/images/e-commerce/prod-3.png';
+import prod4 from 'assets/images/e-commerce/prod-4.png';
+import prod5 from 'assets/images/e-commerce/prod-5.png';
+import prod6 from 'assets/images/e-commerce/prod-6.png';
+import prod7 from 'assets/images/e-commerce/prod-7.png';
+import prod8 from 'assets/images/e-commerce/prod-8.png';
+import prod9 from 'assets/images/e-commerce/prod-9.png';
 
 function ArrowUp({ currentSlide, slideCount, ...props }) {
   const theme = useTheme();
   const downMD = useMediaQuery(theme.breakpoints.down('md'));
-
   return (
     <Box
       {...props}
@@ -122,7 +123,7 @@ export default function ProductImages({ product }) {
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
-    setSelected(product && product?.image ? `/assets/images/e-commerce/${product.image}` : '');
+    setSelected(product && product?.image ? getImageUrl(`${product.image}`, ImagePath.ECOMMERCE) : '');
   }, [product]);
 
   const [wishlisted, setWishlisted] = useState(false);
@@ -248,10 +249,10 @@ export default function ProductImages({ product }) {
         >
           <Slider {...settings}>
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
-              <Box key={index} onClick={() => setSelected(`/assets/images/e-commerce/prod-${item}.png`)} sx={{ p: 1 }}>
+              <Box key={index} onClick={() => setSelected(getImageUrl(`prod-${item}.png`, ImagePath.ECOMMERCE))} sx={{ p: 1 }}>
                 <Avatar
                   size={upLG ? 'xl' : 'md'}
-                  src={`/assets/images/e-commerce/thumbs/prod-${item}.png`}
+                  src={getImageUrl(`thumbs/prod-${item}.png`, ImagePath.ECOMMERCE)}
                   variant="rounded"
                   sx={{ m: '0 auto', cursor: 'pointer', bgcolor: 'grey.0', border: '1px solid', borderColor: 'grey.200' }}
                 />

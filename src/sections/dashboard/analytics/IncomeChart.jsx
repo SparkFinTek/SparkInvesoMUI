@@ -55,6 +55,8 @@ const areaChartOptions = {
   }
 };
 
+// ==============================|| INCOME LINE CHART ||============================== //
+
 export default function IncomeAreaChart({ slot, quantity }) {
   const theme = useTheme();
   const { mode } = useConfig();

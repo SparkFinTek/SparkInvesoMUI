@@ -1,17 +1,16 @@
-// next
-import NextLink from 'next/link';
+import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
 import CardMedia from '@mui/material/CardMedia';
 import Chip from '@mui/material/Chip';
 import Link from '@mui/material/Link';
-import Stack from '@mui/material/Stack';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
+import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import Stack from '@mui/material/Stack';
 
 // project imports
 import MainCard from 'components/MainCard';
@@ -21,10 +20,10 @@ import IconButton from 'components/@extended/IconButton';
 import EditOutlined from '@ant-design/icons/EditOutlined';
 import DeleteOutlined from '@ant-design/icons/DeleteOutlined';
 
-const Phone1 = '/assets/images/widget/PHONE1.jpg';
-const Phone2 = '/assets/images/widget/PHONE2.jpg';
-const Phone3 = '/assets/images/widget/PHONE3.jpg';
-const Phone4 = '/assets/images/widget/PHONE4.jpg';
+import Phone1 from 'assets/images/widget/PHONE1.jpg';
+import Phone2 from 'assets/images/widget/PHONE2.jpg';
+import Phone3 from 'assets/images/widget/PHONE3.jpg';
+import Phone4 from 'assets/images/widget/PHONE4.jpg';
 
 // table data
 function createData(customer, cid, photo, product, quantity, date, status, statuscolor) {
@@ -46,9 +45,9 @@ export default function LatestOrder() {
       title="Latest Order"
       content={false}
       secondary={
-        <NextLink href="#" passHref legacyBehavior>
-          <Link color="primary">View all</Link>
-        </NextLink>
+        <Link component={RouterLink} to="#" color="primary">
+          View all
+        </Link>
       }
     >
       <TableContainer>

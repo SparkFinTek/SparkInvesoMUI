@@ -1,4 +1,3 @@
-'use client';
 import { forwardRef, useState } from 'react';
 
 // material-ui
@@ -20,6 +19,8 @@ import IconButton from 'components/@extended/IconButton';
 
 // assets
 import CloseOutlined from '@ant-design/icons/CloseOutlined';
+import avatar1 from 'assets/images/users/avatar-1.png';
+import avatar2 from 'assets/images/users/avatar-2.png';
 
 function transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -62,14 +63,14 @@ export default function FullScreenDialog() {
         <List sx={{ p: 3 }}>
           <ListItemButton>
             <ListItemAvatar>
-              <Avatar src="/assets/images/users/avatar-1.png" />
+              <Avatar src={avatar1} />
             </ListItemAvatar>
             <ListItemText primary="Phone ringtone" secondary="Default" />
           </ListItemButton>
           <Divider />
           <ListItemButton>
             <ListItemAvatar>
-              <Avatar src="/assets/images/users/avatar-2.png" />
+              <Avatar src={avatar2} />
             </ListItemAvatar>
             <ListItemText primary="Default notification ringtone" secondary="Tethys" />
           </ListItemButton>

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 
 // material-ui
 import Box from '@mui/material/Box';
@@ -22,7 +23,7 @@ import { format } from 'date-fns';
 import MainCard from 'components/MainCard';
 import IconButton from 'components/@extended/IconButton';
 import ProductReview from 'components/cards/e-commerce/ProductReview';
-import { useGetProductReviews } from 'api/products';
+import { getProductReviews } from 'api/products';
 
 // assets
 import FileAddOutlined from '@ant-design/icons/FileAddOutlined';
@@ -44,7 +45,19 @@ function LinearProgressWithLabel({ star, color, value, ...others }) {
 // ==============================|| PRODUCT DETAILS - REVIEWS ||============================== //
 
 export default function ProductReviews({ product }) {
-  const { productReviewsLoading, productReviews } = useGetProductReviews();
+  const [reviews, setReviews] = useState([]);
+  const [loader, setLoader] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      await getProductReviews().then((response) => {
+        setReviews(response.data.productReviews);
+        setLoader(false);
+      });
+    })();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   let productReview = (
     <Grid item xs={12}>
@@ -74,8 +87,8 @@ export default function ProductReviews({ product }) {
     </Grid>
   );
 
-  if (productReviews && !productReviewsLoading) {
-    productReview = productReviews.map((review, index) => (
+  if (reviews && !loader) {
+    productReview = reviews.map((review, index) => (
       <Grid item xs={12} key={index}>
         <MainCard sx={{ bgcolor: 'grey.A50' }}>
           <ProductReview
@@ -145,13 +158,12 @@ export default function ProductReviews({ product }) {
       <Grid item xs={12}>
         <Stack direction="row" justifyContent="center">
           <Button variant="text" sx={{ textTransform: 'none' }}>
-            {' '}
-            View more comments{' '}
+            View more comments
           </Button>
         </Stack>
       </Grid>
       <Grid item xs={12}>
-        <Box sx={{ p: 2, pb: 1.5, border: `1px solid`, borderColor: 'divider' }}>
+        <Box sx={{ p: 2, pb: 1.5, border: '1px solid', borderColor: 'divider' }}>
           <Grid container alignItems="center" spacing={0.5}>
             <Grid item xs={12}>
               <TextField

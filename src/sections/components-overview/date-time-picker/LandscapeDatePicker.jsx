@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 
 // material-ui
@@ -18,8 +16,21 @@ import MainCard from 'components/MainCard';
 export default function LandscapeDatePicker() {
   const [value, setValue] = useState(new Date());
 
+  const landscapDatepickerCodeString = `<LocalizationProvider dateAdapter={AdapterDateFns}>
+  <StaticDatePicker<Date>
+    orientation="landscape"
+    openTo="day"
+    value={value}
+    shouldDisableDate={isWeekend}
+    onChange={(newValue) => {
+      setValue(newValue);
+    }}
+    renderInput={(params) => <TextField {...params} />}
+  />
+</LocalizationProvider>`;
+
   return (
-    <MainCard title="Landscape">
+    <MainCard title="Landscape" codeString={landscapDatepickerCodeString}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <StaticDatePicker
           orientation="landscape"

@@ -1,37 +1,28 @@
-'use client';
 import PropTypes from 'prop-types';
-
 import { useEffect } from 'react';
-
-// next
-import { useRouter } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // project import
-import Loader from 'components/Loader';
 import { APP_DEFAULT_PATH } from 'config';
+import useAuth from 'hooks/useAuth';
 
 // ==============================|| GUEST GUARD ||============================== //
 
 export default function GuestGuard({ children }) {
-  const { data: session, status } = useSession();
-  const router = useRouter();
+  const { isLoggedIn } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch('/api/auth/protected');
-      const json = await res?.json();
-      if (json?.protected) {
-        let redirectPath = APP_DEFAULT_PATH;
-        router.push(redirectPath);
-      }
-    };
-    fetchData();
-
-    // eslint-disable-next-line
-  }, [session]);
-
-  if (status === 'loading' || session?.user) return <Loader />;
+    if (isLoggedIn) {
+      navigate(location?.state?.from ? location?.state?.from : APP_DEFAULT_PATH, {
+        state: {
+          from: ''
+        },
+        replace: true
+      });
+    }
+  }, [isLoggedIn, navigate, location]);
 
   return children;
 }

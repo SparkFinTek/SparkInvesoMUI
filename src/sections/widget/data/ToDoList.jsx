@@ -1,12 +1,10 @@
-'use client';
-
 import { useState } from 'react';
 
 // material-ui
 import CardContent from '@mui/material/CardContent';
 import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import Tooltip from '@mui/material/Tooltip';
 
 // project imports

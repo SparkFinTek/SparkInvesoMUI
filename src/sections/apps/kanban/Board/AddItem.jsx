@@ -69,7 +69,6 @@ export default function AddItem({ columnId }) {
           color: 'success'
         }
       });
-
       handleAddTaskChange();
       setTitle('');
     } else {

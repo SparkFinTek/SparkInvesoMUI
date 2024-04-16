@@ -1,4 +1,3 @@
-'use client';
 import PropTypes from 'prop-types';
 
 // material-ui
@@ -76,8 +75,42 @@ function StyledTreeItem({ bgColor, color, labelIcon, labelInfo, labelText, ...ot
 // ==============================|| TREE VIEW - GMAIL ||============================== //
 
 export default function GmailTreeView() {
+  const gmailTreeviewCodeString = `// GmailTreeView.tsx
+<TreeView
+  aria-label="gmail"
+  defaultExpanded={['3']}
+  defaultCollapseIcon={<CaretDownFilled />}
+  defaultExpandIcon={<CaretRightFilled />}
+  defaultEndIcon={<div style={{ width: 24 }} />}
+  sx={{ height: 400, flexGrow: 1, overflowY: 'auto' }}
+>
+  <StyledTreeItem nodeId="1" labelText="All Mail" labelIcon={<MailFilled />} />
+  <StyledTreeItem nodeId="2" labelText="Trash" labelIcon={<DeleteFilled />} />
+  <StyledTreeItem nodeId="3" labelText="Categories" labelIcon={<TagFilled />}>
+    <StyledTreeItem nodeId="5" labelText="Social" labelIcon={<ProfileFilled />} labelInfo="90" color="#1a73e8" bgColor="#e8f0fe" />
+    <StyledTreeItem
+      nodeId="6"
+      labelText="Updates"
+      labelIcon={<InfoCircleFilled />}
+      labelInfo="2,294"
+      color="#e3742f"
+      bgColor="#fcefe3"
+    />
+    <StyledTreeItem
+      nodeId="7"
+      labelText="Forums"
+      labelIcon={<SnippetsFilled />}
+      labelInfo="3,566"
+      color="#a250f5"
+      bgColor="#f3e8fd"
+    />
+    <StyledTreeItem nodeId="8" labelText="Promotions" labelIcon={<TagsFilled />} labelInfo="733" color="#3c8039" bgColor="#e6f4ea" />
+  </StyledTreeItem>
+  <StyledTreeItem nodeId="4" labelText="History" labelIcon={<TagFilled />} />
+</TreeView>`;
+
   return (
-    <MainCard title="Gmail Clone">
+    <MainCard title="Gmail Clone" codeString={gmailTreeviewCodeString}>
       <TreeView
         aria-label="gmail"
         defaultExpanded={['3']}

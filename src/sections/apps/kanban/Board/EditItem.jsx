@@ -1,7 +1,4 @@
 import PropTypes from 'prop-types';
-//next
-import Image from 'next/image';
-
 // material-ui
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
@@ -30,9 +27,10 @@ import { useFormik } from 'formik';
 import AnimateButton from 'components/@extended/AnimateButton';
 import UploadMultiFile from 'components/third-party/dropzone/MultiFile';
 
-import { DropzoneType } from 'config';
+import { DropzopType } from 'config';
 import { editItem } from 'api/kanban';
 import { openSnackbar } from 'api/snackbar';
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
 
 const validationSchema = yup.object({
   title: yup.string().required('Task title is required'),
@@ -121,13 +119,7 @@ export default function EditItem({ item, profiles, userStory, columns, handleDra
                 // @ts-ignore
                 renderOption={({ key, ...props }, option) => (
                   <Box key={key} component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
-                    <Image
-                      width={20}
-                      height={20}
-                      src={`/assets/images/users/${option.avatar}`}
-                      alt=""
-                      style={{ maxWidth: '100%', height: 'auto' }}
-                    />
+                    <img loading="lazy" width="20" src={getImageUrl(`${option.avatar}`, ImagePath.USERS)} alt="" />
                     {option.name}
                   </Box>
                 )}
@@ -245,7 +237,7 @@ export default function EditItem({ item, profiles, userStory, columns, handleDra
               </Grid>
               <Grid item xs={12}>
                 <UploadMultiFile
-                  type={DropzoneType.STANDARD}
+                  type={DropzopType.STANDARD}
                   showList={true}
                   setFieldValue={formik.setFieldValue}
                   files={formik.values.files}

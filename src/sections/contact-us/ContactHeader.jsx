@@ -1,8 +1,3 @@
-'use client';
-
-// next
-import Image from 'next/legacy/image';
-
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -16,23 +11,13 @@ import MainCard from 'components/MainCard';
 import { ThemeDirection, ThemeMode } from 'config';
 
 // assets
-const worldMap = '/assets/images/contact/worldMap.png';
+import worldMap from 'assets/images/contact/worldMap.png';
 
 // ==============================|| CONTACT US - HEADER ||============================== //
 
-function ContactHeader() {
+export default function ContactHeader() {
   const theme = useTheme();
   const downSM = useMediaQuery(theme.breakpoints.down('sm'));
-  const downMD = useMediaQuery(theme.breakpoints.down('md'));
-  const downLG = useMediaQuery(theme.breakpoints.down('lg'));
-
-  let imagWidth = 600;
-  imagWidth = downLG ? 500 : imagWidth;
-  imagWidth = downMD ? 320 : imagWidth;
-
-  let imagHight = 410;
-  imagHight = downLG ? 340 : imagHight;
-  imagHight = downMD ? 217 : imagHight;
 
   return (
     <MainCard
@@ -86,11 +71,11 @@ function ContactHeader() {
               </Typography>
             </Stack>
           </Box>
-          <Image src={worldMap} alt="mantis" layout="fixed" width={imagWidth} height={imagHight} />
+          <Box sx={{ width: { xs: 320, sm: 320, md: 500, lg: 600 } }}>
+            <img src={worldMap} alt="mantis" style={{ width: '100%' }} />
+          </Box>
         </Stack>
       </Container>
     </MainCard>
   );
 }
-
-export default ContactHeader;

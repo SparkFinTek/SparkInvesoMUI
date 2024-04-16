@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 import { forwardRef } from 'react';
 
 // material-ui
@@ -11,7 +9,7 @@ import CardHeader from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 
-// project-import
+// project import
 import Highlighter from './third-party/Highlighter';
 import { ThemeMode } from 'config';
 
@@ -31,6 +29,7 @@ function MainCard(
     contentSX = {},
     darkTitle,
     divider = true,
+    elevation,
     secondary,
     shadow,
     sx = {},
@@ -47,14 +46,15 @@ function MainCard(
 
   return (
     <Card
+      elevation={elevation || 0}
       sx={{
         position: 'relative',
         border: border ? '1px solid' : 'none',
         borderRadius: 1,
         borderColor: theme.palette.mode === ThemeMode.DARK ? 'divider' : 'grey.A800',
-        boxShadow: boxShadow && (!border || theme.palette.mode === ThemeMode.DARK) ? shadow || theme.customShadows.z1 : 'none',
+        boxShadow: boxShadow && (!border || theme.palette.mode === ThemeMode.DARK) ? shadow || theme.customShadows.z1 : 'inherit',
         ':hover': {
-          boxShadow: boxShadow ? shadow || theme.customShadows.z1 : 'none'
+          boxShadow: boxShadow ? shadow || theme.customShadows.z1 : 'inherit'
         },
         ...(theme.palette.mode === ThemeMode.DARK && {
           backgroundImage: 'none'
@@ -119,6 +119,7 @@ MainCard.propTypes = {
   contentSX: PropTypes.object,
   darkTitle: PropTypes.bool,
   divider: PropTypes.bool,
+  elevation: PropTypes.number,
   secondary: PropTypes.any,
   shadow: PropTypes.string,
   sx: PropTypes.object,

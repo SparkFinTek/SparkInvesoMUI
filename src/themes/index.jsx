@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useMemo } from 'react';
 
 // material-ui
+import StyledEngineProvider from '@mui/material/StyledEngineProvider';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
@@ -11,7 +12,6 @@ import Palette from './palette';
 import Typography from './typography';
 import CustomShadows from './shadows';
 import componentsOverride from './overrides';
-import { NextAppDirEmotionCacheProvider } from './emotionCache';
 
 // ==============================|| DEFAULT THEME - MAIN ||============================== //
 
@@ -21,6 +21,7 @@ export default function ThemeCustomization({ children }) {
   const theme = useMemo(() => Palette(mode, presetColor), [mode, presetColor]);
 
   const themeTypography = useMemo(() => Typography(fontFamily), [fontFamily]);
+
   const themeCustomShadows = useMemo(() => CustomShadows(theme), [theme]);
 
   const themeOptions = useMemo(
@@ -53,12 +54,12 @@ export default function ThemeCustomization({ children }) {
   themes.components = componentsOverride(themes);
 
   return (
-    <NextAppDirEmotionCacheProvider options={{ key: 'mui' }}>
+    <StyledEngineProvider injectFirst>
       <ThemeProvider theme={themes}>
         <CssBaseline enableColorScheme />
         {children}
       </ThemeProvider>
-    </NextAppDirEmotionCacheProvider>
+    </StyledEngineProvider>
   );
 }
 

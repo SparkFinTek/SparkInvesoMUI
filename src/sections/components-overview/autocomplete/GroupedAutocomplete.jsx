@@ -1,6 +1,6 @@
 // material-ui
-import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 
 // project import
 import MainCard from 'components/MainCard';
@@ -17,8 +17,17 @@ export default function GroupedAutocomplete() {
     };
   });
 
+  const groupAutocompleteCodeString = `<Autocomplete
+  id="grouped-demo"
+  fullWidth
+  options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
+  groupBy={(option) => option.firstLetter}
+  getOptionLabel={(option) => option.label}
+  renderInput={(params) => <TextField {...params} placeholder="With categories" />}
+/>`;
+
   return (
-    <MainCard title="Grouped">
+    <MainCard title="Grouped" codeString={groupAutocompleteCodeString}>
       <Autocomplete
         id="grouped-demo"
         fullWidth

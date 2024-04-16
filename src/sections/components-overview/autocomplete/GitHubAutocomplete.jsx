@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 // material-ui
 import { useTheme, styled } from '@mui/material/styles';
@@ -128,8 +128,103 @@ export default function GitHubLabel() {
   const open = Boolean(anchorEl);
   const id = open ? 'github-label' : undefined;
 
+  const gitAutocompleteCodeString = `// GitHubAutocomplete.tsx
+<Box sx={{ width: 221, fontSize: 13 }}>
+  <Button
+    disableRipple
+    aria-describedby={id}
+    onClick={handleClick}
+    sx={{ justifyContent: 'space-between', '& span': { width: 'auto' } }}
+  >
+    <span>Labels</span>
+    <SettingFilled />
+  </Button>
+  {value.map((label, index) => (
+    <Box
+      key={index}
+      sx={{
+        mt: '3px',
+        height: 20,
+        padding: '.15em 4px',
+        fontWeight: 600,
+        lineHeight: '15px',
+        borderRadius: '2px',
+        bgcolor: label.color,
+        color: theme.palette.getContrastText(label.color)
+      }}
+    >
+      {label.name}
+    </Box>
+  ))}
+</Box>
+<StyledPopper id={id} open={open} anchorEl={anchorEl} placement="bottom-start">
+  <ClickAwayListener onClickAway={handleClose}>
+    <div>
+      <Box
+        sx={{
+          borderBottom: '1px solid {theme.palette.mode === ThemeMode.DARK ? '#30363d' : '#eaecef'}',
+          padding: '8px 10px',
+          fontWeight: 600
+        }}
+      >
+        Apply labels to this pull request
+      </Box>
+      <Autocomplete
+        open
+        multiple
+        onClose={(event: React.ChangeEvent<{}>, reason: AutocompleteCloseReason) => {
+          if (reason === 'escape') {
+            handleClose();
+          }
+        }}
+        value={pendingValue}
+        onChange={(event, newValue, reason) => {
+          if (event.type === 'keydown' && (event as React.KeyboardEvent).key === 'Backspace' && reason === 'removeOption') {
+            return;
+          }
+          setPendingValue(newValue);
+        }}
+        disableCloseOnSelect
+        PopperComponent={PopperComponent}
+        renderTags={() => null}
+        noOptionsText="No labels"
+        renderOption={({ key, ...props }, option, { selected }) => (
+          <li key={key} {...props}>
+            <Box
+              component={CheckOutlined}
+              sx={{ width: 17, height: 17, mr: '5px', ml: '-2px', mt: 0.25, visibility: selected ? 'visible' : 'hidden' }}
+            />
+            <Box sx={{ width: 14, height: 14, flexShrink: 0, borderRadius: '3px', mr: 1, mt: '2px', bgcolor: option.color }} />
+            <Box sx={{ flexGrow: 1, '& span': { color: 'text.secondary' } }}>
+              {option.name}
+              <br />
+              <span>{option.description}</span>
+            </Box>
+            <Box
+              component={CloseOutlined}
+              sx={{ opacity: 0.6, width: 18, height: 18, mt: 0.25 ,visibility: selected ? 'visible' : 'hidden'}}
+            />
+          </li>
+        )}
+        options={[...labels].sort((a, b) => {
+          // Display the selected labels first.
+          let ai = value.indexOf(a);
+          ai = ai === -1 ? value.length + labels.indexOf(a) : ai;
+          let bi = value.indexOf(b);
+          bi = bi === -1 ? value.length + labels.indexOf(b) : bi;
+          return ai - bi;
+        })}
+        getOptionLabel={(option) => option.name}
+        renderInput={(params) => (
+          <StyledInput ref={params.InputProps.ref} inputProps={params.inputProps} autoFocus placeholder="Filter labels" />
+        )}
+      />
+    </div>
+  </ClickAwayListener>
+</StyledPopper>`;
+
   return (
-    <MainCard title="GitHub's Picker">
+    <MainCard title="GitHub's Picker" codeString={gitAutocompleteCodeString}>
       <Box sx={{ width: 221, fontSize: 13 }}>
         <Button
           disableRipple

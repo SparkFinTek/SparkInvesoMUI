@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography';
 // project imports
 import MainCard from 'components/MainCard';
 
+// ==============================|| MATRIX CARD ||============================== //
+
 export default function EcommerceMetrix({ primary, secondary, content, iconPrimary, color }) {
   const IconPrimary = iconPrimary;
   const primaryIcon = iconPrimary ? <IconPrimary fontSize="large" /> : null;

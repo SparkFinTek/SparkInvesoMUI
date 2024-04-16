@@ -1,13 +1,11 @@
-'use client';
-
 // material-ui
 import Button from '@mui/material/Button';
-import FormControl from '@mui/material/FormControl';
-import FormHelperText from '@mui/material/FormHelperText';
 import Grid from '@mui/material/Grid';
+import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
-import Select from '@mui/material/Select';
+import FormHelperText from '@mui/material/FormHelperText';
 import Stack from '@mui/material/Stack';
+import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
 // project imports

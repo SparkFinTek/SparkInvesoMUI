@@ -11,11 +11,11 @@ import Avatar from 'components/@extended/Avatar';
 // assets
 import MoreOutlined from '@ant-design/icons/MoreOutlined';
 
-const Avatar1 = '/assets/images/users/avatar-5.png';
-const Avatar2 = '/assets/images/users/avatar-6.png';
-const Avatar3 = '/assets/images/users/avatar-7.png';
-const Avatar4 = '/assets/images/users/avatar-8.png';
-const Avatar5 = '/assets/images/users/avatar-9.png';
+import Avatar1 from 'assets/images/users/avatar-5.png';
+import Avatar2 from 'assets/images/users/avatar-6.png';
+import Avatar3 from 'assets/images/users/avatar-7.png';
+import Avatar4 from 'assets/images/users/avatar-8.png';
+import Avatar5 from 'assets/images/users/avatar-9.png';
 
 // ==============================|| INVOICE - DASHBOARD USER LIST ||============================== //
 

@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
-
-// next
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // material-ui
 import Button from '@mui/material/Button';
@@ -23,8 +21,9 @@ import Avatar from 'components/@extended/Avatar';
 import IconButton from 'components/@extended/IconButton';
 import SimpleBar from 'components/third-party/SimpleBar';
 
-import { useGetReleatedProducts } from 'api/products';
+import { getRelatedProducts } from 'api/products';
 import { openSnackbar } from 'api/snackbar';
+import { getImageUrl, ImagePath } from 'utils/getImageUrl';
 
 // assets
 import HeartFilled from '@ant-design/icons/HeartFilled';
@@ -33,7 +32,7 @@ import StarFilled from '@ant-design/icons/StarFilled';
 import StarOutlined from '@ant-design/icons/StarOutlined';
 
 function ListProduct({ product }) {
-  const router = useRouter();
+  const history = useNavigate();
 
   const [wishlisted, setWishlisted] = useState(false);
   const addToFavourite = () => {
@@ -42,15 +41,12 @@ function ListProduct({ product }) {
       open: true,
       message: 'Added to favourites',
       variant: 'alert',
-
-      alert: {
-        color: 'success'
-      }
+      alert: { color: 'success' }
     });
   };
 
   const linkHandler = (id) => {
-    router.push(`/apps/e-commerce/product-details/${id}`);
+    history(`/apps/e-commerce/product-details/${id}`);
   };
 
   return (
@@ -62,7 +58,7 @@ function ListProduct({ product }) {
           color="secondary"
           variant="rounded"
           type="combined"
-          src={product.image ? `/assets/images/e-commerce/thumbs/${product.image}` : ''}
+          src={product.image ? getImageUrl(`thumbs/${product.image}`, ImagePath.ECOMMERCE) : ''}
           sx={{ borderColor: 'divider', mr: 1 }}
         />
       </ListItemAvatar>
@@ -110,7 +106,18 @@ function ListProduct({ product }) {
 // ==============================|| PRODUCT DETAILS - RELATED PRODUCTS ||============================== //
 
 export default function RelatedProducts({ id }) {
-  const { relatedProductsLoading, relatedProducts } = useGetReleatedProducts(id);
+  const [related, setRelated] = useState([]);
+  const [loader, setLoader] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      await getRelatedProducts(id).then((response) => {
+        setRelated(response.data);
+        setLoader(false);
+      });
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   let productResult = (
     <List>
@@ -134,7 +141,7 @@ export default function RelatedProducts({ id }) {
     </List>
   );
 
-  if (!relatedProductsLoading && relatedProducts) {
+  if (related && !loader) {
     productResult = (
       <List
         component="nav"
@@ -156,7 +163,7 @@ export default function RelatedProducts({ id }) {
           p: 0
         }}
       >
-        {relatedProducts.map((product, index) => (
+        {related.map((product, index) => (
           <ListProduct key={index} product={product} />
         ))}
       </List>

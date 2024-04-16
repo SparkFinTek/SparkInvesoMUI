@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 
 // material-ui
@@ -65,7 +63,7 @@ const areaChartOptions = {
 
 // ==============================|| REPORT AREA CHART ||============================== //
 
-export default function ReportChart() {
+const ReportChart = () => {
   const theme = useTheme();
   const { mode } = useConfig();
 
@@ -114,4 +112,6 @@ export default function ReportChart() {
   ]);
 
   return <ReactApexChart options={options} series={series} type="line" height={340} />;
-}
+};
+
+export default ReportChart;

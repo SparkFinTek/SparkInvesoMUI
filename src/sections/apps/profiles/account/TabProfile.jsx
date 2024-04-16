@@ -1,4 +1,3 @@
-'use client';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
@@ -25,6 +24,8 @@ import EnvironmentOutlined from '@ant-design/icons/EnvironmentOutlined';
 import MailOutlined from '@ant-design/icons/MailOutlined';
 import PhoneOutlined from '@ant-design/icons/PhoneOutlined';
 
+import defaultImages from 'assets/images/users/default.png';
+
 // ==============================|| ACCOUNT PROFILE - BASIC ||============================== //
 
 export default function TabProfile() {
@@ -42,7 +43,7 @@ export default function TabProfile() {
                     <Chip label="Pro" size="small" color="primary" />
                   </Stack>
                   <Stack spacing={2.5} alignItems="center">
-                    <Avatar alt="Avatar 1" size="xl" src="/assets/images/users/default.png" />
+                    <Avatar alt="Avatar 1" size="xl" src={defaultImages} />
                     <Stack spacing={0.5} alignItems="center">
                       <Typography variant="h5">Anshan H.</Typography>
                       <Typography color="secondary">Project Manager</Typography>
@@ -275,7 +276,7 @@ export default function TabProfile() {
                     </Grid>
                     <Grid item xs={12} md={6}>
                       <Stack spacing={0.5}>
-                        <Typography color="secondary">Higher Secondary Education</Typography>
+                        <Typography color="secondary">Institute</Typography>
                         <Typography>School of London, England</Typography>
                       </Stack>
                     </Grid>

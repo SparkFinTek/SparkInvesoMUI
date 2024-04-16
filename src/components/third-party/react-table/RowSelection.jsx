@@ -13,12 +13,7 @@ export default function RowSelection({ selected }) {
           label={`${selected} row(s) selected`}
           color="secondary"
           variant="light"
-          sx={{
-            position: 'absolute',
-            right: -1,
-            top: -1,
-            borderRadius: '0 4px 0 4px'
-          }}
+          sx={{ position: 'absolute', right: -1, top: -1, borderRadius: '0 4px 0 4px' }}
         />
       )}
     </>

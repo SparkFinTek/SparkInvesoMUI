@@ -8,8 +8,8 @@ import Box from '@mui/material/Box';
 import ReactApexChart from 'react-apexcharts';
 
 // project import
-import { ThemeMode } from 'config';
 import useConfig from 'hooks/useConfig';
+import { ThemeMode } from 'config';
 
 // chart options
 const redialBarChartOptions = {

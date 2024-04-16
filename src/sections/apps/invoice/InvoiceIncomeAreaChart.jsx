@@ -27,25 +27,6 @@ const areaChartOptions = {
       columnWidth: '50%'
     }
   },
-  fill: {
-    type: 'gradient',
-    gradient: {
-      inverseColors: false,
-      shade: 'light',
-      type: 'vertical',
-      opacityFrom: [0, 1],
-      opacityTo: [0.35, 1],
-      stops: [0, 100],
-      hover: {
-        inverseColors: false,
-        shade: 'light',
-        type: 'vertical',
-        opacityFrom: 0.15,
-        opacityTo: 0.65,
-        stops: [0, 96, 100]
-      }
-    }
-  },
   legend: {
     show: false
   },
@@ -74,6 +55,7 @@ export default function InvoiceIncomeAreaChart({ series }) {
       ...prevState,
       colors: [theme.palette.warning.main, theme.palette.warning.main],
       xaxis: {
+        type: 'datetime',
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         labels: {
           style: {
@@ -103,6 +85,25 @@ export default function InvoiceIncomeAreaChart({ series }) {
         labels: {
           style: {
             colors: [secondary]
+          }
+        }
+      },
+      fill: {
+        type: 'gradient',
+        gradient: {
+          inverseColors: false,
+          shade: 'light',
+          type: 'vertical',
+          opacityFrom: [0, 1],
+          opacityTo: [0.35, 1],
+          stops: [0, 100],
+          hover: {
+            inverseColors: false,
+            shade: 'light',
+            type: 'vertical',
+            opacityFrom: 0.15,
+            opacityTo: 0.65,
+            stops: [0, 96, 100]
           }
         }
       },

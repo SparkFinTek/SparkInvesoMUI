@@ -55,8 +55,8 @@ const getDropWrapper = (isDraggingOver, theme, radius) => {
 
 export default function Columns({ column, index }) {
   const theme = useTheme();
-  const { backlogs } = useGetBacklogs();
 
+  const { backlogs } = useGetBacklogs();
   const columnItems = column.itemIds.map((itemId) => backlogs?.items.filter((item) => item.id === itemId)[0]);
 
   const handleColumnDelete = () => {

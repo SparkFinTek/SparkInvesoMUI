@@ -1,6 +1,4 @@
-'use client';
 import PropTypes from 'prop-types';
-
 import { forwardRef } from 'react';
 
 // material-ui
@@ -144,6 +142,8 @@ function IconButton({ variant = 'text', shape = 'square', children, color = 'pri
     </IconButtonStyle>
   );
 }
+
+IconButton.displayName = 'IconButton';
 
 export default forwardRef(IconButton);
 
